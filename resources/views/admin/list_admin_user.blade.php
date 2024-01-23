@@ -60,7 +60,7 @@
 
                 </div>
 
-                @if (in_array('14', $edit_perm))
+                @if (in_array('6', $edit_perm))
 
                     <div class="col-auto">
 
@@ -266,7 +266,7 @@
 
 
 
-                                                @if (in_array('14', $edit_perm))
+                                                @if (in_array('6', $edit_perm))
 
                                                     <td class="text-right">
 
