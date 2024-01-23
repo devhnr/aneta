@@ -90,7 +90,7 @@
 
                 </div>
 
-                @if (in_array('13', $edit_perm))
+                @if (in_array('5', $edit_perm))
 
                     <div class="col-auto">
 
@@ -370,7 +370,7 @@
 
 
 
-                                            @if (in_array('13', $edit_perm))
+                                            @if (in_array('5', $edit_perm))
 
                                                 <th class="text-right">Actions</th>
 
@@ -508,7 +508,7 @@
 
 
 
-                                                @if (in_array('13', $edit_perm))
+                                                @if (in_array('5', $edit_perm))
 
                                                     <td class="text-right">
 
