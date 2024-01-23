@@ -76,20 +76,12 @@ class ProductController extends Controller
 
     {
 
-        $data['group'] = Group::all();
-
-        $data['category'] = Category::all();
+       
+        
 
         $data['size'] = Size::all();
 
-        $data['collection'] = Collection::all();
-
-        $data['colour'] = Colour::all();
-
-        $data['material'] = Material::all();
-
-        $data['style_type'] = Style_type::all();
-
+      
         return view('admin.add_product',$data);
 
     }
@@ -114,8 +106,7 @@ class ProductController extends Controller
 
     //   echo "<pre>";print_r($request->all());echo "</pre>";exit;
 
-        $data['group_id'] = $request->input('group_id');
-
+       
         $data['cat_id'] = $request->input('cat_id');
 
         $data['subcat_id'] = $request->input('subcat_id');
@@ -130,8 +121,7 @@ class ProductController extends Controller
 
         $data['short_description'] = $request->input('short_description');
 
-        $data['collection_id'] = $request->input('collection_id');
-
+      
         $data['discount'] = $request->input('discount');
 
         $data['discount_type'] = $request->input('radio');
@@ -322,16 +312,7 @@ class ProductController extends Controller
 
     {
 
-        $data['group_old'] = DB::table('groups')
-
-        ->select('*')
-
-        ->get()
-
-        ->toArray();
-
-
-
+     
         $data['category_old'] = DB::table('categories')
 
         ->select('*')
@@ -370,8 +351,6 @@ class ProductController extends Controller
 
         $data['size'] = Size::all();
 
-        $data['collection'] = Collection::all();
-
         $data['colour'] = Colour::all();
 
         $data['material'] = Material::all();
@@ -404,7 +383,7 @@ class ProductController extends Controller
 
     {
 
-        $data['group_id'] = $request->input('group_id');
+       
 
         $data['cat_id'] = $request->input('cat_id');
 
@@ -419,8 +398,6 @@ class ProductController extends Controller
         $data['sku_code'] = $request->input('sku_code');
 
         $data['short_description'] = $request->input('short_description');
-
-        $data['collection_id'] = $request->input('collection_id');
 
         $data['discount'] = $request->input('discount');
 

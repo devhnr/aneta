@@ -70,7 +70,7 @@ class SubcategoryController extends Controller
 
     {
 
-        $data['all_group'] = Group::orderBy('id','DESC')->get()->toArray();
+        //$data['all_group'] = Group::orderBy('id','DESC')->get()->toArray();
 
         $data['all_category'] = Category::orderBy('id','DESC')->get()->toArray();
 
@@ -108,7 +108,7 @@ class SubcategoryController extends Controller
 
         $data = new Subcategory;
 
-        $data->group_id      = $request->group_id;
+        //$data->group_id      = $request->group_id;
 
         $data->cat_id      = $request->cat_id;
 
@@ -198,9 +198,9 @@ class SubcategoryController extends Controller
 
     {   
 
-        $data['all_group'] = Group::orderBy('id','DESC')->get()->toArray();
+        //$data['all_group'] = Group::orderBy('id','DESC')->get()->toArray();
 
-        $data['all_category'] = Category::orderBy('id','DESC')->where('group_id',$subcategory->group_id)->get()->toArray();
+        $data['all_category'] = Category::orderBy('id','DESC')->get()->toArray();
 
         return view('admin.edit_subcategory',compact('subcategory'),$data);
 
@@ -238,7 +238,7 @@ class SubcategoryController extends Controller
 
         $data = Subcategory::find($id);
 
-        $data->group_id      = $request->group_id;
+        //$data->group_id      = $request->group_id;
 
         $data->cat_id      = $request->cat_id;
 

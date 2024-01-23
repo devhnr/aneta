@@ -81,13 +81,13 @@
 
                                                 <option value="">Select Category</option>
 
-                                                @foreach ($category as $category_data)
+                                                {{-- @foreach ($category as $category_data)
 
                                                     <option value="{{ $category_data->id }}">{{ $category_data->name }}
 
                                                     </option>
 
-                                                @endforeach
+                                                @endforeach --}}
 
                                             </select>
 
@@ -261,13 +261,13 @@
 
                                                 <option value="">Select Colour</option>
 
-                                                @foreach ($colour as $colour_data)
+                                                {{-- @foreach ($colour as $colour_data)
 
                                                     <option value="{{ $colour_data->id }}">{{ $colour_data->name }}
 
                                                     </option>
 
-                                                @endforeach
+                                                @endforeach --}}
 
                                             </select>
 
@@ -339,13 +339,13 @@
 
                                             <option value="">Select collection</option>
 
-                                            @foreach ($collection as $collection_data)
+                                            {{-- @foreach ($collection as $collection_data)
 
                                                 <option value="{{ $collection_data->id }}">{{ $collection_data->name }}
 
                                                 </option>
 
-                                            @endforeach
+                                            @endforeach --}}
 
                                         </select>
 
@@ -457,13 +457,13 @@
 
                                             <option value="">Select Material</option>
 
-                                            @foreach ($material as $material_data)
+                                            {{-- @foreach ($material as $material_data)
 
                                                 <option value="{{ $material_data->id }}">{{ $material_data->name }}
 
                                                 </option>
 
-                                            @endforeach
+                                            @endforeach --}}
 
                                         </select>
 
@@ -483,13 +483,13 @@
 
                                             <option value="">Select Style Type</option>
 
-                                            @foreach ($style_type as $style_type_data)
+                                            {{-- @foreach ($style_type as $style_type_data)
 
                                                 <option value="{{ $style_type_data->id }}">{{ $style_type_data->name }}
 
                                                 </option>
 
-                                            @endforeach
+                                            @endforeach --}}
 
                                         </select>
 
@@ -933,7 +933,7 @@
 
 
 
-    <script type="text/javascript" language="javascript">
+    {{-- <script type="text/javascript" language="javascript">
 
         $(document).ready(function() {
 
@@ -977,7 +977,7 @@
 
         });
 
-    </script>
+    </script> --}}
 
 
 
