@@ -59,6 +59,17 @@ class Helper{
             return false;
         }
     }
+    public static function user_role_name(int $id){
+
+		$result = DB::table('user_permissions')->where('id',$id)->first();
+                                                            
+		
+        if($result !='' && isset($result)){
+            return $result->cname;
+        }else{
+            echo "-";
+        }        
+	}
 
 	public static function categoryname(int $id){
 

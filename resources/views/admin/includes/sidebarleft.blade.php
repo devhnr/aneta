@@ -59,7 +59,10 @@
 
                     in_array('3', $permission1) ||
 
-                    in_array('4', $permission1))
+                    in_array('4', $permission1)  ||
+
+                    in_array('7', $permission1))
+
 
                     
 
@@ -96,46 +99,51 @@
 
                         @endif
 
-                        @if (in_array('3', $permission1))
-
-                            
-                        <li><a href="{{ route('product.index') }}"
-
-                            class="{{ request()->segment(2) == 'product' ? 'active' : '' }}">Product</a>
-
-                        </li>
-
-                         @endif
-
-
-
-                        @if (in_array('4', $permission1))
-
-                        <li><a href="{{ route('cms.index') }}"
-
-                            class="{{ request()->segment(2) == 'cms' ? 'active' : '' }}">Cms</a>
-
-                    </li>
-
-                         @endif
-
                         @if (in_array('7', $permission1))
 
                         <li><a href="{{ route('size.index') }}"
 
                             class="{{ request()->segment(2) == 'size' ? 'active' : '' }}">Size</a>
 
+                            @endif
+
                     </li>
 
-                         @endif
-
+                    @endif
 
                     </ul>
 
+                  
                 </li>
 
            
+      
+        @if (in_array('3', $permission1))
+
+            <li class="{{ request()->segment(2) == 'product' ? 'active' : '' }}">
+
+                <a  href="{{ route('product.index') }}"><i data-feather="file"></i> <span>Product</span></a>
+
+            </li>
+
+
         @endif
+
+       
+
+
+        @if (in_array('4', $permission1))
+
+        <li class="{{ request()->segment(2) == 'cms' ? 'active' : '' }}">
+
+            <a href="{{ route('cms.index') }}"><i data-feather="file"></i><span>CMS</span></a>
+
+         </li>
+
+         @endif
+
+ 
+
 
 
 
@@ -180,6 +188,7 @@
                         @endif
 
                     </ul>
+                    
 
                 </li>
 

@@ -14,7 +14,7 @@
 
 				<a href="{{ url('/admin') }}" class="logo logo-small">
 
-					<img src="{{asset('public/admin/assets/img/logo-small.png')}}" alt="Logo" width="30" height="30">
+					<img src="{{asset('public/admin/assets/img/logo-small.png')}}" alt="Logo" width="30" height="30" style="width:100%">
 
 				</a>
 
