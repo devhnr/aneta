@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\admin\Admin_userController;
 use App\Http\Controllers\admin\CmsController;
 use App\Http\Controllers\admin\SizeController;
+use App\Http\Controllers\admin\CustomerController;
 
 
 
@@ -202,9 +203,11 @@ Route::get('/admin', function () {
     Route::resource('/admin/subcategory', '\App\Http\Controllers\admin\SubcategoryController');
     Route::get('/admin/delete_subcategory', [SubcategoryController::class, 'destroy'])->name('delete_subcategory');
     Route::post('set_order_subcategory', '\App\Http\Controllers\admin\SubcategoryController@set_order');
+    Route::post('product_show_subcategory', '\App\Http\Controllers\admin\ProductController@product_show_subcategory');
 
     Route::resource('/admin/product', '\App\Http\Controllers\admin\ProductController');
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');
+    Route::get('remove_product_att/{pid}/{id}', [ProductController::class, 'remove_product_att'])->name('remove_product_att');
     
     Route::resource('admin/cms','App\Http\Controllers\admin\CmsController');
     Route::get('cms-delete',[CmsController::class,'destroy'])->name
@@ -212,11 +215,9 @@ Route::get('/admin', function () {
     
     Route::resource('admin/size','App\Http\Controllers\admin\SizeController');
     Route::get('delete_size',[SizeController::class,'destroy'])->name('delete_size');
-    
 
-   
-   
-   
+    Route::resource('/admin/customer', '\App\Http\Controllers\admin\CustomerController');
+       
     Route::resource('/admin/permission', '\App\Http\Controllers\admin\PermissionController');
     
     Route::resource('/admin/userpermission', '\App\Http\Controllers\admin\UserPermissionController');

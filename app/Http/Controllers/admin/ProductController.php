@@ -81,6 +81,8 @@ class ProductController extends Controller
 
         $data['size'] = Size::all();
 
+        $data['category']= Category::all();
+
       
         return view('admin.add_product',$data);
 
@@ -136,9 +138,9 @@ class ProductController extends Controller
 
         
 
-        $data['material_id'] = is_array($request->input('material_id')) ? implode(',', $request->input('material_id')) : '';
+        //$data['material_id'] = is_array($request->input('material_id')) ? implode(',', $request->input('material_id')) : '';
 
-        $data['style_type_id'] = is_array($request->input('style_type')) ? implode(',', $request->input('style_type')) : '';
+       // $data['style_type_id'] = is_array($request->input('style_type')) ? implode(',', $request->input('style_type')) : '';
 
 
 
@@ -146,51 +148,51 @@ class ProductController extends Controller
 
         
 
-        $data['lining'] = $request->input('lining');
+       // $data['lining'] = $request->input('lining');
 
 
 
 
 
-        if($request->hasfile('image') != ''){
+        // if($request->hasfile('image') != ''){
 
 
 
-            $image = $request->file('image');
+        //     $image = $request->file('image');
 
-            $remove_space = str_replace(' ', '-', $image->getClientOriginalName());
+        //     $remove_space = str_replace(' ', '-', $image->getClientOriginalName());
 
-            $data['image'] = time() . $remove_space;
-
-
-
-            $destinationPath = public_path('upload/product/detail_image/');
-
-            $img = Image::make($image->path());
-
-            $width=765;
-
-            $height=600;
+        //     $data['image'] = time() . $remove_space;
 
 
 
-            $img->resize($width,$height,function($constraint){
+        //     $destinationPath = public_path('upload/product/detail_image/');
 
-            })->save($destinationPath.'/'.$data['image']);            
+        //     $img = Image::make($image->path());
+
+        //     $width=765;
+
+        //     $height=600;
+
+
+
+        //     $img->resize($width,$height,function($constraint){
+
+        //     })->save($destinationPath.'/'.$data['image']);            
 
           
 
-            $image = $data['image'];
+        //     $image = $data['image'];
 
-        }else{
+        // }else{
 
-            $image = "";
+        //     $image = "";
 
-        }
+        // }
 
 
 
-        $data['image']  = $image;
+        // $data['image']  = $image;
 
         
 
@@ -210,11 +212,11 @@ class ProductController extends Controller
 
 
 
-       
+        // echo"<pre>";print_r($data);echo"</pre>";
 
         $id = DB::table('products')->insertGetId($data);
 
-
+        // echo"<pre>";print_r($_POST);echo"</pre>";exit;
 
         if (count($_POST['size']) > 0 && $_POST['size'] != '') {
 
@@ -226,11 +228,13 @@ class ProductController extends Controller
 
 
 
-                    $content['p_id'] = $id;
+                    $content['pid'] = $id;
 
                     $content['size'] = $_POST['size'][$i];
 
-                    $content['colour'] = $_POST['colour'][$i];
+                   // $content['colour'] = $_POST['colour'][$i];
+
+                   $content['package_detail'] = $_POST['package_detail'][$i];
 
                     $content['price'] = $_POST['price'][$i];
 
@@ -238,12 +242,15 @@ class ProductController extends Controller
 
                     $this->insert_attribute($content);
 
+                    //echo"<pre>";print_r($content);echo"</pre>";exit;
+
                 }
 
             }
 
         }
 
+            
 
 
         return redirect()->route('product.index')->with('success','Product Added Successfully.');
@@ -254,13 +261,15 @@ class ProductController extends Controller
 
     function insert_attribute($content){
 
-
+        $data['pid']= 'id';
 
         $data['pid'] = $content['p_id'];
 
         $data['size_id'] = $content['size'];
 
-        $data['colour_id'] = $content['colour'];
+       // $data['colour_id'] = $content['colour'];
+
+       $data['package_detail'] = $content['package_detail'];
 
         $data['price'] = $content['price'];
 
@@ -269,6 +278,8 @@ class ProductController extends Controller
 
 
         DB::table('product_attribute')->insertGetId($data);
+
+     
 
     }
 
@@ -312,16 +323,17 @@ class ProductController extends Controller
 
     {
 
-     
-        $data['category_old'] = DB::table('categories')
+        $data['category_old'] = DB:: table('categories')->select('*')->get()->toArray();
 
-        ->select('*')
+        // $data['category_old'] = DB::table('categories')
 
-        ->where('group_id', '=',$product->group_id)
+        // ->select('*')
 
-        ->get()
+        // ->where('group_id', '=',$product->group_id)
 
-        ->toArray();
+        // ->get()
+
+        // ->toArray();
 
 
 
@@ -351,11 +363,11 @@ class ProductController extends Controller
 
         $data['size'] = Size::all();
 
-        $data['colour'] = Colour::all();
+        // $data['colour'] = Colour::all();
 
-        $data['material'] = Material::all();
+        //  $data['material'] = Material::all();
 
-        $data['style_type'] = Style_type::all();
+        // $data['style_type'] = Style_type::all();
 
 
 
@@ -411,53 +423,7 @@ class ProductController extends Controller
 
         $data['meta_description'] = $request->input('meta_description');
 
-        $data['material_id'] = is_array($request->input('material_id')) ? implode(',', $request->input('material_id')) : '';
-
-        $data['style_type_id'] = is_array($request->input('style_type')) ? implode(',', $request->input('style_type')) : '';
-
-
-
-        $data['lining'] = $request->input('lining');
-
-
-
-        if($request->hasfile('image') != ''){
-
-
-
-            $image = $request->file('image');
-
-            $remove_space = str_replace(' ', '-', $image->getClientOriginalName());
-
-            $data['image'] = time() . $remove_space;
-
-
-
-            $destinationPath = public_path('upload/product/detail_image/');
-
-            $img = Image::make($image->path());
-
-            $width=765;
-
-            $height=600;
-
-
-
-            $img->resize($width,$height,function($constraint){
-
-            })->save($destinationPath.'/'.$data['image']);            
-
-          
-
-            $image = $data['image'];
-
-            $data['image']  = $image;
-
-        }
-
-        // $data['discount_type'] = 2;
-
-
+      
 
         Product::where('id', $id)->update($data);
 
@@ -477,7 +443,9 @@ class ProductController extends Controller
 
                     $content['size'] = $_POST['size1'][$i];
 
-                    $content['colour'] = $_POST['colour1'][$i];
+                   // $content['colour'] = $_POST['colour1'][$i];
+
+                   $content['package_detail'] = $_POST['package_detail1'][$i];
 
                     $content['price'] = $_POST['price1'][$i];
 
@@ -503,11 +471,13 @@ class ProductController extends Controller
 
 
 
-                    $content['p_id'] = $id;
+                    $content['pid'] = $id;
 
                     $content['size'] = $_POST['sizeu'][$i];
 
-                    $content['colour'] = $_POST['colouru'][$i];
+                    // $content['colour'] = $_POST['colouru'][$i];
+
+                    $content['package_detail'] = $_POST['package_detailu'][$i];
 
                     $content['price'] = $_POST['priceu'][$i];
 
@@ -535,11 +505,13 @@ class ProductController extends Controller
 
 
 
-        $data['pid'] = $content['p_id'];
+        $data['pid'] = $content['pid'];
 
         $data['size_id'] = $content['size'];
 
-        $data['colour_id'] = $content['colour'];
+        // $data['colour_id'] = $content['colour'];
+
+        $data['package_detail'] = $content['package_detail'];
 
         $data['price'] = $content['price'];
 
