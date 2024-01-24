@@ -2,6 +2,10 @@
 
 @section('content')
 
+<style type="text/css">
+    ul li{list-style: inherit;}
+</style>
+
     <div class="content container-fluid">
 
 
@@ -81,13 +85,13 @@
 
                                                 <option value="">Select Category</option>
 
-                                                {{-- @foreach ($category as $category_data)
+                                                @foreach ($category as $category_data)
 
                                                     <option value="{{ $category_data->id }}">{{ $category_data->name }}
 
                                                     </option>
 
-                                                @endforeach --}}
+                                                @endforeach
 
                                             </select>
 
@@ -253,7 +257,7 @@
 
 
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="display: none;">
 
                                         <div class="form-group"> <label for="categoryname">Colour</label>
 
@@ -270,6 +274,18 @@
                                                 @endforeach --}}
 
                                             </select>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-2">
+
+                                        <div class="form-group"> <label for="categoryname">Package detail</label>
+
+                                            <input type="text" id="package_detail" name="package_detail[]" class="form-control"
+
+                                                placeholder="Enter Package detail">
 
                                         </div>
 
@@ -326,41 +342,6 @@
                                     </div>
 
                                 </div>
-
-                                <div class="col-md-4">
-
-                                    <div class="form-group">
-
-                                        <label>Collection</label>
-
-
-
-                                        <select name="collection_id" id="collection_id" class="form-control">
-
-                                            <option value="">Select collection</option>
-
-                                            {{-- @foreach ($collection as $collection_data)
-
-                                                <option value="{{ $collection_data->id }}">{{ $collection_data->name }}
-
-                                                </option>
-
-                                            @endforeach --}}
-
-                                        </select>
-
-                                        <p id="collection_error" style="display: none;color: red"></p>
-
-                                        @error('name')
-
-                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
-                                        @enderror
-
-                                    </div>
-
-                                </div>
-
 
 
                                 <div class="col-md-4">
@@ -431,99 +412,7 @@
 
                                 </div>
 
-                                <div class="col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for="name">Image (600px x 765px)</label>
-
-                                        <input id="image" name="image" type="file"
-
-                                            class="form-control"value="" />
-
-                                    </div>
-
-                                </div>
-
-
-
-                                <div class="col-md-6">
-
-                                    <div class="form-group"> <label for="categoryname">Material</label>
-
-                                        <select class="form-control fav_clr" id="material_id" name="material_id[]"
-
-                                            multiple="multiple">
-
-                                            <option value="">Select Material</option>
-
-                                            {{-- @foreach ($material as $material_data)
-
-                                                <option value="{{ $material_data->id }}">{{ $material_data->name }}
-
-                                                </option>
-
-                                            @endforeach --}}
-
-                                        </select>
-
-                                    </div>
-
-                                </div>
-
-
-
-                                <div class="col-md-6">
-
-                                    <div class="form-group"> <label for="categoryname">Style type</label>
-
-                                        <select class="form-control fav_clr" id="style_type" name="style_type[]"
-
-                                            multiple="multiple">
-
-                                            <option value="">Select Style Type</option>
-
-                                            {{-- @foreach ($style_type as $style_type_data)
-
-                                                <option value="{{ $style_type_data->id }}">{{ $style_type_data->name }}
-
-                                                </option>
-
-                                            @endforeach --}}
-
-                                        </select>
-
-                                    </div>
-
-                                </div>
-
-
-
-                                <div class="col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for="description" style="margin:15px 0 5px 0px; width:100%;">
-
-                                            Lining</label>
-
-                                        <textarea id="lining" name="lining" class="form-control" placeholder="Enter Lining"></textarea>
-
-                                        <p id="lining_error" style="display: none;color: red"></p>
-
-                                    </div>
-
-                                </div>
-
-
-
-
-
-
-
-
-
-
+                   
 
                                 <div class="col-md-12">
 
@@ -933,7 +822,7 @@
 
 
 
-    {{-- <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
 
         $(document).ready(function() {
 
@@ -957,7 +846,7 @@
 
                     $(wrapper).append(
 
-                        '<div class="row"><div class="col-md-2"><div class="form-group"> <label for="categoryname">Size</label><select class="form-control" id="size" name="size[]"><option value="">Select Size</option>@foreach ($size as $size_data)<option value="{{ $size_data->id }}">{{ $size_data->name }}</option>@endforeach</select></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Colour</label><select class="form-control" id="colour" name="colour[]"><option value="">Select Colour</option>@foreach ($colour as $colour_data)<option value="{{ $colour_data->id }}">{{ $colour_data->name }}</option>@endforeach</select></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Price</label><input type="text" id="price" name="price[]" class="form-control" placeholder="Enter  Price"></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Quantity</label><input type="text" id="qty" name="qty[]" class="form-control" placeholder="Enter Qty"></div></div><a href="#" class="btn btn-danger pull-right remove_field1" style="margin-right: 0;margin-top: 23px;width: 10%;float: right;height: 38px;margin-left: 127px;">Remove</a></div>'
+                        '<div class="row"><div class="col-md-2"><div class="form-group"> <label for="categoryname">Size</label><select class="form-control" id="size" name="size[]"><option value="">Select Size</option>@foreach ($size as $size_data)<option value="{{ $size_data->id }}">{{ $size_data->name }}</option>@endforeach</select></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Package detail</label><input type="text" id="package_detail" name="package_detail[]" class="form-control"placeholder="Enter Package detail"></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Price</label><input type="text" id="price" name="price[]" class="form-control" placeholder="Enter  Price"></div></div><div class="col-md-2"><div class="form-group"> <label for="categoryname">Quantity</label><input type="text" id="qty" name="qty[]" class="form-control" placeholder="Enter Qty"></div></div><a href="#" class="btn btn-danger pull-right remove_field1" style="margin-right: 0;margin-top: 23px;width: 10%;float: right;height: 38px;margin-left: 127px;">Remove</a></div>'
 
                     );
 
@@ -977,7 +866,7 @@
 
         });
 
-    </script> --}}
+    </script>
 
 
 

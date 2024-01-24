@@ -61,7 +61,9 @@
 
                     in_array('4', $permission1)  ||
 
-                    in_array('7', $permission1))
+                    in_array('7', $permission1) ||
+
+                    in_array('8', $permission1)) 
 
 
                     
@@ -141,6 +143,19 @@
          </li>
 
          @endif
+
+         @if (in_array('8', $permission1))
+
+         <li class="{{ request()->segment(2) == 'customer' ? 'active' : '' }}">
+
+             <a href="{{ route('customer.index') }}"><i class="fa fa-users" aria-hidden="true"></i>
+
+                 <span>Customers</span></a>
+
+         </li>
+
+     @endif
+
 
  
 
