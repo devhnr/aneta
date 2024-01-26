@@ -242,17 +242,16 @@
 
                                                <th>Page Url</th>
 
-                                               <th>Sale</th>
-
-                                               <th>Hot</th>
-
                                                <th>New</th>
 
+                                               {{-- <th>Sale</th>
+
+                                               <th>Hot</th> 
                                                <th>Recent Product</th>
 
                                                <th>Feature Product</th>
 
-                                               <th>Best Seller</th>
+                                               <th>Best Seller</th>--}}
 
 
                                                @if (in_array('3', $edit_perm))
@@ -341,11 +340,26 @@
 
                                                    <td>{{ $data->page_url }}</td>
 
-
-
-
-
+                                                
                                                    <td>
+
+                                                       <input type="checkbox" id="new_product" name="new_product"
+
+                                                           value="1"
+
+                                                           onclick="new_product_popup('<?php echo $data->id; ?>',this);"
+
+                                                           <?php if ($data->new_product == '1') {
+
+                                                               echo 'checked';
+
+                                                           } ?>>
+
+                                                   </td>
+
+
+
+                                                  {{-- <td>
 
                                                        <input type="checkbox" id="sale_product" name="sale_product"
 
@@ -377,21 +391,6 @@
 
                                                    </td>
 
-                                                   <td>
-
-                                                       <input type="checkbox" id="new_product" name="new_product"
-
-                                                           value="1"
-
-                                                           onclick="new_product_popup('<?php echo $data->id; ?>',this);"
-
-                                                           <?php if ($data->new_product == '1') {
-
-                                                               echo 'checked';
-
-                                                           } ?>>
-
-                                                   </td>
 
 
 
@@ -447,7 +446,7 @@
 
                                                    </td>
 
-
+                                                           --}}
 
                                                   
 
