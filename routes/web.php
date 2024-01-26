@@ -208,6 +208,7 @@ Route::get('/admin', function () {
     Route::resource('/admin/product', '\App\Http\Controllers\admin\ProductController');
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');
     Route::get('remove_product_att/{pid}/{id}', [ProductController::class, 'remove_product_att'])->name('remove_product_att');
+    Route::post('product_new', '\App\Http\Controllers\admin\ProductController@product_new');
     
     Route::resource('admin/cms','App\Http\Controllers\admin\CmsController');
     Route::get('cms-delete',[CmsController::class,'destroy'])->name

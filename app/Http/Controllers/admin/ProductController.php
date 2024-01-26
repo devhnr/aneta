@@ -261,9 +261,11 @@ class ProductController extends Controller
 
     function insert_attribute($content){
 
-        $data['pid']= 'id';
+        //echo"<pre>";print_r($content);echo"";exit;
 
-        $data['pid'] = $content['p_id'];
+        //$data['pid']= 'id';
+
+        $data['pid'] = $content['pid'];
 
         $data['size_id'] = $content['size'];
 
@@ -275,7 +277,7 @@ class ProductController extends Controller
 
         $data['qty'] = $content['qty'];
 
-
+       
 
         DB::table('product_attribute')->insertGetId($data);
 
@@ -439,7 +441,7 @@ class ProductController extends Controller
 
 
 
-                    $content['p_id'] = $id;
+                    $content['pid'] = $id;
 
                     $content['size'] = $_POST['size1'][$i];
 
