@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\admin\Admin_userController;
 use App\Http\Controllers\admin\CmsController;
 use App\Http\Controllers\admin\SizeController;
+use App\Http\Controllers\admin\CoupanController;
 use App\Http\Controllers\admin\CustomerController;
 
 
@@ -216,6 +217,11 @@ Route::get('/admin', function () {
     
     Route::resource('admin/size','App\Http\Controllers\admin\SizeController');
     Route::get('delete_size',[SizeController::class,'destroy'])->name('delete_size');
+
+    Route::resource('admin/coupan','App\Http\Controllers\admin\CoupanController');
+    Route::get('delete_coupan',[CoupanController::class,'destroy'])->name('delete_coupan');
+    Route::post('change_status_coupan','App\Http\Controllers\admin\Coupancontroller@change_status_coupan');
+
 
     Route::resource('/admin/customer', '\App\Http\Controllers\admin\CustomerController');
        

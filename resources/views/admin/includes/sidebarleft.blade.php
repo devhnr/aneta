@@ -63,7 +63,9 @@
 
                     in_array('7', $permission1) ||
 
-                    in_array('8', $permission1)) 
+                    in_array('8', $permission1) ||
+
+                    in_array('9', $permission1)) 
 
 
                     
@@ -109,6 +111,8 @@
 
                             @endif
 
+                       
+
                     </li>
 
                     @endif
@@ -130,8 +134,15 @@
 
 
         @endif
+        @if (in_array('9', $permission1))
 
-       
+        <li class="{{ request()->segment(2) == 'coupan' ? 'active' : '' }}">
+
+            <a href="{{ route('coupan.index') }}"><i data-feather="book"></i> <span>Coupon</span></a>
+
+        </li>
+
+    @endif
 
 
         @if (in_array('4', $permission1))
