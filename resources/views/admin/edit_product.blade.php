@@ -295,7 +295,7 @@
 
 
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
 
                                                 <div class="form-group"> <label for="categoryname">Size</label>
 
@@ -321,7 +321,7 @@
 
 
 
-                                            {{-- <div class="col-md-2">
+                                            {{-- <div class="col-md-3">
 
                                                 <div class="form-group"> <label for="categoryname">Colour</label>
 
@@ -346,7 +346,7 @@
                                             </div> --}}
 
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
 
                                                 <div class="form-group"> <label for="categoryname">Package Detail</label>
 
@@ -360,7 +360,7 @@
 
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
 
                                                 <div class="form-group"> <label for="categoryname">Price</label>
 
@@ -376,7 +376,7 @@
 
 
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
 
                                                 <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -398,7 +398,7 @@
 
                                                 class="btn btn-danger pull-right remove_field1"
 
-                                                style="margin-right: 0;margin-top: 22px;width: 9%;float: right;height: 40px;margin-left: 166px;">Remove</a>
+                                                style="margin-right: 0;margin-top: 22px;width: 9%;float: right;height: 40px;margin-left: 166px; display: none;">Remove</a>
 
 
 
@@ -446,7 +446,7 @@
 
 
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
 
                                             <div class="form-group">
 
@@ -472,7 +472,7 @@
 
 
 
-                                        {{-- <div class="col-md-2">
+                                        {{-- <div class="col-md-3">
 
                                             <div class="form-group">
 
@@ -496,7 +496,7 @@
 
                                         </div> --}}
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
 
                                             <div class="form-group">
 
@@ -513,7 +513,7 @@
 
 
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
 
                                             <div class="form-group">
 
@@ -529,7 +529,7 @@
 
 
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
 
                                             <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -561,7 +561,7 @@
 
                                         <button
 
-                                            style="border: medium none;margin-right: -21px;line-height: 26px;margin-top: -62px;"
+                                            style="border: medium none;margin-right: -21px;line-height: 26px;margin-top: -62px; display: none;"
 
                                             class="submit btn bg-purple pull-right" type="button"
 
@@ -585,7 +585,7 @@
 
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="form-group">
 
@@ -611,7 +611,7 @@
 
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="form-group">
 

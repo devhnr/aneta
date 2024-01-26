@@ -233,9 +233,9 @@
 
 
 
-                                <div class="row">
+                             <div class="row">
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                         <div class="form-group"> <label for="categoryname">Size</label>
 
@@ -257,7 +257,7 @@
 
 
 
-                                    <div class="col-md-2" style="display: none;">
+                                    <div class="col-md-3" style="display: none;">
 
                                         <div class="form-group"> <label for="categoryname">Colour</label>
 
@@ -279,7 +279,7 @@
 
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                         <div class="form-group"> <label for="categoryname">Package detail</label>
 
@@ -293,7 +293,7 @@
 
 
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                         <div class="form-group"> <label for="categoryname">Price</label>
 
@@ -305,7 +305,7 @@
 
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                         <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -333,7 +333,7 @@
 
                                         <button
 
-                                            style="border: medium none;margin-right: 0px;line-height: 25px;margin-top: -62px;"
+                                            style="border: medium none;margin-right: 0px;line-height: 25px;margin-top: -62px; display: none;"
 
                                             class="submit btn bg-purple pull-right" type="button"
 
@@ -341,10 +341,10 @@
 
                                     </div>
 
-                                </div>
+                                </div> 
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="form-group">
 
@@ -368,7 +368,7 @@
 
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="form-group">
 
