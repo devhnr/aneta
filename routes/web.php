@@ -70,7 +70,7 @@ Route::get('/hdfc', function () {
 /*------Front routes start ------*/
 
 
-// Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
+Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
 
 // Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
 // Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
