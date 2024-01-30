@@ -18,6 +18,7 @@ use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubcategoryController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\admin\Admin_userController;
 use App\Http\Controllers\admin\CmsController;
@@ -205,6 +206,9 @@ Route::get('/admin', function () {
     Route::get('/admin/delete_subcategory', [SubcategoryController::class, 'destroy'])->name('delete_subcategory');
     Route::post('set_order_subcategory', '\App\Http\Controllers\admin\SubcategoryController@set_order');
     Route::post('product_show_subcategory', '\App\Http\Controllers\admin\ProductController@product_show_subcategory');
+
+    Route::resource('/admin/banner', '\App\Http\Controllers\admin\BannerController');
+    Route::get('/admin/delete_banner', [BannerController::class, 'destroy'])->name('delete_banner');
 
     Route::resource('/admin/product', '\App\Http\Controllers\admin\ProductController');
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');

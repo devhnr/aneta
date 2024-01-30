@@ -123,7 +123,17 @@
                 </li>
 
            
-      
+        @if (in_array('10', $permission1))
+
+            <li class="{{ request()->segment(2) == 'banner' ? 'active' : '' }}">
+    
+                 <a  href="{{ route('banner.index') }}"><i data-feather="file"></i> <span>Banner</span></a>
+    
+            </li>
+    
+    
+        @endif
+
         @if (in_array('3', $permission1))
 
             <li class="{{ request()->segment(2) == 'product' ? 'active' : '' }}">
@@ -134,6 +144,7 @@
 
 
         @endif
+
         @if (in_array('9', $permission1))
 
         <li class="{{ request()->segment(2) == 'coupan' ? 'active' : '' }}">
@@ -142,7 +153,7 @@
 
         </li>
 
-    @endif
+         @endif
 
 
         @if (in_array('4', $permission1))
