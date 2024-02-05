@@ -94,7 +94,7 @@
                                 <h3><a href="#">Favorite Collection</a></h3>
                                 <div class="btn-box">
                                     <div class="d-flex align-items-center">
-                                        <a href="products-left-sidebar.html" class="default-btn">Shop Now</a>
+                                        <a href="#" class="default-btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/categories-img1.png')}}" alt="image">
                             <h3>Lipid Lowering</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/categories-img2.png')}}" alt="image">
                             <h3>Cardiovascular</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/categories-img3.png')}}" alt="image">
                             <h3>Anti-Infective</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
 
@@ -141,7 +141,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/Other-Therapy-2.png')}}" alt="image">
                             <h3>Other Therapy</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
 
@@ -149,7 +149,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/categories-img5.png')}}" alt="image">
                             <h3>Anti-Fungal</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
 
@@ -157,7 +157,7 @@
                         <div class="single-categories-box">
                             <img src="{{asset('public/site/assets/img/categories/Anti-Diabetic.png')}}" alt="image">
                             <h3>Anti-Diabetic</h3>
-                            <a href="products-left-sidebar.html" class="link-btn"></a>
+                            <a href="#" class="link-btn"></a>
                         </div>
                     </div>
                 </div>
@@ -175,20 +175,13 @@
                 <div class="products-slides owl-carousel owl-theme">
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/img/products/products-img1.jpg')}}" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
 
                             <div class="new">New</div>
 
                             <div class="buttons-list">
                                 <ul>
-                                    <li>
-                                        <div class="cart-btn">
-                                            <a href="#">
-                                                <i class='bx bxs-cart-add'></i>
-                                                <span class="tooltip-label">Add to Cart</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                   
                                     <li>
                                         <div class="wishlist-btn">
                                             <a href="#">
@@ -197,42 +190,28 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="quick-view-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                                <i class='bx bx-search-alt'></i>
-                                                <span class="tooltip-label">Quick View</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h3><a href="single-products-1.html">TELMANETA CH</a></h3>
+                            <h3><a href="#">TELMANETA CD</a></h3>
                             <div class="price">
-                                <span class="new-price">Rs 39.00</span>
+                                <span class="new-price">Rs 99.00</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/img/products/products-img2.jpg')}}" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
 
                             <div class="sale">Sale</div>
 
                             <div class="buttons-list">
                                 <ul>
-                                    <li>
-                                        <div class="cart-btn">
-                                            <a href="#">
-                                                <i class='bx bxs-cart-add'></i>
-                                                <span class="tooltip-label">Add to Cart</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                   
                                     <li>
                                         <div class="wishlist-btn">
                                             <a href="#">
@@ -241,42 +220,59 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="quick-view-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                                <i class='bx bx-search-alt'></i>
-                                                <span class="tooltip-label">Quick View</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h3><a href="single-products-1.html">Protective Gloves</a></h3>
-                            <div class="price">
-                                <span class="new-price">$99.00</span>
+                            <h3><a href="#">TELMANETA CH</a></h3>
+							   <div class="price">
+									<span class="old-price">Rs 200.00</span>
+									<span class="new-price">Rs 180.00</span>
+								</div>
+                        </div>
+                    </div>
+
+                    <div class="single-products-box">
+                        <div class="image">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
+
+                            <div class="new">New</div>
+
+                            <div class="buttons-list">
+                                <ul>
+                                   
+                                    <li>
+                                        <div class="wishlist-btn">
+                                            <a href="#">
+                                                <i class='bx bx-heart'></i>
+                                                <span class="tooltip-label">Add to Wishlist</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h3><a href="#">NETAZOL 150</a></h3>
+                             <div class="price">
+                                <span class="new-price">Rs 159.00</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/img/products/products-img3.jpg')}}" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
 
                             <div class="new">New</div>
 
                             <div class="buttons-list">
                                 <ul>
-                                    <li>
-                                        <div class="cart-btn">
-                                            <a href="#">
-                                                <i class='bx bxs-cart-add'></i>
-                                                <span class="tooltip-label">Add to Cart</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                    
                                     <li>
                                         <div class="wishlist-btn">
                                             <a href="#">
@@ -285,116 +281,194 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="quick-view-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                                <i class='bx bx-search-alt'></i>
-                                                <span class="tooltip-label">Quick View</span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h3><a href="single-products-1.html">Infrared Thermometer Gun</a></h3>
+                            <h3><a href="#">NETAZOL 200</a></h3>
                             <div class="price">
-                                <span class="old-price">$99.00</span>
-                                <span class="new-price">$90.00</span>
+                                <span class="new-price">Rs 130.00</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="single-products-box">
-                        <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/img/products/products-img4.jpg')}}" alt="image"></a>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- End Products Area -->
+		
+		 <!-- Start Products Promotions Area -->
+        <section class="products-promotions-area pb-40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-products-promotions-box">
+                            <img src="{{asset('public/site/assets/images/promotions-img1.jpg')}}" alt="image">
 
-                            <div class="new">New</div>
-
-                            <div class="buttons-list">
-                                <ul>
-                                    <li>
-                                        <div class="cart-btn">
-                                            <a href="#">
-                                                <i class='bx bxs-cart-add'></i>
-                                                <span class="tooltip-label">Add to Cart</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="wishlist-btn">
-                                            <a href="#">
-                                                <i class='bx bx-heart'></i>
-                                                <span class="tooltip-label">Add to Wishlist</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="quick-view-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                                <i class='bx bx-search-alt'></i>
-                                                <span class="tooltip-label">Quick View</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <h3><a href="single-products-1.html">Hand Sanitizer</a></h3>
-                            <div class="price">
-                                <span class="new-price">$59.00</span>
+                            <div class="content">
+                                <span class="sub-title">Special Deal</span>
+                                <h3>Mega Sale Mela</h3>
+                                <span class="discount"><span>up to</span> 70% OFF</span>
+                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="single-products-box">
-                        <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/img/products/products-img5.jpg')}}" alt="image"></a>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-products-promotions-box">
+                            <img src="{{asset('public/site/assets/images/promotions-img2.jpg')}}" alt="image">
 
-                            <div class="new">New</div>
-
-                            <div class="buttons-list">
-                                <ul>
-                                    <li>
-                                        <div class="cart-btn">
-                                            <a href="#">
-                                                <i class='bx bxs-cart-add'></i>
-                                                <span class="tooltip-label">Add to Cart</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="wishlist-btn">
-                                            <a href="#">
-                                                <i class='bx bx-heart'></i>
-                                                <span class="tooltip-label">Add to Wishlist</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="quick-view-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                                <i class='bx bx-search-alt'></i>
-                                                <span class="tooltip-label">Quick View</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <div class="content">
+                                <span class="sub-title">New Arrivals</span>
+                                <h3>Hand Washer</h3>
+                                <span class="discount"><span>up to</span> $49.00</span>
+                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="content">
-                            <h3><a href="single-products-1.html">Cosmetic Containers</a></h3>
-                            <div class="price">
-                                <span class="new-price">$139.00</span>
+                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                        <div class="single-products-promotions-box">
+                            <img src="{{asset('public/site/assets/images/promotions-img3.jpg')}}" alt="image">
+
+                            <div class="content">
+                                <span class="sub-title">Hot Collection</span>
+                                <h3>Glucose Meter</h3>
+                                <span class="discount"><span>up to</span> 20% OFF</span>
+                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End Products Area -->
+        <!-- End Products Promotions Area -->
+		
+		 <!-- Start Brands Area -->
+        <section class="brands-area pt-70 pb-40">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Selling Brands</h2>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img1.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img2.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img3.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img4.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img5.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-4 col-md-2 col-6">
+                        <div class="single-brands-item">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img61.png')}}" alt="image"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Brands Area -->
+		
+		
+		<!-- Start Blog Area -->
+        <section class="blog-area pb-40">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Blog</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-blog-post">
+                            <div class="post-image">
+                                <a href="single-blog-1.html" class="d-block"><img src="{{asset('public/site/assets/img/blog/blog-img1.jpg')}}" alt="image"></a>
+                            </div>
+
+                            <div class="post-content">
+                                <h3><a href="single-blog-1.html">A researcher is conducting research on coronavirus in the lab</a></h3>
+                                <ul class="post-meta align-items-center d-flex">
+                                    <li>
+                                        <div class="flex align-items-center">
+                                            <img src="{{asset('public/site/assets/img/user1.jpg')}}" alt="image">
+                                            <a href="#">Rajesh Pandya</a>
+                                        </div>
+                                    </li>
+                                    <li>06-06-2021</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-blog-post">
+                            <div class="post-image">
+                                <a href="single-blog-1.html" class="d-block"><img src="{{asset('public/site/assets/img/blog/blog-img2.jpg')}}" alt="image"></a>
+                            </div>
+
+                            <div class="post-content">
+                                <h3><a href="single-blog-1.html">You have to wash your hands for 20 seconds to keep yourself free</a></h3>
+                                <ul class="post-meta align-items-center d-flex">
+                                    <li>
+                                        <div class="flex align-items-center">
+                                            <img src="{{asset('public/site/assets/img/user2.jpg')}}" alt="image">
+                                            <a href="#">Ritika Jaiswal</a>
+                                        </div>
+                                    </li>
+                                    <li>05-06-2021</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                        <div class="single-blog-post">
+                            <div class="post-image">
+                                <a href="single-blog-1.html" class="d-block"><img src="{{asset('public/site/assets/img/blog/blog-img3.jpg')}}" alt="image"></a>
+                            </div>
+
+                            <div class="post-content">
+                                <h3><a href="single-blog-1.html">It is very important to wear proper clothing to keep yourself free</a></h3>
+                                <ul class="post-meta align-items-center d-flex">
+                                    <li>
+                                        <div class="flex align-items-center">
+                                            <img src="{{asset('public/site/assets/img/user3.jpg')}}" alt="image">
+                                            <a href="#">Bhavesh Bhat</a>
+                                        </div>
+                                    </li>
+                                    <li>04-06-2021</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Blog Area -->
+		
 @include('front.includes.footer')
