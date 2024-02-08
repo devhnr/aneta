@@ -75,13 +75,13 @@
 								
 								 <li class="nav-item"><a href="#" class="nav-link">Products <i class='bx bx-chevron-down'></i></a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a href="#" class="nav-link">Lipid Lowering</a></li>
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Lipid Lowering</a></li>
 
-                                        <li class="nav-item"><a href="#" class="nav-link">Cardiovascular</a></li>
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Cardiovascular</a></li>
 
-                                        <li class="nav-item"><a href="#" class="nav-link">Anti-Histamines</a></li>
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Anti-Histamines</a></li>
 
-                                        <li class="nav-item"><a href="#" class="nav-link">Anti-Diabetic</a></li>
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Anti-Diabetic</a></li>
 
                                        <!--<li class="nav-item"><a href="#" class="nav-link">Single Post <i class='bx bx-chevron-right'></i></a>
                                             <ul class="dropdown-menu">
