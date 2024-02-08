@@ -94,9 +94,9 @@
                                         </li>-->
                                     </ul>
                                 </li>
-								<li class="nav-item"><a href="#" class="nav-link ">About Us</a></li>
+								<li class="nav-item"><a href="{{ url('/about-us') }}" class="nav-link ">About Us</a></li>
 								<li class="nav-item"><a href="#" class="nav-link ">Blogs</a></li>
-                                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                                <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
                             </ul>
 
                             <div class="others-option">

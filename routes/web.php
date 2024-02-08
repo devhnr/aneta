@@ -72,6 +72,7 @@ Route::get('/hdfc', function () {
 
 
 Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
+Route::get('/about-us', '\App\Http\Controllers\front\Homecontroller@about_us');
 
 // Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
 // Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');

@@ -21,6 +21,17 @@ class Homecontroller extends Controller
         // echo "<pre>";print_r($data);echo "</pre>";exit;
     	return view('front.index',$data);
     }
+    public function about_us(){
+
+       
+
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+
+        // echo "<pre>";print_r($data);echo "</pre>";exit;
+    	return view('front.about_us',$data);
+    }
 
    
     
