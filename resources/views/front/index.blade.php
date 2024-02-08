@@ -294,6 +294,36 @@
                         </div>
                     </div>
 
+                    <div class="single-products-box">
+                        <div class="image">
+                            <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+
+                            <div class="new">New</div>
+
+                            <div class="buttons-list">
+                                <ul>
+                                   
+                                    <li>
+                                        <div class="wishlist-btn">
+                                            <a href="#">
+                                                <i class='bx bx-heart'></i>
+                                                <span class="tooltip-label">Add to Wishlist</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h3><a href="#">TELMANETA CD</a></h3>
+                            <div class="price">
+                                <span class="new-price">Rs 99.00</span>
+                            </div>
+                        </div>
+                    </div>
+
                     
                 </div>
             </div>
@@ -324,7 +354,7 @@
                             <div class="content">
                                 <span class="sub-title">New Arrivals</span>
                                 <h3>Hand Washer</h3>
-                                <span class="discount"><span>up to</span> $49.00</span>
+                                <span class="discount"><span>up to</span>Rs 49.00</span>
                                 <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
                             </div>
                         </div>
@@ -346,6 +376,265 @@
             </div>
         </section>
         <!-- End Products Promotions Area -->
+
+         <!-- Start Products Area -->
+         <section class="products-area pb-40">
+            <div class="container">
+                <div class="section-title">
+                    <h2>New Arrivals</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                       
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            
+                        <div class="content">
+                            <h3><a href="#">TELMANETA CD</a></h3>
+                            <div class="price">
+                                <span class="new-price">Rs 99.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
+    
+                                <div class="sale">Sale</div>
+    
+                                <div class="buttons-list">
+                                    <ul>
+                                       
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+    
+                             <div class="content">
+								<h3><a href="#">TELMANETA CH</a></h3>
+								   <div class="price">
+										<span class="old-price">Rs 200.00</span>
+										<span class="new-price">Rs 180.00</span>
+									</div>
+							</div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                        
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="content">
+                            <h3><a href="#">NETAZOL 150</a></h3>
+                             <div class="price">
+                                <span class="new-price">Rs 159.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                        
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                             <div class="content">
+                            <h3><a href="#">NETAZOL 200</a></h3>
+                            <div class="price">
+                                <span class="new-price">Rs 130.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                        
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                           <div class="content">
+                            <h3><a href="#">TELMANETA CD</a></h3>
+                            <div class="price">
+                                <span class="new-price">Rs 99.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                        
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="content">
+                            <h3><a href="#">TELMANETA CH</a></h3>
+							   <div class="price">
+									<span class="old-price">Rs 200.00</span>
+									<span class="new-price">Rs 180.00</span>
+								</div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                        
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="content">
+                            <h3><a href="#">NETAZOL 150</a></h3>
+                             <div class="price">
+                                <span class="new-price">Rs 159.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-products-box">
+                            <div class="image">
+                                <a href="single-products-1.html" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
+    
+                                <div class="sale">Sale</div>
+        
+                                <div class="buttons-list">
+                                    <ul>
+                                       
+                                        <li>
+                                            <div class="wishlist-btn">
+                                                <a href="#">
+                                                    <i class='bx bx-heart'></i>
+                                                    <span class="tooltip-label">Add to Wishlist</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+    
+                             <div class="content">
+                            <h3><a href="#">NETAZOL 200</a></h3>
+                            <div class="price">
+                                <span class="new-price">Rs 130.00</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Products Area -->
 		
 		 <!-- Start Brands Area -->
         <section class="brands-area pt-70 pb-40">

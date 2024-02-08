@@ -23,14 +23,26 @@ class Homecontroller extends Controller
     }
     public function about_us(){
 
-       
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+    	return view('front.about_us',$data);
+    }
+	
+	public function product_list(){
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
+    	return view('front.product_listing',$data);
+    }
+	
+	public function product_detail(){
 
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
-    	return view('front.about_us',$data);
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+    	return view('front.product_detail',$data);
     }
 
    

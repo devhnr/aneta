@@ -25,8 +25,6 @@ use App\Http\Controllers\admin\CmsController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\CoupanController;
 use App\Http\Controllers\admin\CustomerController;
-use App\Http\Controllers\admin\SubbannerController;
-use App\Http\Controllers\admin\BlogController;
 
 
 
@@ -75,8 +73,6 @@ Route::get('/hdfc', function () {
 
 Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
 Route::get('/about-us', '\App\Http\Controllers\front\Homecontroller@about_us');
-Route::get('/product-list', '\App\Http\Controllers\front\Homecontroller@product_list');
-Route::get('/product-detail', '\App\Http\Controllers\front\Homecontroller@product_detail');
 
 // Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
 // Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
@@ -206,7 +202,6 @@ Route::get('/admin', function () {
     Route::resource('/admin/category', '\App\Http\Controllers\admin\CategoryController');
     Route::get('/admin/delete', [CategoryController::class, 'destroy'])->name('delete');
     Route::post('set_order_category', '\App\Http\Controllers\admin\CategoryController@set_order_category');
-    Route::post('set_as_home', '\App\Http\Controllers\admin\CategoryController@set_as_home');
 
     Route::resource('/admin/subcategory', '\App\Http\Controllers\admin\SubcategoryController');
     Route::get('/admin/delete_subcategory', [SubcategoryController::class, 'destroy'])->name('delete_subcategory');
@@ -234,9 +229,6 @@ Route::get('/admin', function () {
 
 
     Route::resource('/admin/customer', '\App\Http\Controllers\admin\CustomerController');
-    Route::get('/delete_customer', [CustomerController::class, 'destroy'])->name('delete_customer');
-    Route::get('/admin/download/{filename}', [CustomerController::class, 'download_gst']);
-    Route::post('change_status','App\Http\Controllers\admin\CustomerController@change_status');
        
     Route::resource('/admin/permission', '\App\Http\Controllers\admin\PermissionController');
     
@@ -247,21 +239,6 @@ Route::get('/admin', function () {
 
     Route::resource('/admin/adminuser', '\App\Http\Controllers\admin\Admin_userController');
     Route::get('/admin/delete_admin', [Admin_userController::class, 'destroy'])->name('delete_admin'); 
-
-    Route::resource('/admin/subbanner', '\App\Http\Controllers\admin\SubbannerController');
-    Route::get('/admin/delete_subbanner', [SubbannerController::class, 'destroy'])->name('delete_subbanner'); 
-
-    Route::resource('/admin/blog', '\App\Http\Controllers\admin\BlogController');
-    Route::get('delete_blog', [BlogController::class, 'destroy'])->name('delete_blog'); 
-
-    Route::get('editimage/{id}', [ProductController::class, 'editimage'])->name('editimage');
-    Route::post('editimage_store', [ProductController::class, 'editimage_store'])->name('editimage_store');
-    Route::post('product_setbaseimage', [ProductController::class, 'product_setbaseimage'])->name('product_setbaseimage');
-    Route::post('product_setbaseimghover', [ProductController::class, 'product_setbaseimghover'])->name('product_setbaseimghover');
-    Route::get('product_removeimage/{pid}/{id}', [ProductController::class, 'product_removeimage'])->name('product_removeimage');
-
-
-
     
     
    
