@@ -27,6 +27,7 @@ use App\Http\Controllers\admin\CoupanController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\SubbannerController;
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\BrandController;
 
 
 
@@ -213,6 +214,9 @@ Route::get('/admin', function () {
     Route::post('set_order_subcategory', '\App\Http\Controllers\admin\SubcategoryController@set_order');
     Route::post('product_show_subcategory', '\App\Http\Controllers\admin\ProductController@product_show_subcategory');
 
+    Route::resource('/admin/brand', '\App\Http\Controllers\admin\BrandController');
+    Route::get('/admin/delete_brand', [BrandController::class, 'destroy'])->name('delete_brand');
+
     Route::resource('/admin/banner', '\App\Http\Controllers\admin\BannerController');
     Route::get('/admin/delete_banner', [BannerController::class, 'destroy'])->name('delete_banner');
 
@@ -220,6 +224,9 @@ Route::get('/admin', function () {
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');
     Route::get('remove_product_att/{pid}/{id}', [ProductController::class, 'remove_product_att'])->name('remove_product_att');
     Route::post('product_new', '\App\Http\Controllers\admin\ProductController@product_new');
+
+    
+    Route::post('/product_best_seller', [ProductController::class, 'product_best_seller'])->name('product_best_seller');
     
     Route::resource('admin/cms','App\Http\Controllers\admin\CmsController');
     Route::get('cms-delete',[CmsController::class,'destroy'])->name

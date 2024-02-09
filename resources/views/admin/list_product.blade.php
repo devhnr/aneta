@@ -216,7 +216,9 @@
 
                                                <th>Category</th>
 
-                                               <th>Sub Category</th>
+                                               {{-- <th>Sub Category</th> --}}
+
+                                               <th>Brand Name</th>
 
                                                <th>Name</th>
 
@@ -229,9 +231,9 @@
                                                <th>Hot</th> 
                                                <th>Recent Product</th>
 
-                                               <th>Feature Product</th>
+                                               <th>Feature Product</th>--}}
 
-                                               <th>Best Seller</th> --}}
+                                               <th>Best Seller</th> 
 
                                                <th>Add Image</th>
 
@@ -245,7 +247,7 @@
 
                                        <tbody>
 
-                                           @foreach ($category_data as $data)
+                                           @foreach ($product_data as $data)
                                                <tr>
 
                                                    <td><input name="selected[]" id="selected[]" value="{{ $data->id }}"
@@ -293,19 +295,30 @@
 
 
 
-                                                   <td>
+                                                   {{-- <td>
 
                                                        @for ($i = 0; $i < count($subcategoryname); $i++)
                                                            {{ $subcategoryname[$i]->name }}
                                                        @endfor
 
-                                                   </td>
+                                                   </td> --}}
 
+                                                   @php
 
+                                                   $BrandName = DB::table('brands')
+
+                                                       ->where('id', $data->brand_id)
+
+                                                       ->value('name');
+
+                                               @endphp
+
+                                               <td>
+                                                       {{ $BrandName }}
+                                               </td>
+                                               
                                                    <td>
-
                                                        {{ $data->name }}
-
                                                    </td>
 
                                                    <td>{{ $data->page_url }}</td>
@@ -383,7 +396,7 @@
                                                                echo 'checked';
                                                            } ?>>
 
-                                                   </td>
+                                                   </td>--}}
 
 
 
@@ -401,7 +414,7 @@
 
                                                    </td>
 
-                                                           --}}
+                                                           
                                                    <td>
 
                                                        <a class="btn btn-primary me-1"
@@ -1277,7 +1290,7 @@
 
                        if (returnedData == 1) {
 
-                           //alert('yes');
+                        //   alert('yes');
 
                            $('#success_message').text("Set Best Seller has been Updated successfully");
 

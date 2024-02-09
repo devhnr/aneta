@@ -56,7 +56,7 @@
                 <li class="submenu">
 
                     <a href="#"
-                        class="{{ request()->segment(2) == 'category' || request()->segment(2) == 'subcategory' || request()->segment(2) == 'size' || request()->segment(2) == 'banner' || request()->segment(2) == 'subbanner' ? 'active' : '' }}"><i
+                        class="{{ request()->segment(2) == 'category' || request()->segment(2) == 'subcategory' || request()->segment(2) == 'size' || request()->segment(2) == 'banner' || request()->segment(2) == 'subbanner' || request()->segment(2) == 'brand' ? 'active' : '' }}"><i
                             data-feather="pie-chart"></i> <span> Master</span> <span class="menu-arrow"></span></a>
 
                     <ul>
@@ -67,7 +67,7 @@
                             <li><a href="{{ route('category.index') }}"
                                     class="{{ request()->segment(2) == 'category' ? 'active' : '' }}">Category</a></li>
                         @endif
-
+{{-- 
                         @if (in_array('2', $permission1))
                             <li><a href="{{ route('subcategory.index') }}"
                                     class="{{ request()->segment(2) == 'subcategory' ? 'active' : '' }}">Sub
@@ -75,7 +75,7 @@
                                     Category</a>
 
                             </li>
-                        @endif
+                        @endif --}}
 
                         @if (in_array('7', $permission1))
                             <li><a href="{{ route('size.index') }}"
@@ -91,6 +91,12 @@
                             <li>
                                 <a href="{{ route('subbanner.index') }}"
                                     class="{{ request()->segment(2) == 'subbanner' ? 'active' : '' }}">Sub Banner
+                                </a>
+                        @endif
+                        @if (in_array('13', $permission1))
+                            <li>
+                                <a href="{{ route('brand.index') }}"
+                                    class="{{ request()->segment(2) == 'brand' ? 'active' : '' }}">Brand
                                 </a>
                         @endif
 
