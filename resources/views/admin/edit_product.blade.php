@@ -120,7 +120,7 @@
 
 
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
 
                                     <div class="form-group">
 
@@ -146,6 +146,43 @@
                                         </span>
 
                                         <p id="subcat_error" style="display: none;color: red"></p>
+
+                                        @error('name')
+                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+
+                                    </div>
+
+
+
+                                </div> --}}
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+
+                                        <label>Brand</label>
+
+                                        <!-- <input type="text" class="form-control" id="cat_id" name="cat_id"> -->
+
+                                        <span id="subcat_change">
+
+                                            <select name="brand_id" id="brand_id" class="form-control">
+
+                                                <option value="">Select Brand</option>
+
+                                                @foreach ($brand_old as $brand_old_data)
+                                                    <option value="{{ $brand_old_data->id }}"
+                                                        @if ($product->brand_id == $brand_old_data->id) {{ 'selected' }} @endif>
+
+                                                        {{ $brand_old_data->name }}</option>
+                                                @endforeach
+
+                                            </select>
+
+                                        </span>
+
+                                        <p id="brand_error" style="display: none;color: red"></p>
 
                                         @error('name')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -860,6 +897,25 @@
                 $('html, body').animate({
 
                     scrollTop: $("#cat_id").offset().top - 150
+
+                }, 100);
+
+                return false;
+
+            }
+            var brand_id = jQuery("#brand_id").val();
+
+            if (brand_id == '') {
+
+                jQuery('#brand_error').html("Please Select Brand");
+
+                jQuery('#brand_error').show().delay(0).fadeIn('show');
+
+                jQuery('#brand_error').show().delay(2000).fadeOut('show');
+
+                $('html, body').animate({
+
+                    scrollTop: $("#brand_id").offset().top - 150
 
                 }, 100);
 

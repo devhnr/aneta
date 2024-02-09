@@ -106,7 +106,7 @@
                                 </div>
 
 
-
+ {{-- 
                                 <div class="col-md-6">
 
                                     <div class="form-group">
@@ -129,11 +129,44 @@
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
 
+                                    </div> 
+
+
+
+                                </div> --}}
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+
+                                        <label>Brand</label>
+
+                                        <span id="cat_change">
+
+                                            <select name="brand_id" id="brand_id" class="form-control">
+
+                                                <option value="">Select Brand</option>
+
+                                                @foreach ($brand_data as $brand_data_new)
+                                                    <option value="{{ $brand_data_new->id }}">{{ $brand_data_new->name }}
+
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
+
+                                        </span>
+
+                                        <p id="brand_error" style="display: none;color: red"></p>
+
+                                        @error('name')
+                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+
                                     </div>
 
-
-
                                 </div>
+
 
 
 
@@ -663,6 +696,26 @@
                 $('html, body').animate({
 
                     scrollTop: $("#cat_id").offset().top - 150
+
+                }, 100);
+
+                return false;
+
+            }
+
+            var brand_id = jQuery("#brand_id").val();
+
+            if (brand_id == '') {
+
+                jQuery('#brand_error').html("Please Select Brand");
+
+                jQuery('#brand_error').show().delay(0).fadeIn('show');
+
+                jQuery('#brand_error').show().delay(2000).fadeOut('show');
+
+                $('html, body').animate({
+
+                    scrollTop: $("#brand_id").offset().top - 150
 
                 }, 100);
 

@@ -25,6 +25,7 @@ use App\Models\admin\Material;
 use App\Models\admin\Style_type;
 
 use App\Models\admin\Group;
+use App\Models\admin\Brand;
 
 Use Image;
 
@@ -52,7 +53,9 @@ class ProductController extends Controller
 
     {
 
-        $data['category_data'] = Product::orderBy('id','DESC')->get();
+        $data['product_data'] = Product::orderBy('id','DESC')->get();
+
+        $data['brand_data'] = Brand::orderBy('id','DESC')->get();
 
         
 
@@ -77,7 +80,7 @@ class ProductController extends Controller
     {
 
        
-        
+        $data['brand_data'] = Brand::all();
 
         $data['size'] = Size::all();
 
@@ -111,7 +114,9 @@ class ProductController extends Controller
        
         $data['cat_id'] = $request->input('cat_id');
 
-        $data['subcat_id'] = $request->input('subcat_id');
+        // $data['subcat_id'] = $request->input('subcat_id');
+
+        $data['brand_id'] =  $request->input('brand_id');
 
         $data['name'] = $request->input('name');
 
@@ -347,11 +352,19 @@ class ProductController extends Controller
 
 
 
-        $data['subcategory_old'] = DB::table('subcategories')
+        // $data['subcategory_old'] = DB::table('subcategories')
+
+        // ->select('*')
+
+        // ->where('cat_id', '=',$product->cat_id)
+
+        // ->get()
+
+        // ->toArray();
+
+        $data['brand_old'] = DB::table('brands')
 
         ->select('*')
-
-        ->where('cat_id', '=',$product->cat_id)
 
         ->get()
 
@@ -409,7 +422,10 @@ class ProductController extends Controller
 
         $data['cat_id'] = $request->input('cat_id');
 
-        $data['subcat_id'] = $request->input('subcat_id');
+        // $data['subcat_id'] = $request->input('subcat_id');
+
+        $data['brand_id'] =  $request->input('brand_id');
+
 
         $data['name'] = $request->input('name');
 
