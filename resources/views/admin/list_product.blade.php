@@ -6,36 +6,23 @@
 
            $userId = Auth::id();
 
-           
-
            $get_user_data = Helper::get_user_data($userId);
-
-           
 
            $get_permission_data = Helper::get_permission_data($get_user_data->role_id);
 
-           
-
            $edit_perm = [];
 
-           
-
            if ($get_permission_data->editperm != '') {
-
                $edit_perm = $get_permission_data->editperm;
 
                $edit_perm = explode(',', $edit_perm);
-
            }
-
-           
 
        @endphp
 
 
 
        <style>
-
            .custom_css_model h3 {
 
                font-size: 18px;
@@ -49,7 +36,6 @@
                padding: 0 8px !important;
 
            }
-
        </style>
 
 
@@ -81,7 +67,6 @@
                    </div>
 
                    @if (in_array('3', $edit_perm))
-
                        <div class="col-auto">
 
 
@@ -100,12 +85,11 @@
 
                            <!--  <a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
 
-                                                                                                                                                                                                                                                                                                                                                                                                 <i class="fas fa-filter"></i> Filter
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             <i class="fas fa-filter"></i> Filter
 
-                                                                                                                                                                                                                                                                                                                                                                                                 </a> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             </a> -->
 
                        </div>
-
                    @endif
 
 
@@ -119,19 +103,16 @@
 
 
            <!-- @if ($message = Session::get('success'))
-
     <div class="alert alert-success">
 
-                                                                                                                                                                                                                                                                                                                                                                                                 <p>{{ $message }}</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             <p>{{ $message }}</p>
 
-                                                                                                                                                                                                                                                                                                                                                                                                </div>
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
     @endif -->
 
 
 
            @if ($message = Session::get('success'))
-
                <div class="alert alert-success alert-dismissible fade show">
 
                    <strong>Success!</strong> {{ $message }}
@@ -139,7 +120,6 @@
                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
                </div>
-
            @endif
 
 
@@ -251,13 +231,12 @@
 
                                                <th>Feature Product</th>
 
-                                               <th>Best Seller</th>--}}
+                                               <th>Best Seller</th> --}}
 
+                                               <th>Add Image</th>
 
                                                @if (in_array('3', $edit_perm))
-
                                                    <th class="text-right">Actions</th>
-
                                                @endif
 
                                            </tr>
@@ -267,20 +246,17 @@
                                        <tbody>
 
                                            @foreach ($category_data as $data)
-
                                                <tr>
 
                                                    <td><input name="selected[]" id="selected[]" value="{{ $data->id }}"
-
                                                            type="checkbox" class="minimal-red"
-
                                                            style="height: 20px;width: 20px;border-radius: 0px;color: red;">
 
                                                    </td>
 
 
 
-                                                  
+
                                                    @php
 
                                                        $categoryName = DB::table('categories')
@@ -289,16 +265,12 @@
 
                                                            ->get();
 
-                                                       
-
                                                    @endphp
 
                                                    <td>
 
                                                        @for ($i = 0; $i < count($categoryName); $i++)
-
                                                            {{ $categoryName[$i]->name }}
-
                                                        @endfor
 
                                                    </td>
@@ -324,9 +296,7 @@
                                                    <td>
 
                                                        @for ($i = 0; $i < count($subcategoryname); $i++)
-
                                                            {{ $subcategoryname[$i]->name }}
-
                                                        @endfor
 
                                                    </td>
@@ -340,26 +310,21 @@
 
                                                    <td>{{ $data->page_url }}</td>
 
-                                                
+
                                                    <td>
 
                                                        <input type="checkbox" id="new_product" name="new_product"
-
                                                            value="1"
-
                                                            onclick="new_product_popup('<?php echo $data->id; ?>',this);"
-
                                                            <?php if ($data->new_product == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
 
 
 
-                                                  {{-- <td>
+                                                   {{-- <td>
 
                                                        <input type="checkbox" id="sale_product" name="sale_product"
 
@@ -368,9 +333,7 @@
                                                            onclick="sale_product_popup('<?php echo $data->id; ?>',this);"
 
                                                            <?php if ($data->sale_product == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
@@ -384,9 +347,7 @@
                                                            onclick="hot_product_popup('<?php echo $data->id; ?>',this);"
 
                                                            <?php if ($data->hot_product == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
@@ -403,9 +364,7 @@
                                                            onclick="recent_product_popup('<?php echo $data->id; ?>',this);"
 
                                                            <?php if ($data->recent_product == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
@@ -421,9 +380,7 @@
                                                            onclick="feature_product_popup('<?php echo $data->id; ?>',this);"
 
                                                            <?php if ($data->feature_product == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
@@ -439,35 +396,33 @@
                                                            onclick="best_seller_product_popup('<?php echo $data->id; ?>',this);"
 
                                                            <?php if ($data->best_seller == '1') {
-
                                                                echo 'checked';
-
                                                            } ?>>
 
                                                    </td>
 
                                                            --}}
+                                                   <td>
 
-                                                  
+                                                       <a class="btn btn-primary me-1"
+                                                           href="{{ route('editimage', $data->id) }}">Add Image</a>
+
+                                                   </td>
+
 
                                                    @if (in_array('3', $edit_perm))
-
                                                        <td class="text-right">
 
                                                            <a class="btn btn-primary"
-
                                                                href="{{ route('product.edit', $data->id) }}"><i
-
                                                                    class="far fa-edit"></i></a>
 
                                                        </td>
-
                                                    @endif
 
 
 
                                                </tr>
-
                                            @endforeach
 
 
@@ -493,67 +448,39 @@
    @stop
 
 
-@section('footer_js')
+   @section('footer_js')
 
-   <!-- Delete  Modal -->
+       <!-- Delete  Modal -->
 
-   <div class="modal custom-modal fade" id="delete_model" role="dialog">
+       <div class="modal custom-modal fade" id="delete_model" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-icon text-center mb-3">
+                       <div class="modal-icon text-center mb-3">
 
-                       <i class="fas fa-trash-alt text-danger"></i>
+                           <i class="fas fa-trash-alt text-danger"></i>
+
+                       </div>
+
+                       <div class="modal-text text-center">
+
+                           <!-- <h3>Delete Expense Category</h3> -->
+
+                           <p>Are you sure want to delete?</p>
+
+                       </div>
 
                    </div>
 
-                   <div class="modal-text text-center">
+                   <div class="modal-footer text-center">
 
-                       <!-- <h3>Delete Expense Category</h3> -->
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                       <p>Are you sure want to delete?</p>
-
-                   </div>
-
-               </div>
-
-               <div class="modal-footer text-center">
-
-                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-                   <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
-
-               </div>
-
-           </div>
-
-       </div>
-
-   </div>
-
-   <!-- /Delete Modal -->
-
-
-
-   <!-- Select one record Category Modal -->
-
-   <div class="modal custom-modal fade" id="select_one_record" role="dialog">
-
-       <div class="modal-dialog modal-dialog-centered">
-
-           <div class="modal-content">
-
-               <div class="modal-body">
-
-                   <div class="modal-text text-center">
-
-                       <h3>Please select at least one record to delete</h3>
-
-                       <!-- <p>Are you sure want to delete?</p> -->
+                       <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
 
                    </div>
 
@@ -563,33 +490,27 @@
 
        </div>
 
-   </div>
-
-   <!-- /Select one record Category Modal -->
+       <!-- /Delete Modal -->
 
 
 
-   <!-- New Modal -->
+       <!-- Select one record Category Modal -->
 
-   <div class="modal custom-modal fade custom_css_model" id="new_model" role="dialog">
+       <div class="modal custom-modal fade" id="select_one_record" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-text text-center">
+                       <div class="modal-text text-center">
 
-                       <h3 id="new_poup_text"></h3>
+                           <h3>Please select at least one record to delete</h3>
 
-                       <input type="hidden" name="new_val" id="new_val" value="">
+                           <!-- <p>Are you sure want to delete?</p> -->
 
-                       <input type="hidden" name="new_id" id="new_id" value="">
-
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-
-                       <button type="button" class="btn btn-primary" onclick="new_product();">Yes</button>
+                       </div>
 
                    </div>
 
@@ -599,69 +520,33 @@
 
        </div>
 
-   </div>
-
-   <!-- /New Modal -->
+       <!-- /Select one record Category Modal -->
 
 
 
-   <!-- Hot Modal -->
+       <!-- New Modal -->
 
-   <div class="modal custom-modal fade custom_css_model" id="hot_model" role="dialog">
+       <div class="modal custom-modal fade custom_css_model" id="new_model" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-text text-center">
+                       <div class="modal-text text-center">
 
-                       <h3 id="hot_poup_text"></h3>
+                           <h3 id="new_poup_text"></h3>
 
-                       <input type="hidden" name="hot_val" id="hot_val" value="">
+                           <input type="hidden" name="new_val" id="new_val" value="">
 
-                       <input type="hidden" name="hot_id" id="hot_id" value="">
+                           <input type="hidden" name="new_id" id="new_id" value="">
 
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-                       <button type="button" class="btn btn-primary" onclick="hot_product();">Yes</button>
+                           <button type="button" class="btn btn-primary" onclick="new_product();">Yes</button>
 
-                   </div>
-
-               </div>
-
-           </div>
-
-       </div>
-
-   </div>
-
-   <!-- /Hot Modal -->
-
-
-
-   <!-- sale Modal -->
-
-   <div class="modal custom-modal fade custom_css_model" id="sale_model" role="dialog">
-
-       <div class="modal-dialog modal-dialog-centered">
-
-           <div class="modal-content">
-
-               <div class="modal-body">
-
-                   <div class="modal-text text-center">
-
-                       <h3 id="sale_poup_text"></h3>
-
-                       <input type="hidden" name="sale_val" id="sale_val" value="">
-
-                       <input type="hidden" name="sale_id" id="sale_id" value="">
-
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-
-                       <button type="button" class="btn btn-primary" onclick="sale_product();">Yes</button>
+                       </div>
 
                    </div>
 
@@ -671,71 +556,33 @@
 
        </div>
 
-   </div>
-
-   <!-- /sale Modal -->
+       <!-- /New Modal -->
 
 
 
-   <!-- Recent Modal -->
+       <!-- Hot Modal -->
 
-   <div class="modal custom-modal fade custom_css_model" id="recent_model" role="dialog">
+       <div class="modal custom-modal fade custom_css_model" id="hot_model" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-text text-center">
+                       <div class="modal-text text-center">
 
-                       <h3 id="poup_text"></h3>
+                           <h3 id="hot_poup_text"></h3>
 
-                       <input type="hidden" name="recent_val" id="recent_val" value="">
+                           <input type="hidden" name="hot_val" id="hot_val" value="">
 
-                       <input type="hidden" name="recent_id" id="recent_id" value="">
+                           <input type="hidden" name="hot_id" id="hot_id" value="">
 
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-                       <button type="button" class="btn btn-primary" onclick="recent_product();">Yes</button>
+                           <button type="button" class="btn btn-primary" onclick="hot_product();">Yes</button>
 
-                   </div>
-
-               </div>
-
-           </div>
-
-       </div>
-
-   </div>
-
-   <!-- /recent Modal -->
-
-
-
-
-
-   <!-- Feature Modal -->
-
-   <div class="modal custom-modal fade custom_css_model" id="feature_model" role="dialog">
-
-       <div class="modal-dialog modal-dialog-centered">
-
-           <div class="modal-content">
-
-               <div class="modal-body">
-
-                   <div class="modal-text text-center">
-
-                       <h3 id="feature_poup_text"></h3>
-
-                       <input type="hidden" name="feature_val" id="feature_val" value="">
-
-                       <input type="hidden" name="feature_id" id="feature_id" value="">
-
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-
-                       <button type="button" class="btn btn-primary" onclick="feature_product();">Yes</button>
+                       </div>
 
                    </div>
 
@@ -745,33 +592,33 @@
 
        </div>
 
-   </div>
-
-   <!-- /Feature Modal -->
+       <!-- /Hot Modal -->
 
 
 
-   <!-- best_seller Modal -->
+       <!-- sale Modal -->
 
-   <div class="modal custom-modal fade custom_css_model" id="best_seller_model" role="dialog">
+       <div class="modal custom-modal fade custom_css_model" id="sale_model" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-text text-center">
+                       <div class="modal-text text-center">
 
-                       <h3 id="best_seller_poup_text"></h3>
+                           <h3 id="sale_poup_text"></h3>
 
-                       <input type="hidden" name="best_seller_val" id="best_seller_val" value="">
+                           <input type="hidden" name="sale_val" id="sale_val" value="">
 
-                       <input type="hidden" name="best_seller_id" id="best_seller_id" value="">
+                           <input type="hidden" name="sale_id" id="sale_id" value="">
 
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-                       <button type="button" class="btn btn-primary" onclick="best_seller_product();">Yes</button>
+                           <button type="button" class="btn btn-primary" onclick="sale_product();">Yes</button>
+
+                       </div>
 
                    </div>
 
@@ -781,582 +628,687 @@
 
        </div>
 
-   </div>
+       <!-- /sale Modal -->
 
-   <!-- /best_seller Modal -->
 
 
+       <!-- Recent Modal -->
 
-   <script>
+       <div class="modal custom-modal fade custom_css_model" id="recent_model" role="dialog">
 
-       function delete_category() {
+           <div class="modal-dialog modal-dialog-centered">
 
-           // alert('test');
+               <div class="modal-content">
 
-           var checked = $("#form input[name='selected[]']:checked").length > 0
+                   <div class="modal-body">
 
-           if (!checked) {
+                       <div class="modal-text text-center">
 
-               $('#select_one_record').modal('show');
+                           <h3 id="poup_text"></h3>
 
-           } else {
+                           <input type="hidden" name="recent_val" id="recent_val" value="">
 
-               $('#delete_model').modal('show');
+                           <input type="hidden" name="recent_id" id="recent_id" value="">
 
-           }
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-       }
+                           <button type="button" class="btn btn-primary" onclick="recent_product();">Yes</button>
 
+                       </div>
 
+                   </div>
 
-       function form_sub() {
+               </div>
 
-           $('#form').submit();
+           </div>
 
-       }
+       </div>
 
+       <!-- /recent Modal -->
 
 
 
 
 
+       <!-- Feature Modal -->
 
-       function sale_product_popup(id, value) {
+       <div class="modal custom-modal fade custom_css_model" id="feature_model" role="dialog">
 
+           <div class="modal-dialog modal-dialog-centered">
 
+               <div class="modal-content">
 
-           $('#sale_id').val(id);
+                   <div class="modal-body">
 
+                       <div class="modal-text text-center">
 
+                           <h3 id="feature_poup_text"></h3>
 
-           if (value.checked) {
+                           <input type="hidden" name="feature_val" id="feature_val" value="">
 
-               $('#sale_val').val('1');
+                           <input type="hidden" name="feature_id" id="feature_id" value="">
 
-               $('#sale_poup_text').text("Are you sure you want Add Sale Product");
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-               $('#sale_model').modal('show');
+                           <button type="button" class="btn btn-primary" onclick="feature_product();">Yes</button>
 
-           } else {
+                       </div>
 
-               $('#sale_val').val('0');
+                   </div>
 
-               $('#sale_poup_text').text("Are you sure you want remove From Sale Product");
+               </div>
 
-               $('#sale_model').modal('show');
+           </div>
 
-           }
+       </div>
 
-       }
+       <!-- /Feature Modal -->
 
 
 
-       function sale_product() {
+       <!-- best_seller Modal -->
 
+       <div class="modal custom-modal fade custom_css_model" id="best_seller_model" role="dialog">
 
+           <div class="modal-dialog modal-dialog-centered">
 
-           var val_new = $('#sale_val').val();
+               <div class="modal-content">
 
-           var id = $('#sale_id').val();
+                   <div class="modal-body">
 
+                       <div class="modal-text text-center">
 
+                           <h3 id="best_seller_poup_text"></h3>
 
-           $.ajax({
+                           <input type="hidden" name="best_seller_val" id="best_seller_val" value="">
 
-               type: "POST",
+                           <input type="hidden" name="best_seller_id" id="best_seller_id" value="">
 
-               url: "{{ url('product_sale') }}",
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
-               data: {
+                           <button type="button" class="btn btn-primary" onclick="best_seller_product();">Yes</button>
 
-                   "_token": "{{ csrf_token() }}",
+                       </div>
 
-                   "id": id,
+                   </div>
 
-                   "val": val_new
+               </div>
 
-               },
+           </div>
 
-               success: function(returnedData) {
+       </div>
 
+       <!-- /best_seller Modal -->
 
 
-                   if (returnedData == 1) {
 
+       <script>
+           function delete_category() {
 
+               // alert('test');
 
-                       $('#success_message').text("Set Sale Product has been Updated successfully");
+               var checked = $("#form input[name='selected[]']:checked").length > 0
 
-                       $('.success_show').show().delay(0).fadeIn('show');
+               if (!checked) {
 
-                       $('.success_show').show().delay(5000).fadeOut('show');
+                   $('#select_one_record').modal('show');
 
-                       $('#sale_model').modal('hide');
+               } else {
 
-                   }
+                   $('#delete_model').modal('show');
 
                }
 
-           });
+           }
 
 
 
-       }
+           function form_sub() {
 
-
-
-
-
-       function hot_product_popup(id, value) {
-
-
-
-           $('#hot_id').val(id);
-
-
-
-           if (value.checked) {
-
-               $('#hot_val').val('1');
-
-               $('#hot_poup_text').text("Are you sure you want Add Hot Product");
-
-               $('#hot_model').modal('show');
-
-           } else {
-
-               $('#hot_val').val('0');
-
-               $('#hot_poup_text').text("Are you sure you want remove From Hot Product");
-
-               $('#hot_model').modal('show');
+               $('#form').submit();
 
            }
 
-       }
 
 
 
-       function hot_product() {
 
 
 
-           var val_new = $('#hot_val').val();
-
-           var id = $('#hot_id').val();
+           function sale_product_popup(id, value) {
 
 
 
-           $.ajax({
-
-               type: "POST",
-
-               url: "{{ url('product_hot') }}",
-
-               data: {
-
-                   "_token": "{{ csrf_token() }}",
-
-                   "id": id,
-
-                   "val": val_new
-
-               },
-
-               success: function(returnedData) {
+               $('#sale_id').val(id);
 
 
 
-                   if (returnedData == 1) {
+               if (value.checked) {
 
+                   $('#sale_val').val('1');
 
+                   $('#sale_poup_text').text("Are you sure you want Add Sale Product");
 
-                       $('#success_message').text("Set Hot Product has been Updated successfully");
+                   $('#sale_model').modal('show');
 
-                       $('.success_show').show().delay(0).fadeIn('show');
+               } else {
 
-                       $('.success_show').show().delay(5000).fadeOut('show');
+                   $('#sale_val').val('0');
 
-                       $('#hot_model').modal('hide');
+                   $('#sale_poup_text').text("Are you sure you want remove From Sale Product");
 
-                   }
+                   $('#sale_model').modal('show');
 
                }
-
-           });
-
-
-
-       }
-
-
-
-       function new_product_popup(id, value) {
-
-
-
-           $('#new_id').val(id);
-
-
-
-           if (value.checked) {
-
-               $('#new_val').val('1');
-
-               $('#new_poup_text').text("Are you sure you want Add New Product");
-
-               $('#new_model').modal('show');
-
-           } else {
-
-               $('#new_val').val('0');
-
-               $('#new_poup_text').text("Are you sure you want remove From New Product");
-
-               $('#new_model').modal('show');
 
            }
 
-       }
+
+
+           function sale_product() {
 
 
 
-       function new_product() {
+               var val_new = $('#sale_val').val();
+
+               var id = $('#sale_id').val();
 
 
 
-           var val_new = $('#new_val').val();
+               $.ajax({
 
-           var id = $('#new_id').val();
+                   type: "POST",
 
+                   url: "{{ url('product_sale') }}",
 
+                   data: {
 
-           $.ajax({
+                       "_token": "{{ csrf_token() }}",
 
-               type: "POST",
+                       "id": id,
 
-               url: "{{ url('product_new') }}",
+                       "val": val_new
 
-               data: {
+                   },
 
-                   "_token": "{{ csrf_token() }}",
-
-                   "id": id,
-
-                   "val": val_new
-
-               },
-
-               success: function(returnedData) {
+                   success: function(returnedData) {
 
 
 
-                   if (returnedData == 1) {
+                       if (returnedData == 1) {
 
 
 
-                       $('#success_message').text("Set New Product has been Updated successfully");
+                           $('#success_message').text("Set Sale Product has been Updated successfully");
 
-                       $('.success_show').show().delay(0).fadeIn('show');
+                           $('.success_show').show().delay(0).fadeIn('show');
 
-                       $('.success_show').show().delay(5000).fadeOut('show');
+                           $('.success_show').show().delay(5000).fadeOut('show');
 
-                       $('#new_model').modal('hide');
+                           $('#sale_model').modal('hide');
+
+                       }
 
                    }
 
-               }
-
-           });
+               });
 
 
-
-       }
-
-
-
-
-
-       function recent_product_popup(id, value) {
-
-
-
-
-
-           $('#recent_id').val(id);
-
-
-
-           if (value.checked) {
-
-               $('#recent_val').val('1');
-
-               $('#poup_text').text("Are you sure you want Add Recent Product");
-
-               $('#recent_model').modal('show');
-
-           } else {
-
-               $('#recent_val').val('0');
-
-               $('#poup_text').text("Are you sure you want remove From Recent Product");
-
-               $('#recent_model').modal('show');
 
            }
 
-       }
 
 
 
-       function recent_product() {
+
+           function hot_product_popup(id, value) {
 
 
 
-           var val_new = $('#recent_val').val();
-
-           var id = $('#recent_id').val();
+               $('#hot_id').val(id);
 
 
 
-           $.ajax({
+               if (value.checked) {
 
-               type: "POST",
+                   $('#hot_val').val('1');
 
-               url: "{{ url('product_recent') }}",
+                   $('#hot_poup_text').text("Are you sure you want Add Hot Product");
 
-               data: {
+                   $('#hot_model').modal('show');
 
-                   "_token": "{{ csrf_token() }}",
+               } else {
 
-                   "id": id,
+                   $('#hot_val').val('0');
 
-                   "val": val_new
+                   $('#hot_poup_text').text("Are you sure you want remove From Hot Product");
 
-               },
-
-               success: function(returnedData) {
-
-
-
-                   if (returnedData == 1) {
-
-
-
-                       $('#success_message').text("Set Recent Product has been Updated successfully");
-
-                       $('.success_show').show().delay(0).fadeIn('show');
-
-                       $('.success_show').show().delay(5000).fadeOut('show');
-
-                       $('#recent_model').modal('hide');
-
-                   }
+                   $('#hot_model').modal('show');
 
                }
-
-           });
-
-
-
-       }
-
-
-
-
-
-       function feature_product_popup(id, value) {
-
-
-
-
-
-           $('#feature_id').val(id);
-
-
-
-           if (value.checked) {
-
-               $('#feature_val').val('1');
-
-               $('#feature_poup_text').text("Are you sure you want Add Feature Product");
-
-               $('#feature_model').modal('show');
-
-           } else {
-
-               $('#feature_val').val('0');
-
-               $('#feature_poup_text').text("Are you sure you want remove From Feature Product");
-
-               $('#feature_model').modal('show');
 
            }
 
-       }
+
+
+           function hot_product() {
 
 
 
+               var val_new = $('#hot_val').val();
 
-
-       function feature_product() {
-
-
-
-           var val_new = $('#feature_val').val();
-
-           var id = $('#feature_id').val();
+               var id = $('#hot_id').val();
 
 
 
-           $.ajax({
+               $.ajax({
 
-               type: "POST",
+                   type: "POST",
 
-               url: "{{ url('product_feature') }}",
+                   url: "{{ url('product_hot') }}",
 
-               data: {
+                   data: {
 
-                   "_token": "{{ csrf_token() }}",
+                       "_token": "{{ csrf_token() }}",
 
-                   "id": id,
+                       "id": id,
 
-                   "val": val_new
+                       "val": val_new
 
-               },
+                   },
 
-               success: function(returnedData) {
+                   success: function(returnedData) {
 
-                   // alert(returnedData);
 
-                   if (returnedData == 1) {
 
-                       //alert('yes');
+                       if (returnedData == 1) {
 
-                       $('#success_message').text("Set Feature Product has been Updated successfully");
 
-                       //$('.success_show').show();
 
-                       $('.success_show').show().delay(0).fadeIn('show');
+                           $('#success_message').text("Set Hot Product has been Updated successfully");
 
-                       $('.success_show').show().delay(5000).fadeOut('show');
+                           $('.success_show').show().delay(0).fadeIn('show');
 
-                       $('#feature_model').modal('hide');
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+                           $('#hot_model').modal('hide');
+
+                       }
 
                    }
 
-               }
-
-           });
+               });
 
 
-
-       }
-
-
-
-       function best_seller_product_popup(id, value) {
-
-
-
-
-
-           $('#best_seller_id').val(id);
-
-
-
-           if (value.checked) {
-
-               $('#best_seller_val').val('1');
-
-               $('#best_seller_poup_text').text("Are you sure you want Add Best Seller");
-
-               $('#best_seller_model').modal('show');
-
-           } else {
-
-               $('#best_seller_val').val('0');
-
-               $('#best_seller_poup_text').text("Are you sure you want remove From Best Seller");
-
-               $('#best_seller_model').modal('show');
 
            }
 
-       }
+
+
+           function new_product_popup(id, value) {
 
 
 
-
-
-       function best_seller_product() {
-
-
-
-           var val_new = $('#best_seller_val').val();
-
-           var id = $('#best_seller_id').val();
+               $('#new_id').val(id);
 
 
 
+               if (value.checked) {
 
+                   $('#new_val').val('1');
 
-           $.ajax({
+                   $('#new_poup_text').text("Are you sure you want Add New Product");
 
-               type: "POST",
+                   $('#new_model').modal('show');
 
-               url: "{{ url('product_best_seller') }}",
+               } else {
 
-               data: {
+                   $('#new_val').val('0');
 
-                   "_token": "{{ csrf_token() }}",
+                   $('#new_poup_text').text("Are you sure you want remove From New Product");
 
-                   "id": id,
-
-                   "val": val_new
-
-               },
-
-               success: function(returnedData) {
-
-                   // alert(returnedData);
-
-                   if (returnedData == 1) {
-
-                       //alert('yes');
-
-                       $('#success_message').text("Set Best Seller has been Updated successfully");
-
-                       //$('.success_show').show();
-
-                       $('.success_show').show().delay(0).fadeIn('show');
-
-                       $('.success_show').show().delay(5000).fadeOut('show');
-
-                       $('#best_seller_model').modal('hide');
-
-                   }
+                   $('#new_model').modal('show');
 
                }
 
-           });
+           }
 
 
 
-       }
+           function new_product() {
 
-   </script>
-   <script>
-    if ($.fn.DataTable.isDataTable('#example')) {
-        $('#example').DataTable().destroy();
-    }
 
-    $(document).ready(function() {
-        $('#example').dataTable({
-            "searching": true
-        });
-    })
-</script>
 
-@stop
+               var val_new = $('#new_val').val();
 
+               var id = $('#new_id').val();
+
+
+
+               $.ajax({
+
+                   type: "POST",
+
+                   url: "{{ url('product_new') }}",
+
+                   data: {
+
+                       "_token": "{{ csrf_token() }}",
+
+                       "id": id,
+
+                       "val": val_new
+
+                   },
+
+                   success: function(returnedData) {
+
+
+
+                       if (returnedData == 1) {
+
+
+
+                           $('#success_message').text("Set New Product has been Updated successfully");
+
+                           $('.success_show').show().delay(0).fadeIn('show');
+
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+                           $('#new_model').modal('hide');
+
+                       }
+
+                   }
+
+               });
+
+
+
+           }
+
+
+
+
+
+           function recent_product_popup(id, value) {
+
+
+
+
+
+               $('#recent_id').val(id);
+
+
+
+               if (value.checked) {
+
+                   $('#recent_val').val('1');
+
+                   $('#poup_text').text("Are you sure you want Add Recent Product");
+
+                   $('#recent_model').modal('show');
+
+               } else {
+
+                   $('#recent_val').val('0');
+
+                   $('#poup_text').text("Are you sure you want remove From Recent Product");
+
+                   $('#recent_model').modal('show');
+
+               }
+
+           }
+
+
+
+           function recent_product() {
+
+
+
+               var val_new = $('#recent_val').val();
+
+               var id = $('#recent_id').val();
+
+
+
+               $.ajax({
+
+                   type: "POST",
+
+                   url: "{{ url('product_recent') }}",
+
+                   data: {
+
+                       "_token": "{{ csrf_token() }}",
+
+                       "id": id,
+
+                       "val": val_new
+
+                   },
+
+                   success: function(returnedData) {
+
+
+
+                       if (returnedData == 1) {
+
+
+
+                           $('#success_message').text("Set Recent Product has been Updated successfully");
+
+                           $('.success_show').show().delay(0).fadeIn('show');
+
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+                           $('#recent_model').modal('hide');
+
+                       }
+
+                   }
+
+               });
+
+
+
+           }
+
+
+
+
+
+           function feature_product_popup(id, value) {
+
+
+
+
+
+               $('#feature_id').val(id);
+
+
+
+               if (value.checked) {
+
+                   $('#feature_val').val('1');
+
+                   $('#feature_poup_text').text("Are you sure you want Add Feature Product");
+
+                   $('#feature_model').modal('show');
+
+               } else {
+
+                   $('#feature_val').val('0');
+
+                   $('#feature_poup_text').text("Are you sure you want remove From Feature Product");
+
+                   $('#feature_model').modal('show');
+
+               }
+
+           }
+
+
+
+
+
+           function feature_product() {
+
+
+
+               var val_new = $('#feature_val').val();
+
+               var id = $('#feature_id').val();
+
+
+
+               $.ajax({
+
+                   type: "POST",
+
+                   url: "{{ url('product_feature') }}",
+
+                   data: {
+
+                       "_token": "{{ csrf_token() }}",
+
+                       "id": id,
+
+                       "val": val_new
+
+                   },
+
+                   success: function(returnedData) {
+
+                       // alert(returnedData);
+
+                       if (returnedData == 1) {
+
+                           //alert('yes');
+
+                           $('#success_message').text("Set Feature Product has been Updated successfully");
+
+                           //$('.success_show').show();
+
+                           $('.success_show').show().delay(0).fadeIn('show');
+
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+                           $('#feature_model').modal('hide');
+
+                       }
+
+                   }
+
+               });
+
+
+
+           }
+
+
+
+           function best_seller_product_popup(id, value) {
+
+
+
+
+
+               $('#best_seller_id').val(id);
+
+
+
+               if (value.checked) {
+
+                   $('#best_seller_val').val('1');
+
+                   $('#best_seller_poup_text').text("Are you sure you want Add Best Seller");
+
+                   $('#best_seller_model').modal('show');
+
+               } else {
+
+                   $('#best_seller_val').val('0');
+
+                   $('#best_seller_poup_text').text("Are you sure you want remove From Best Seller");
+
+                   $('#best_seller_model').modal('show');
+
+               }
+
+           }
+
+
+
+
+
+           function best_seller_product() {
+
+
+
+               var val_new = $('#best_seller_val').val();
+
+               var id = $('#best_seller_id').val();
+
+
+
+
+
+               $.ajax({
+
+                   type: "POST",
+
+                   url: "{{ url('product_best_seller') }}",
+
+                   data: {
+
+                       "_token": "{{ csrf_token() }}",
+
+                       "id": id,
+
+                       "val": val_new
+
+                   },
+
+                   success: function(returnedData) {
+
+                       // alert(returnedData);
+
+                       if (returnedData == 1) {
+
+                           //alert('yes');
+
+                           $('#success_message').text("Set Best Seller has been Updated successfully");
+
+                           //$('.success_show').show();
+
+                           $('.success_show').show().delay(0).fadeIn('show');
+
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+                           $('#best_seller_model').modal('hide');
+
+                       }
+
+                   }
+
+               });
+
+
+
+           }
+       </script>
+       <script>
+           if ($.fn.DataTable.isDataTable('#example')) {
+               $('#example').DataTable().destroy();
+           }
+
+           $(document).ready(function() {
+               $('#example').dataTable({
+                   "searching": true
+               });
+           })
+       </script>
+
+   @stop

@@ -130,6 +130,14 @@ class ProductController extends Controller
 
         $data['description'] = $request->input('description');
 
+        $data['composition'] = $request->input('composition');
+        $data['dose'] = $request->input('dose');
+        $data['inductions'] = $request->input('inductions');
+        $data['caution'] = $request->input('caution');
+        $data['storage'] = $request->input('storage');
+        $data['direction_of_use'] = $request->input('direction_of_use');
+        $data['use_for'] = $request->input('use_for');
+
         $data['meta_title'] = $request->input('meta_title');
 
         $data['meta_keyword'] = $request->input('meta_keywords');
@@ -418,6 +426,20 @@ class ProductController extends Controller
         $data['discount_type'] = $request->input('radio');
 
         $data['description'] = $request->input('description');
+
+        $data['composition'] = $request->input('composition');
+
+        $data['dose'] = $request->input('dose');
+
+        $data['inductions'] = $request->input('inductions');
+
+        $data['caution'] = $request->input('caution');
+
+        $data['storage'] = $request->input('storage');
+
+        $data['direction_of_use'] = $request->input('direction_of_use');
+        
+        $data['use_for'] = $request->input('use_for');
 
         $data['meta_title'] = $request->input('meta_title');
 

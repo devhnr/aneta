@@ -68,6 +68,27 @@ class BannerController extends Controller
         }else{
             $data['image'] = "";
         }
+
+        if($request->hasfile('app_image') != ''){
+            $app_image = $request->file('app_image');
+            $remove_space = str_replace(' ', '-', $app_image->getClientOriginalName());
+            $data['app_image'] = time() . $remove_space;
+            $destinationPath = public_path('upload/banner/app_image/large/');
+            $img = Image::make($app_image->path());
+
+            $width=1500;
+            $height=1000;
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['app_image']);
+
+
+            $destinationPath = public_path('upload/banner/app_image');
+            $app_image->move($destinationPath,$data['app_image']);
+            $app_image = $data['app_image'];
+            $data['app_image']  = $app_image;
+        }else{
+            $data['app_image'] = "";
+        }
         
 
         DB::table('banners')->insert($data);
@@ -133,6 +154,27 @@ class BannerController extends Controller
             $image->move($destinationPath,$data['image']);
             $image = $data['image'];
             
+        }
+
+        if($request->hasfile('app_image') != ''){
+            $app_image = $request->file('app_image');
+            $remove_space = str_replace(' ', '-', $app_image->getClientOriginalName());
+            $data['app_image'] = time() . $remove_space;
+            $destinationPath = public_path('upload/banner/app_image/large/');
+            $img = Image::make($app_image->path());
+
+            $width=1500;
+            $height=1000;
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['app_image']);
+
+
+            $destinationPath = public_path('upload/banner/app_image');
+            $app_image->move($destinationPath,$data['app_image']);
+            $app_image = $data['app_image'];
+            $data['app_image']  = $app_image;
+        }else{
+            $data['app_image'] = "";
         }
       
         

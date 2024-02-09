@@ -2,9 +2,11 @@
 
 @section('content')
 
-<style type="text/css">
-    ul li{list-style: inherit;}
-</style>
+    <style type="text/css">
+        ul li {
+            list-style: inherit;
+        }
+    </style>
 
     <div class="content container-fluid">
 
@@ -61,14 +63,13 @@
                         <!-- <h4 class="card-title">Basic Info</h4> -->
 
                         <form id="category_form" action="{{ route('product.store') }}" method="POST"
-
                             enctype="multipart/form-data">
 
                             @csrf
 
                             <div class="row">
 
-                                
+
 
 
                                 <div class="col-md-6">
@@ -80,17 +81,14 @@
                                         <span id="cat_change">
 
                                             <select name="cat_id" id="cat_id" class="form-control"
-
                                                 onchange="subcategory_change(this.value);">
 
                                                 <option value="">Select Category</option>
 
                                                 @foreach ($category as $category_data)
-
                                                     <option value="{{ $category_data->id }}">{{ $category_data->name }}
 
                                                     </option>
-
                                                 @endforeach
 
                                             </select>
@@ -100,9 +98,7 @@
                                         <p id="cat_error" style="display: none;color: red"></p>
 
                                         @error('name')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -130,9 +126,7 @@
                                         <p id="subcat_error" style="display: none;color: red"></p>
 
                                         @error('name')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -150,7 +144,6 @@
                                         <label for="name">Name</label>
 
                                         <input id="name" name="name" type="text" class="form-control"
-
                                             placeholder="Enter Name" value="" />
 
                                         <p id="name_error" style="display: none;color: red"></p>
@@ -168,7 +161,6 @@
                                         <label for="name">Page Url</label>
 
                                         <input id="page_url" name="page_url" type="text" class="form-control"
-
                                             placeholder="Enter Page Url" value="" />
 
                                         <p id="page_url_error" style="display: none;color: red"></p>
@@ -186,7 +178,6 @@
                                         <label for="product_code">Product Code</label>
 
                                         <input id="product_code" name="product_code" type="text" class="form-control"
-
                                             placeholder="Enter Product Code" value="" />
 
                                         <p id="product_code_error" style="display: none;color: red"></p>
@@ -204,7 +195,6 @@
                                         <label for="product_code">Sku Code</label>
 
                                         <input id="sku_code" name="sku_code" type="text" class="form-control"
-
                                             placeholder="Enter Sku Code" value="" />
 
                                         <p id="sku_code_error" style="display: none;color: red"></p>
@@ -221,9 +211,7 @@
 
                                         <label>Short Description</label>
 
-                                        <textarea class="form-control" id="short_description" name="short_description"
-
-                                            placeholder="Enter Short Description"></textarea>
+                                        <textarea class="form-control" id="short_description" name="short_description" placeholder="Enter Short Description"></textarea>
 
                                         <p id="short_description_error" style="display: none;color: red"></p>
 
@@ -233,7 +221,7 @@
 
 
 
-                             <div class="row">
+                                <div class="row">
 
                                     <div class="col-md-3">
 
@@ -244,9 +232,7 @@
                                                 <option value="">Select Size</option>
 
                                                 @foreach ($size as $size_data)
-
                                                     <option value="{{ $size_data->id }}">{{ $size_data->name }}</option>
-
                                                 @endforeach
 
                                             </select>
@@ -283,9 +269,8 @@
 
                                         <div class="form-group"> <label for="categoryname">Package detail</label>
 
-                                            <input type="text" id="package_detail" name="package_detail[]" class="form-control"
-
-                                                placeholder="Enter Package detail">
+                                            <input type="text" id="package_detail" name="package_detail[]"
+                                                class="form-control" placeholder="Enter Package detail">
 
                                         </div>
 
@@ -298,7 +283,6 @@
                                         <div class="form-group"> <label for="categoryname">Price</label>
 
                                             <input type="text" id="price" name="price[]" class="form-control"
-
                                                 placeholder="Enter  Price">
 
                                         </div>
@@ -310,7 +294,6 @@
                                         <div class="form-group"> <label for="categoryname">Quantity</label>
 
                                             <input type="text" id="qty" name="qty[]" class="form-control"
-
                                                 placeholder="Enter Qty">
 
                                         </div>
@@ -332,16 +315,13 @@
                                     <div class="col-sm-12">
 
                                         <button
-
                                             style="border: medium none;margin-right: 0px;line-height: 25px;margin-top: -62px; display: none;"
-
                                             class="submit btn bg-purple pull-right" type="button"
-
                                             id="add_field_button12">Add Price </button>
 
                                     </div>
 
-                                </div> 
+                                </div>
 
 
                                 <div class="col-md-6">
@@ -351,13 +331,10 @@
                                         <label>Discount</label>
 
                                         <input type="text" class="form-control" id="discount" name="discount"
-
                                             placeholder="Enter discount">
 
                                         @error('discount')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -411,8 +388,89 @@
                                     </div>
 
                                 </div>
+                                <div class="col-md-12">
 
-                   
+                                    <div class="form-group">
+
+                                        <label for="Composition" style="margin:15px 0 5px 0px; width:100%;">
+
+                                            Composition</label>
+
+                                        <textarea id="composition" name="composition" class="form-control" placeholder="Enter Composition"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Composition" style="margin:15px 0 5px 0px; width:100%;">Dose</label>
+
+                                        <textarea id="dose" name="dose" class="form-control" placeholder="Enter Dose"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Inductions"
+                                            style="margin:15px 0 5px 0px; width:100%;">Inductions</label>
+
+                                        <textarea id="inductions" name="inductions" class="form-control" placeholder="Enter Inductions"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Caution" style="margin:15px 0 5px 0px; width:100%;">Caution</label>
+
+                                        <textarea id="caution" name="caution" class="form-control" placeholder="Enter Caution"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Storage" style="margin:15px 0 5px 0px; width:100%;">Storage</label>
+
+                                        <textarea id="storage" name="storage" class="form-control" placeholder="Enter Storage"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Direction of Use" style="margin:15px 0 5px 0px; width:100%;">Direction
+                                            of Use</label>
+
+                                        <textarea id="direction_of_use" name="direction_of_use" class="form-control" placeholder="Enter Direction of Use"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Use For" style="margin:15px 0 5px 0px; width:100%;">Use For</label>
+
+                                        <textarea id="use_for" name="use_for" class="form-control" placeholder="Enter Use For"></textarea>
+
+                                    </div>
+
+                                </div>
+
+
 
                                 <div class="col-md-12">
 
@@ -421,15 +479,12 @@
                                         <label>Meta Title</label>
 
                                         <input type="text" class="form-control" id="meta_title" name="meta_title"
-
                                             placeholder="Enter Meta Title">
 
                                         <p id="meta_title_error" style="display: none;color: red"></p>
 
                                         @error('meta_title')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -445,15 +500,12 @@
                                         <label>Meta Keywords</label>
 
                                         <input type="text" class="form-control" id="meta_keywords"
-
                                             name="meta_keywords" placeholder="Enter Meta Keywords">
 
                                         <p id="meta_keywords_error" style="display: none;color: red"></p>
 
                                         @error('meta_keywords')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -491,11 +543,9 @@
                                 <a class="btn btn-primary" href="{{ route('product.index') }}"> Cancel</a>
 
                                 <button class="btn btn-primary mb-1" type="button" disabled id="spinner_button"
-
                                     style="display: none;">
 
                                     <span class="spinner-border spinner-border-sm" role="status"
-
                                         aria-hidden="true"></span>
 
                                     Loading...
@@ -505,7 +555,6 @@
 
 
                                 <button type="button" class="btn btn-primary" id="submit_button"
-
                                     onclick="javascript:category_validation()">Submit</button>
 
                                 <!-- <input type="submit" name="submit" value="Submit" class="btn btn-primary"> -->
@@ -529,7 +578,6 @@
 @section('footer_js')
 
     <script>
-
         $(function() {
 
             $("#name").keyup(function() {
@@ -551,13 +599,11 @@
         $("#material_id").select2();
 
         $("#style_type").select2();
-
     </script>
 
 
 
     <script>
-
         function category_validation() {
 
             var group_id = jQuery("#group_id").val();
@@ -817,13 +863,11 @@
             });
 
         }
-
     </script>
 
 
 
     <script type="text/javascript" language="javascript">
-
         $(document).ready(function() {
 
             var max_fields = 50;
@@ -865,7 +909,6 @@
             })
 
         });
-
     </script>
 
 
@@ -875,7 +918,6 @@
 
 
     <script>
-
         ClassicEditor
 
             .create(document.querySelector('#description'))
@@ -885,7 +927,69 @@
                 console.error(error);
 
             });
+        ClassicEditor
 
+            .create(document.querySelector('#composition'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#dose'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#inductions'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#caution'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#storage'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#direction_of_use'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#use_for'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
     </script>
 
 
@@ -951,4 +1055,3 @@
 
 
 @stop
-

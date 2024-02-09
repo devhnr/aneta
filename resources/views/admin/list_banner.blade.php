@@ -6,29 +6,17 @@
 
         $userId = Auth::id();
 
-        
-
         $get_user_data = Helper::get_user_data($userId);
-
-        
 
         $get_permission_data = Helper::get_permission_data($get_user_data->role_id);
 
-        
-
         $edit_perm = [];
 
-        
-
         if ($get_permission_data->editperm != '') {
-
             $edit_perm = $get_permission_data->editperm;
 
             $edit_perm = explode(',', $edit_perm);
-
         }
-
-        
 
     @endphp
 
@@ -61,7 +49,6 @@
                 </div>
 
                 @if (in_array('10', $edit_perm))
-
                     <div class="col-auto">
 
 
@@ -71,22 +58,21 @@
                             <i class="fas fa-plus"></i> Add Banner
 
                         </a>
- 
+
                         {{-- <a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
 
                         <i class="fas fa-filter"></i> Filter
 
                     </a> --}}
 
-                         <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_banner();">
+                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_banner();">
 
                             <i class="fas fa-trash"></i> Delete
 
-                        </a> 
+                        </a>
 
 
                     </div>
-
                 @endif
 
 
@@ -102,13 +88,11 @@
 
 
         <!-- @if ($message = Session::get('success'))
-
     <div class="alert alert-success">
 
-                                                                                                                                                                                                                                                                                                                                                             <p>{{ $message }}</p>
+                                                                                                                                                                                                                                                                                                                                                                             <p>{{ $message }}</p>
 
-                                                                                                                                                                                                                                                                                                                                                            </div>
-
+                                                                                                                                                                                                                                                                                                                                                                            </div>
     @endif  -->
 
 
@@ -132,7 +116,6 @@
 
 
         @if ($message = Session::get('success'))
-
             <div class="alert alert-success alert-dismissible fade show">
 
                 <strong>Success!</strong> {{ $message }}
@@ -140,7 +123,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
             </div>
-
         @endif
 
 
@@ -172,15 +154,14 @@
                                             <th>Title 1</th>
                                             <th>Title 2</th>
                                             <th>Title 3</th>
-                                            <th>Short Description</th>
+                                            {{-- <th>Short Description</th> --}}
                                             <th>Image</th>
-                                            <th>Button Name</th>
-                                            <th>Button Link</th>
+                                            <th>App Image</th>
+                                            {{-- <th>Button Name</th>
+                                            <th>Button Link</th> --}}
 
                                             @if (in_array('10', $edit_perm))
-
                                                 <th class="text-right">Actions</th>
-
                                             @endif
 
                                         </tr>
@@ -196,20 +177,17 @@
 
 
                                             @foreach ($banner_data as $data)
-
                                                 <tr>
 
                                                     <td>
 
                                                         <input name="selected[]" id="selected[]" value="{{ $data->id }}"
-
                                                             type="checkbox" class="minimal-red"
-
                                                             style="height: 20px;width: 20px;border-radius: 0px;cms: red;">
 
-                                                    </td> 
+                                                    </td>
 
-                                                  
+
                                                     <td>
                                                         {{ $data->title1 }}
                                                     </td>
@@ -219,39 +197,35 @@
                                                     <td>
                                                         {{ $data->title3 }}
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         {{ $data->short_des }}
-                                                    </td>
-                                                      <td><img src="{{ url('public/upload/banner/large/' . $data->image) }}" width="50px" height="50px"></td> 
-                                                    <td>
+                                                    </td> --}}
+                                                    <td><img src="{{ url('public/upload/banner/large/' . $data->image) }}"
+                                                            width="50px" height="50px"></td>
+                                                    <td><img src="{{ url('public/upload/banner/app_image/large/' . $data->app_image) }}"
+                                                            width="50px" height="50px"></td>
+                                                    {{-- <td>
                                                         {{ $data->button_name }}
                                                     </td>
                                                     <td>
                                                         {{ $data->button_link }}
-                                                    </td>
+                                                    </td> --}}
 
                                                     @if (in_array('10', $edit_perm))
-
                                                         <td class="text-right">
 
                                                             <a class="btn btn-primary"
-
                                                                 href="{{ route('banner.edit', $data->id) }}"><i
-
                                                                     class="far fa-edit"></i></a>
 
                                                         </td>
-
                                                     @endif
 
                                                 </tr>
-
                                             @endforeach
 
                                     </tbody>
-
                                 @else
-
                                     <tr>
 
                                         <td class="text-center" colspan="8">{{ 'No Data Found !' }}</td>
@@ -289,65 +263,37 @@
 @section('footer_js')
 
 
-<!-- Delete  Modal -->
+    <!-- Delete  Modal -->
 
-<div class="modal custom-modal fade" id="delete_model" role="dialog">
+    <div class="modal custom-modal fade" id="delete_model" role="dialog">
 
-    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
 
-        <div class="modal-content">
+            <div class="modal-content">
 
-            <div class="modal-body">
+                <div class="modal-body">
 
-                <div class="modal-icon text-center mb-3">
+                    <div class="modal-icon text-center mb-3">
 
-                    <i class="fas fa-trash-alt text-danger"></i>
+                        <i class="fas fa-trash-alt text-danger"></i>
+
+                    </div>
+
+                    <div class="modal-text text-center">
+
+                        <!-- <h3>Delete Expense Category</h3> -->
+
+                        <p>Are you sure want to delete?</p>
+
+                    </div>
 
                 </div>
 
-                <div class="modal-text text-center">
+                <div class="modal-footer text-center">
 
-                    <!-- <h3>Delete Expense Category</h3> -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                    <p>Are you sure want to delete?</p>
-
-                </div>
-
-            </div>
-
-            <div class="modal-footer text-center">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-                <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- /Delete Modal -->
-
-
-
-<!-- Select one record Category Modal -->
-
-<div class="modal custom-modal fade" id="select_one_record" role="dialog">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content">
-
-            <div class="modal-body">
-
-                <div class="modal-text text-center">
-
-                    <h3>Please select at least one record to delete</h3>
-
-                    <!-- <p>Are you sure want to delete?</p> -->
+                    <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
 
                 </div>
 
@@ -357,58 +303,83 @@
 
     </div>
 
-</div>
-
-<!-- /Select one record Category Modal -->
+    <!-- /Delete Modal -->
 
 
 
+    <!-- Select one record Category Modal -->
+
+    <div class="modal custom-modal fade" id="select_one_record" role="dialog">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <div class="modal-text text-center">
+
+                        <h3>Please select at least one record to delete</h3>
+
+                        <!-- <p>Are you sure want to delete?</p> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- /Select one record Category Modal -->
 
 
 
 
-<script>
-
-    function delete_banner() {
-
-        // alert('test');
 
 
 
-        var checked = $("#form input:checked").length > 0;
+    <script>
+        function delete_banner() {
 
-        if (!checked) {
+            // alert('test');
 
-            $('#select_one_record').modal('show');
 
-        } else {
 
-            $('#delete_model').modal('show');
+            var checked = $("#form input:checked").length > 0;
+
+            if (!checked) {
+
+                $('#select_one_record').modal('show');
+
+            } else {
+
+                $('#delete_model').modal('show');
+
+            }
 
         }
 
-    }
 
 
+        function form_sub() {
 
-    function form_sub() {
+            $('#form').submit();
 
-        $('#form').submit();
+        }
+    </script>
+    <script>
+        if ($.fn.DataTable.isDataTable('#example')) {
+            $('#example').DataTable().destroy();
+        }
 
-    }
-
-</script>
-<script>
-    if ($.fn.DataTable.isDataTable('#example')) {
-        $('#example').DataTable().destroy();
-    }
-
-    $(document).ready(function() {
-        $('#example').dataTable({
-            "searching": true
-        });
-    })
-</script>
+        $(document).ready(function() {
+            $('#example').dataTable({
+                "searching": true
+            });
+        })
+    </script>
 
 @stop
-
