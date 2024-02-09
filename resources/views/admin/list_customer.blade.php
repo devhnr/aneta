@@ -259,7 +259,7 @@
 
                                             <th>Email</th>
 
-                                            <th>Gst/other</th>
+
 
                                             <th>Mobile</th>
 
@@ -306,14 +306,7 @@
                                                     {{ $data->email }}
                                                 </td>
 
-                                                <td>
-                                                    @if ($data->gst_other == '0')
-                                                        {{ 'Gst' }}
-                                                    @else
-                                                        {{ 'other' }}
-                                                    @endif
 
-                                                </td>
 
                                                 <td>{{ $data->mobile }}</td>
 

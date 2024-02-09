@@ -44,6 +44,14 @@ class Homecontroller extends Controller
         $data['meta_description'] = "";
     	return view('front.product_detail',$data);
     }
+    
+    public function contact(){
+
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+        return view('front.contact',$data);
+    }
 
    
     

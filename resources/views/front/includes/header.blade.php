@@ -39,7 +39,7 @@
 
                     <div class="col-lg-6 col-md-5">
                         <ul class="top-header-menu">
-                           <li><i class="fa fa-user-circle" style="color: #3D9630;"></i> <a href="#">My Account</a></li>
+                           <li><i class="fa fa-user-circle" style="color: #3D9630;"></i> <a href="{{url('/signin')}}">My Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                                 </li>
 								<li class="nav-item"><a href="{{ url('/about-us') }}" class="nav-link ">About Us</a></li>
 								<li class="nav-item"><a href="#" class="nav-link ">Blogs</a></li>
-                                <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
+                                <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
                             </ul>
 
                             <div class="others-option">
