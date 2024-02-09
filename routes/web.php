@@ -27,6 +27,7 @@ use App\Http\Controllers\admin\CoupanController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\SubbannerController;
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\BrandController;
 
 
 
@@ -77,6 +78,17 @@ Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
 Route::get('/about-us', '\App\Http\Controllers\front\Homecontroller@about_us');
 Route::get('/product-list', '\App\Http\Controllers\front\Homecontroller@product_list');
 Route::get('/product-detail', '\App\Http\Controllers\front\Homecontroller@product_detail');
+Route::get('/contact', '\App\Http\Controllers\front\Homecontroller@contact');
+
+
+Route::controller(UserRegistration::class)->group(function () {
+
+    Route::match(['get', 'post'], '/signup', 'register')->name('signup');
+    Route::match(['get', 'post'], '/signin', 'login')->name('signin');
+    Route::match(['get', 'post'], '/lost-password', 'lost_password')->name('lost_password');
+
+    //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
+});
 
 // Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
 // Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
@@ -220,6 +232,7 @@ Route::get('/admin', function () {
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');
     Route::get('remove_product_att/{pid}/{id}', [ProductController::class, 'remove_product_att'])->name('remove_product_att');
     Route::post('product_new', '\App\Http\Controllers\admin\ProductController@product_new');
+    Route::post('/product_best_seller', [ProductController::class, 'product_best_seller'])->name('product_best_seller');
     
     Route::resource('admin/cms','App\Http\Controllers\admin\CmsController');
     Route::get('cms-delete',[CmsController::class,'destroy'])->name
@@ -261,7 +274,8 @@ Route::get('/admin', function () {
     Route::get('product_removeimage/{pid}/{id}', [ProductController::class, 'product_removeimage'])->name('product_removeimage');
 
 
-
+    Route::resource('/admin/brand', '\App\Http\Controllers\admin\BrandController');
+    Route::get('/admin/delete_brand', [BrandController::class, 'destroy'])->name('delete_brand');
     
     
    
