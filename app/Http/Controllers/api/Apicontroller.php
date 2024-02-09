@@ -17,10 +17,10 @@ class Apicontroller extends Controller
         $data['owner2_address'] = $request->owner2_address;
         $data['owner2_pincode'] = $request->owner2_pincode;
         $data['owner2_contact_no'] = $request->owner2_contact_no;
-        $data['name'] = $request->company_name;
+        $data['vendor_name'] = $request->company_name;
         $data['address'] = $request->company_address;
         $data['company_pincode'] = $request->company_pincode;
-        $data['vendor_name'] = $request->company_contact_person;
+        $data['name'] = $request->company_contact_person;
         $data['mobile'] = $request->company_contact_no;
         $data['email'] = $request->company_email;
         $data['password'] = $request->password;

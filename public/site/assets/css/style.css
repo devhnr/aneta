@@ -3051,7 +3051,7 @@ Products Details Area CSS
 }
 
 .products-details-desc .products-size-wrapper ul li a {
-  width: 38px;
+  width: 100px;
   height: 35px;
   display: block;
   line-height: 32px;
