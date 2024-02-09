@@ -6,29 +6,17 @@
 
            $userId = Auth::id();
 
-           
-
            $get_user_data = Helper::get_user_data($userId);
-
-           
 
            $get_permission_data = Helper::get_permission_data($get_user_data->role_id);
 
-           
-
            $edit_perm = [];
 
-           
-
            if ($get_permission_data->editperm != '') {
-
                $edit_perm = $get_permission_data->editperm;
 
                $edit_perm = explode(',', $edit_perm);
-
            }
-
-           
 
        @endphp
 
@@ -65,7 +53,6 @@
 
 
                    @if (in_array('1', $edit_perm))
-
                        <div class="col-auto">
 
 
@@ -84,12 +71,11 @@
 
                            <!--  <a class="btn btn-primary filter-btn" href="javascript:void(0);" id="filter_search">
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <i class="fas fa-filter"></i> Filter
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <i class="fas fa-filter"></i> Filter
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </a> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </a> -->
 
                        </div>
-
                    @endif
 
 
@@ -105,19 +91,16 @@
 
 
            <!-- @if ($message = Session::get('success'))
-
     <div class="alert alert-success">
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <p>{{ $message }}</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <p>{{ $message }}</p>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
     @endif -->
 
 
 
            @if ($message = Session::get('success'))
-
                <div class="alert alert-success alert-dismissible fade show">
 
                    <strong>Success!</strong> {{ $message }}
@@ -125,7 +108,6 @@
                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
                </div>
-
            @endif
 
 
@@ -226,20 +208,20 @@
 
                                                <th>Select</th>
 
-                                                <th>Name</th>
+                                               <th>Name</th>
 
                                                <th>Page Url</th>
 
-                                               <th>Set Order</th>
+
 
                                                <!-- <th>mobile</th> -->
 
-                                               <!-- <th>Image</th> -->
+                                               <th>Image</th>
+                                               <th>Set as home</th>
+                                               <th>Set Order</th>
 
                                                @if (in_array('1', $edit_perm))
-
                                                    <th class="text-right">Actions</th>
-
                                                @endif
 
 
@@ -251,57 +233,58 @@
                                        <tbody>
 
                                            @foreach ($category_data as $data)
-
                                                <tr>
 
                                                    <td><input name="selected[]" id="selected[]" value="{{ $data->id }}"
-
                                                            type="checkbox" class="minimal-red"
-
                                                            style="height: 20px;width: 20px;border-radius: 0px;color: red;">
 
                                                    </td>
 
-                                                                                                                                   <td>
-
-
-
+                                                   <td>
                                                        {{ $data->name }}
 
                                                    </td>
 
                                                    <td>{{ $data->page_url }}</td>
 
+                                                   <td>
+                                                       <img src="{{ url('public/upload/category/large/' . $data->image) }}"
+                                                           width="50px" height="50px">
+                                                   </td>
+
+                                                   <td>
+                                                       <input type="checkbox" id="set_as_home" name="set_as_home"
+                                                           value="1" onclick="setashome('{{ $data->id }}', this)"
+                                                           @if ($data->set_as_home == '1') checked @endif />
+                                                   </td>
+
+
+
+
 
 
                                                    <td class="left"><input type="text" value="{{ $data->set_order }}"
-
                                                            onchange="updateorder_popup(this.value, '{{ $data->id }}');"
+                                                           class="form-control" />
+                                                   </td>
 
-                                                           class="form-control" /></td>
 
 
-
-                                                   <!-- <td><img src="{{ url('public/images/' . $data->image) }}" width="50px" height="50px"></td> -->
 
                                                    @if (in_array('1', $edit_perm))
-
                                                        <td class="text-right">
 
                                                            <a class="btn btn-primary"
-
                                                                href="{{ route('category.edit', $data->id) }}"><i
-
                                                                    class="far fa-edit"></i></a>
 
                                                        </td>
-
                                                    @endif
 
 
 
                                                </tr>
-
                                            @endforeach
 
 
@@ -326,67 +309,39 @@
 
    @stop
 
-@section('footer_js')
+   @section('footer_js')
 
-   <!-- Delete Category Modal -->
+       <!-- Delete Category Modal -->
 
-   <div class="modal custom-modal fade" id="delete_category" role="dialog">
+       <div class="modal custom-modal fade" id="delete_category" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-icon text-center mb-3">
+                       <div class="modal-icon text-center mb-3">
 
-                       <i class="fas fa-trash-alt text-danger"></i>
+                           <i class="fas fa-trash-alt text-danger"></i>
+
+                       </div>
+
+                       <div class="modal-text text-center">
+
+                           <!-- <h3>Delete Expense Category</h3> -->
+
+                           <p>Are you sure want to delete?</p>
+
+                       </div>
 
                    </div>
 
-                   <div class="modal-text text-center">
+                   <div class="modal-footer text-center">
 
-                       <!-- <h3>Delete Expense Category</h3> -->
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                       <p>Are you sure want to delete?</p>
-
-                   </div>
-
-               </div>
-
-               <div class="modal-footer text-center">
-
-                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-                   <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
-
-               </div>
-
-           </div>
-
-       </div>
-
-   </div>
-
-   <!-- /Delete Category Modal -->
-
-
-
-   <!-- Select one record Category Modal -->
-
-   <div class="modal custom-modal fade" id="select_one_record" role="dialog">
-
-       <div class="modal-dialog modal-dialog-centered">
-
-           <div class="modal-content">
-
-               <div class="modal-body">
-
-                   <div class="modal-text text-center">
-
-                       <h3>Please select at least one record to delete</h3>
-
-                       <!-- <p>Are you sure want to delete?</p> -->
+                       <button type="button" class="btn btn-primary" onclick="form_sub();">Delete</button>
 
                    </div>
 
@@ -396,33 +351,27 @@
 
        </div>
 
-   </div>
-
-   <!-- /Select one record Category Modal -->
+       <!-- /Delete Category Modal -->
 
 
 
-   <!-- set order Modal -->
+       <!-- Select one record Category Modal -->
 
-   <div class="modal custom-modal fade" id="set_order_model" role="dialog">
+       <div class="modal custom-modal fade" id="select_one_record" role="dialog">
 
-       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-dialog modal-dialog-centered">
 
-           <div class="modal-content">
+               <div class="modal-content">
 
-               <div class="modal-body">
+                   <div class="modal-body">
 
-                   <div class="modal-text text-center">
+                       <div class="modal-text text-center">
 
-                       <h3>Are you sure you want to Set order of Category</h3>
+                           <h3>Please select at least one record to delete</h3>
 
-                       <input type="hidden" name="set_order_val" id="set_order_val" value="">
+                           <!-- <p>Are you sure want to delete?</p> -->
 
-                       <input type="hidden" name="set_order_id" id="set_order_id" value="">
-
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-
-                       <button type="button" class="btn btn-primary" onclick="updateorder();">Yes</button>
+                       </div>
 
                    </div>
 
@@ -432,116 +381,217 @@
 
        </div>
 
-   </div>
+       <!-- /Select one record Category Modal -->
 
-   <!-- /set orderModal -->
-
-   <script>
-
-       function delete_category() {
-
-           // alert('test');
-
-           var checked = $("#form input:checked").length > 0;
-
-           if (!checked) {
-
-               $('#select_one_record').modal('show');
-
-           } else {
-
-               $('#delete_category').modal('show');
-
-           }
-
-       }
+       <!-- sale Modal -->
+       <div class="modal custom-modal fade custom_css_model" id="cat_model" role="dialog">
+           <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                   <div class="modal-body">
+                       <div class="modal-text text-center">
+                           <h3 id="cat_poup_text"></h3>
+                           <input type="hidden" name="cat_val" id="cat_val" value="">
+                           <input type="hidden" name="cat_id" id="cat_id" value="">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                           <button type="button" class="btn btn-primary" onclick="set_as_homes();">Yes</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- /sale Modal -->
 
 
 
-       function form_sub() {
+       <!-- set order Modal -->
 
-           $('#form').submit();
+       <div class="modal custom-modal fade" id="set_order_model" role="dialog">
 
-       }
+           <div class="modal-dialog modal-dialog-centered">
 
+               <div class="modal-content">
 
+                   <div class="modal-body">
 
-       function updateorder_popup(val, id) {
+                       <div class="modal-text text-center">
 
-           $('#set_order_val').val(val);
+                           <h3>Are you sure you want to Set order of Category</h3>
 
-           $('#set_order_id').val(id);
+                           <input type="hidden" name="set_order_val" id="set_order_val" value="">
 
-           $('#set_order_model').modal('show');
+                           <input type="hidden" name="set_order_id" id="set_order_id" value="">
 
-       }
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 
+                           <button type="button" class="btn btn-primary" onclick="updateorder();">Yes</button>
 
+                       </div>
 
-       function updateorder() {
+                   </div>
 
-           var id = $('#set_order_id').val();
+               </div>
 
-           var val = $('#set_order_val').val();
+           </div>
 
-           $.ajax({
+       </div>
 
-               type: "POST",
+       <!-- /set orderModal -->
 
-               url: "{{ url('set_order_category') }}",
+       <script>
+           function delete_category() {
 
-               data: {
+               // alert('test');
 
-                   "_token": "{{ csrf_token() }}",
+               var checked = $("#form input:checked").length > 0;
 
-                   "id": id,
+               if (!checked) {
 
-                   "val": val
+                   $('#select_one_record').modal('show');
 
-               },
+               } else {
 
-               success: function(returnedData) {
-
-                   // alert(returnedData);
-
-                   if (returnedData == 1) {
-
-                       //alert('yes');
-
-                       $('#success_message').text("Set Order has been Updated successfully");
-
-                       //$('.success_show').show();
-
-                       $('.success_show').show().delay(0).fadeIn('show');
-
-                       $('.success_show').show().delay(5000).fadeOut('show');
-
-
-
-                       $('#set_order_model').modal('hide');
-
-                   }
+                   $('#delete_category').modal('show');
 
                }
 
-           });
+           }
 
 
 
-       }
+           function form_sub() {
 
-   </script>
-   <script>
-    if ($.fn.DataTable.isDataTable('#example')) {
-        $('#example').DataTable().destroy();
-    }
+               $('#form').submit();
 
-    $(document).ready(function() {
-        $('#example').dataTable({
-            "searching": true
-        });
-    })
-</script>
+           }
 
-@stop
 
+
+           function updateorder_popup(val, id) {
+
+               $('#set_order_val').val(val);
+
+               $('#set_order_id').val(id);
+
+               $('#set_order_model').modal('show');
+
+           }
+
+
+
+           function updateorder() {
+
+               var id = $('#set_order_id').val();
+
+               var val = $('#set_order_val').val();
+
+               $.ajax({
+
+                   type: "POST",
+
+                   url: "{{ url('set_order_category') }}",
+
+                   data: {
+
+                       "_token": "{{ csrf_token() }}",
+
+                       "id": id,
+
+                       "val": val
+
+                   },
+
+                   success: function(returnedData) {
+
+                       // alert(returnedData);
+
+                       if (returnedData == 1) {
+
+                           //alert('yes');
+
+                           $('#success_message').text("Set Order has been Updated successfully");
+
+                           //$('.success_show').show();
+
+                           $('.success_show').show().delay(0).fadeIn('show');
+
+                           $('.success_show').show().delay(5000).fadeOut('show');
+
+
+
+                           $('#set_order_model').modal('hide');
+
+                       }
+
+                   }
+
+               });
+
+
+
+           }
+       </script>
+
+       <script>
+           function setashome(id, value) {
+
+               //    alert(id + " " + value);
+
+               $('#cat_id').val(id);
+
+               if (value.checked) {
+                   $('#cat_val').val('1');
+                   $('#cat_poup_text').text("Are You Sure You Want Set As Home");
+                   $('#cat_model').modal('show');
+               } else {
+                   $('#cat_val').val('0');
+                   $('#cat_poup_text').text("Are You Sure You Want to remove From Set As Home");
+                   $('#cat_model').modal('show');
+               }
+           }
+
+           function set_as_homes() {
+
+
+               var id = $('#cat_id').val();
+               var val_new = $('#cat_val').val();
+
+               //    alert(val_new + " " + id);
+
+
+               $.ajax({
+                   type: "POST",
+                   url: "{{ url('set_as_home') }}",
+                   data: {
+                       "_token": "{{ csrf_token() }}",
+                       "id": id,
+                       "val": val_new
+                   },
+                   success: function(returnedData) {
+
+                       if (returnedData == 1) {
+
+                           $('#success_message').text("Set As Home has been Updated successfully");
+                           $('.success_show').show().delay(0).fadeIn('show');
+                           $('.success_show').show().delay(5000).fadeOut('show');
+                           $('#cat_model').modal('hide');
+                       }
+                   }
+               });
+
+           }
+       </script>
+
+       <script>
+           if ($.fn.DataTable.isDataTable('#example')) {
+               $('#example').DataTable().destroy();
+           }
+
+           $(document).ready(function() {
+               $('#example').dataTable({
+                   "searching": true
+               });
+           })
+       </script>
+
+
+   @stop

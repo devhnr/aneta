@@ -1,9 +1,11 @@
 @extends('admin.includes.Template')
 
 @section('content')
-<style type="text/css">
-    ul li{list-style: inherit;}
-</style>
+    <style type="text/css">
+        ul li {
+            list-style: inherit;
+        }
+    </style>
 
     <div class="content container-fluid">
 
@@ -40,7 +42,6 @@
 
 
         @if ($message = Session::get('success'))
-
             <div class="alert alert-success alert-dismissible fade show">
 
                 <strong>Success!</strong> {{ $message }}
@@ -48,7 +49,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
             </div>
-
         @endif
 
 
@@ -74,7 +74,6 @@
                         <!-- <h4 class="card-title">Basic Info</h4> -->
 
                         <form id="category_form" action="{{ route('product.update', $product->id) }}" method="POST"
-
                             enctype="multipart/form-data">
 
                             @csrf
@@ -83,7 +82,7 @@
 
                             <div class="row">
 
-                                  <div class="col-md-6">
+                                <div class="col-md-6">
 
                                     <div class="form-group">
 
@@ -92,19 +91,15 @@
                                         <span id="cat_change">
 
                                             <select name="cat_id" id="cat_id" class="form-control"
-
                                                 onchange="subcategory_change(this.value);">
 
                                                 <option value="">Select Category</option>
 
                                                 @foreach ($category_old as $category_data)
-
                                                     <option value="{{ $category_data->id }}"
-
                                                         @if ($product->cat_id == $category_data->id) {{ 'selected' }} @endif>
 
                                                         {{ $category_data->name }}</option>
-
                                                 @endforeach
 
                                             </select>
@@ -114,9 +109,7 @@
                                         <p id="cat_error" style="display: none;color: red"></p>
 
                                         @error('name')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -142,13 +135,10 @@
                                                 <option value="">Select Sub Category</option>
 
                                                 @foreach ($subcategory_old as $subcategory_old_data)
-
                                                     <option value="{{ $subcategory_old_data->id }}"
-
                                                         @if ($product->subcat_id == $subcategory_old_data->id) {{ 'selected' }} @endif>
 
                                                         {{ $subcategory_old_data->name }}</option>
-
                                                 @endforeach
 
                                             </select>
@@ -158,9 +148,7 @@
                                         <p id="subcat_error" style="display: none;color: red"></p>
 
                                         @error('name')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -178,7 +166,6 @@
                                         <label for="name">Name</label>
 
                                         <input id="name" name="name" type="text" class="form-control"
-
                                             placeholder="Enter Name" value="{{ $product->name }}" />
 
                                         <p id="name_error" style="display: none;color: red"></p>
@@ -196,7 +183,6 @@
                                         <label for="name">Page Url</label>
 
                                         <input id="page_url" name="page_url" type="text" class="form-control"
-
                                             placeholder="Enter Page Url" value="{{ $product->page_url }}" />
 
                                         <p id="page_url_error" style="display: none;color: red"></p>
@@ -216,7 +202,6 @@
                                         <label for="product_code">Product Code</label>
 
                                         <input id="product_code" name="product_code" type="text" class="form-control"
-
                                             placeholder="Enter Product Code" value="{{ $product->product_code }}" />
 
                                         <p id="product_code_error" style="display: none;color: red"></p>
@@ -234,7 +219,6 @@
                                         <label for="sku_code">Sku Code</label>
 
                                         <input id="sku_code" name="sku_code" type="text" class="form-control"
-
                                             placeholder="Enter Sku Code" value="{{ $product->sku_code }}" />
 
                                         <p id="sku_code_error" style="display: none;color: red"></p>
@@ -254,7 +238,6 @@
                                         <label>Short Description</label>
 
                                         <textarea class="form-control" id="short_description" name="short_description"
-
                                             placeholder="Enter Short Description">{{ $product->short_description }}</textarea>
 
                                         <p id="short_description_error" style="display: none;color: red"></p>
@@ -282,15 +265,12 @@
 
 
                                     @for ($i = 0; $i < count($attribute_data); $i++)
-
                                         <div class="row">
 
 
 
                                             <input type="hidden" name="updateid1xxx[]"
-
                                                 id="updateid1xxx{{ $i + 1 }}"
-
                                                 value="{{ $attribute_data[$i]->id }}">
 
 
@@ -304,13 +284,10 @@
                                                         <option value="">Select Size</option>
 
                                                         @foreach ($size as $size_data)
-
                                                             <option value="{{ $size_data->id }}"
-
                                                                 @if ($attribute_data[$i]->size_id == $size_data->id) {{ 'selected' }} @endif>
 
                                                                 {{ $size_data->name }}</option>
-
                                                         @endforeach
 
                                                     </select>
@@ -351,9 +328,7 @@
                                                 <div class="form-group"> <label for="categoryname">Package Detail</label>
 
                                                     <input type="text" id="package_detailu" name="package_detailu[]"
-
                                                         class="form-control" placeholder="Enter  Package Detail"
-
                                                         value="{{ $attribute_data[$i]->package_detail }}">
 
                                                 </div>
@@ -365,9 +340,7 @@
                                                 <div class="form-group"> <label for="categoryname">Price</label>
 
                                                     <input type="text" id="priceu" name="priceu[]"
-
                                                         class="form-control" placeholder="Enter  Price"
-
                                                         value="{{ $attribute_data[$i]->price }}">
 
                                                 </div>
@@ -381,9 +354,7 @@
                                                 <div class="form-group"> <label for="categoryname">Quantity</label>
 
                                                     <input type="text" id="qtyu" name="qtyu[]"
-
                                                         class="form-control" placeholder="Enter Qty"
-
                                                         value="{{ $attribute_data[$i]->qty }}">
 
                                                 </div>
@@ -393,17 +364,13 @@
 
 
                                             <a href="#"
-
                                                 onclick="singledelete('{{ route('remove_product_att', ['pid' => $attribute_data[$i]->pid, 'id' => $attribute_data[$i]->id]) }}')"
-
                                                 class="btn btn-danger pull-right remove_field1"
-
                                                 style="margin-right: 0;margin-top: 22px;width: 9%;float: right;height: 40px;margin-left: 166px; display: none;">Remove</a>
 
 
 
                                         </div>
-
                                     @endfor
 
 
@@ -414,20 +381,12 @@
 
                                 @php
 
-                                    
-
                                     $test = count($attribute_data);
 
-                                    
-
                                     if ($test > 0) {
-
                                         $style = 'display:none';
-
                                     } else {
-
                                         $style = 'display:block';
-
                                     }
 
                                 @endphp
@@ -457,11 +416,9 @@
                                                     <option value="" selected>Select Size</option>
 
                                                     @foreach ($size as $size_data)
-
                                                         <option value="{{ $size_data->id }}">{{ $size_data->name }}
 
                                                         </option>
-
                                                     @endforeach
 
                                                 </select>
@@ -503,7 +460,6 @@
                                                 <label for="categoryname">Package Detail</label>
 
                                                 <input type="text" id="package_detail1" name="package_detail1[]"
-
                                                     class="form-control" placeholder="Enter  Package Detail">
 
                                             </div>
@@ -520,7 +476,6 @@
                                                 <label for="categoryname">Price</label>
 
                                                 <input type="text" id="price1" name="price1[]"
-
                                                     class="form-control" placeholder="Enter  Price">
 
                                             </div>
@@ -534,7 +489,6 @@
                                             <div class="form-group"> <label for="categoryname">Quantity</label>
 
                                                 <input type="text" id="qty1" name="qty1[]" class="form-control"
-
                                                     placeholder="Enter Qty">
 
                                             </div>
@@ -560,11 +514,8 @@
                                     <div class="col-sm-12">
 
                                         <button
-
                                             style="border: medium none;margin-right: -21px;line-height: 26px;margin-top: -62px; display: none;"
-
                                             class="submit btn bg-purple pull-right" type="button"
-
                                             id="add_field_button12">Add Price </button>
 
                                     </div>
@@ -579,7 +530,7 @@
 
 
 
-                                
+
 
 
 
@@ -592,15 +543,12 @@
                                         <label>Discount</label>
 
                                         <input type="text" class="form-control" id="discount" name="discount"
-
                                             placeholder="Enter discount" value="{{ $product->discount }}">
 
                                         <p id="discount_error" style="display: none;color: red"></p>
 
                                         @error('discount')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -620,17 +568,14 @@
                                         <div style="padding: 9px 0;">
 
                                             <input type="radio" name="radio" value="0"
-
                                                 @if ($product->discount_type == 0) {{ 'checked' }} @endif>
 
                                             Percentage
 
                                             <input type="radio" name="radio" value="1"
-
                                                 @if ($product->discount_type == 1) {{ 'checked' }} @endif> Price
 
                                             <input type="radio" name="radio" value="2"
-
                                                 @if ($product->discount_type == 2) {{ 'checked' }} @endif> None
 
                                         </div>
@@ -656,8 +601,89 @@
                                     </div>
 
                                 </div>
+                                <div class="col-md-12">
 
-                               
+                                    <div class="form-group">
+
+                                        <label for="Composition" style="margin:15px 0 5px 0px; width:100%;">
+
+                                            Composition</label>
+
+                                        <textarea id="composition" name="composition" class="form-control" placeholder="Enter Composition">{{ $product->composition }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Composition" style="margin:15px 0 5px 0px; width:100%;">Dose</label>
+
+                                        <textarea id="dose" name="dose" class="form-control" placeholder="Enter Dose">{{ $product->dose }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Inductions"
+                                            style="margin:15px 0 5px 0px; width:100%;">Inductions</label>
+
+                                        <textarea id="inductions" name="inductions" class="form-control" placeholder="Enter Inductions">{{ $product->inductions }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Caution" style="margin:15px 0 5px 0px; width:100%;">Caution</label>
+
+                                        <textarea id="caution" name="caution" class="form-control" placeholder="Enter Caution">{{ $product->caution }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Storage" style="margin:15px 0 5px 0px; width:100%;">Storage</label>
+
+                                        <textarea id="storage" name="storage" class="form-control" placeholder="Enter Storage">{{ $product->storage }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Direction of Use" style="margin:15px 0 5px 0px; width:100%;">Direction
+                                            of Use</label>
+
+                                        <textarea id="direction_of_use" name="direction_of_use" class="form-control" placeholder="Enter Direction of Use">{{ $product->direction_of_use }}</textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for="Use For" style="margin:15px 0 5px 0px; width:100%;">Use For</label>
+
+                                        <textarea id="use_for" name="use_for" class="form-control" placeholder="Enter Use For">{{ $product->use_for }}</textarea>
+
+                                    </div>
+
+                                </div>
+
+
                                 <div class="col-md-12">
 
                                     <div class="form-group">
@@ -665,15 +691,12 @@
                                         <label>Meta Title</label>
 
                                         <input type="text" class="form-control" id="meta_title" name="meta_title"
-
                                             placeholder="Enter Meta Title" value="{{ $product->meta_title }}">
 
                                         <p id="meta_title_error" style="display: none;color: red"></p>
 
                                         @error('meta_title')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -689,17 +712,13 @@
                                         <label>Meta Keywords</label>
 
                                         <input type="text" class="form-control" id="meta_keywords"
-
                                             name="meta_keywords" placeholder="Enter Meta Keywords"
-
                                             value="{{ $product->meta_keyword }}">
 
                                         <p id="meta_keywords_error" style="display: none;color: red"></p>
 
                                         @error('meta_keywords')
-
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-
                                         @enderror
 
                                     </div>
@@ -739,11 +758,9 @@
 
 
                                 <button class="btn btn-primary mb-1" type="button" disabled id="spinner_button"
-
                                     style="display: none;">
 
                                     <span class="spinner-border spinner-border-sm" role="status"
-
                                         aria-hidden="true"></span>
 
                                     Loading...
@@ -753,7 +770,6 @@
 
 
                                 <button type="button" class="btn btn-primary" id="submit_button"
-
                                     onclick="javascript:category_validation()">Submit</button>
 
                                 <!-- <input type="submit" name="submit" value="Submit" class="btn btn-primary"> -->
@@ -779,7 +795,6 @@
 @section('footer_js')
 
     <script>
-
         $("#material_id").select2();
 
         $("#style_type").select2();
@@ -803,13 +818,11 @@
             });
 
         });
-
     </script>
 
 
 
     <script>
-
         function category_validation() {
 
             var cat_id = jQuery("#cat_id").val();
@@ -1083,7 +1096,6 @@
             })
 
         });
-
     </script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
@@ -1091,7 +1103,6 @@
 
 
     <script>
-
         ClassicEditor
 
             .create(document.querySelector('#description'))
@@ -1101,8 +1112,69 @@
                 console.error(error);
 
             });
+        ClassicEditor
 
+            .create(document.querySelector('#composition'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#dose'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#inductions'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#caution'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#storage'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#direction_of_use'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
+        ClassicEditor
+
+            .create(document.querySelector('#use_for'))
+
+            .catch(error => {
+
+                console.error(error);
+
+            });
     </script>
 
 @stop
-
