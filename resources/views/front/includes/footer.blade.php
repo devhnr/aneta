@@ -236,15 +236,15 @@
                         <div class="products-cart-content">
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img1.jpg')}}" alt="image"></a>
+                                    <a href="#"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
                                 </div>
 
                                 <div class="products-content">
-                                    <h3><a href="#">Coronavirus Face Mask</a></h3>
+                                    <h3><a href="#">TELMANETA CD</a></h3>
                                     <div class="products-price">
                                         <span>1</span>
                                         <span>x</span>
-                                        <span class="price">$39.00</span>
+                                        <span class="new-price">Rs 99.00</span>
                                     </div>
                                 </div>
                                 <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
@@ -252,45 +252,31 @@
 
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img2.jpg')}}" alt="image"></a>
+                                    <a href="#"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
                                 </div>
 
                                 <div class="products-content">
-                                    <h3><a href="#">Protective Gloves</a></h3>
+                                    <h3><a href="#">NETAZOL 150</a></h3>
                                     <div class="products-price">
                                         <span>1</span>
                                         <span>x</span>
-                                        <span class="price">$99.00</span>
+                                        <span class="price">Rs 159.00</span>
                                     </div>
                                 </div>
                                 <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
                             </div>
 
-                            <div class="products-cart d-flex align-items-center">
-                                <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img3.jpg')}}" alt="image"></a>
-                                </div>
-
-                                <div class="products-content">
-                                    <h3><a href="#">Infrared Thermometer Gun</a></h3>
-                                    <div class="products-price">
-                                        <span>1</span>
-                                        <span>x</span>
-                                        <span class="price">$90.00</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
-                            </div>
+                            
                         </div>
 
                         <div class="products-cart-subtotal">
                             <span>Subtotal</span>
 
-                            <span class="subtotal">$228.00</span>
+                            <span class="subtotal">Rs 228.00</span>
                         </div>
 
                         <div class="products-cart-btn">
-                            <a href="#" class="default-btn">Proceed to Checkout</a>
+                            <a href="{{url('checkout')}}" class="default-btn">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -312,15 +298,15 @@
                         <div class="products-cart-content">
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img1.jpg')}}" alt="image"></a>
+                                    <a href="#"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
                                 </div>
 
-                                <div class="products-content">
-                                    <h3><a href="#">Coronavirus Face Mask</a></h3>
+                                 <div class="products-content">
+                                    <h3><a href="#">TELMANETA CD</a></h3>
                                     <div class="products-price">
                                         <span>1</span>
                                         <span>x</span>
-                                        <span class="price">$39.00</span>
+                                        <span class="new-price">Rs 99.00</span>
                                     </div>
                                 </div>
                                 <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
@@ -328,35 +314,20 @@
 
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img2.jpg')}}" alt="image"></a>
+                                    <a href="#"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
                                 </div>
 
                                 <div class="products-content">
-                                    <h3><a href="#">Protective Gloves</a></h3>
+                                    <h3><a href="#">NETAZOL 200</a></h3>
                                     <div class="products-price">
                                         <span>1</span>
                                         <span>x</span>
-                                        <span class="price">$99.00</span>
+                                        <span class="price">Rs 130.00</span>
                                     </div>
                                 </div>
                                 <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
                             </div>
 
-                            <div class="products-cart d-flex align-items-center">
-                                <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/img/products/products-img3.jpg')}}" alt="image"></a>
-                                </div>
-
-                                <div class="products-content">
-                                    <h3><a href="#">Infrared Thermometer Gun</a></h3>
-                                    <div class="products-price">
-                                        <span>1</span>
-                                        <span>x</span>
-                                        <span class="price">$90.00</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
-                            </div>
                         </div>
 
                         <div class="products-cart-subtotal">
@@ -366,7 +337,7 @@
                         </div>
 
                         <div class="products-cart-btn">
-                            <a href="#" class="default-btn">View Shopping Cart</a>
+                            <a href="{{url('/cart')}}" class="default-btn">View Shopping Cart</a>
                         </div>
                     </div>
                 </div>
