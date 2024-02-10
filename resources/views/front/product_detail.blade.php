@@ -3,11 +3,11 @@
         <section class="page-title-area">
             <div class="container">
                 <div class="page-title-content">
-                    <h1>TELMANETA CD</h1>
+                    <h1>{{ $product_data->name }}</h1>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li>Lipid Lowering</li>
-                        <li>Telmaneta CD</li>
+                        <li>{{$cat_data->name}}</li>
+                        <li>{{ $product_data->name }}</li>
                     </ul>
                 </div>
             </div>
@@ -21,19 +21,28 @@
                     <div class="col-lg-5 col-md-12">
                         <div class="products-details-image">
                             <ul class="products-details-image-slides owl-theme owl-carousel" data-slider-id="1">
+
+                                @foreach ($product_image as $product)
+
+                                <li><img src="{{asset('public/upload/product/detailpage/'.$product->image) }}" alt="image"></li>
+
+                                @endforeach
+
+
+                                <!-- <li><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></li>
                                 <li><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></li>
-                                <li><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></li>
-                                <li><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></li>
-                                <li><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></li>
+                                <li><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></li> -->
                             </ul>
 
                             <!-- Carousel Thumbs -->
                             <div class="owl-thumbs products-details-image-slides-owl-thumbs" data-slider-id="1">
+                                 @foreach ($product_image as $product)
                                 <div class="owl-thumb-item">
-                                    <img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image">
+                                    <img src="{{asset('public/upload/product/detailpage/'.$product->image) }}" alt="image">
                                 </div>
+                                @endforeach
 
-                                <div class="owl-thumb-item">
+                                <!-- <div class="owl-thumb-item">
                                     <img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image">
                                 </div>
 
@@ -43,19 +52,47 @@
 
                                 <div class="owl-thumb-item">
                                     <img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image">
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-7 col-md-12">
                         <div class="products-details-desc">
-                            <h3>Telmaneta CD</h3>
+                            <h3>{{ $product_data->name }}</h3>
 
+                            @php
+                                $minPrice = DB::table('product_attribute')
+                                ->where('pid', $product_data->id)
+                                ->min('price');
+
+                               // echo "<pre>";print_r($product_data);echo "</pre>";
+
+                                if($product_data->discount_type != ''){
+                                    if($product_data->discount_type == 0){ //percentage
+                                        $disc_price_new = $minPrice * $product_data->discount /100 ;
+
+                                        $disc_price = $minPrice - $disc_price_new;
+                                    }elseif($product_data->discount_type == 1){
+                                        $disc_price = $minPrice - $product_data->discount;
+                                    }else{
+                                        $disc_price = '0';
+                                    }
+                                }else{
+                                    $disc_price = '0';
+                                }
+                            @endphp
+
+                            @if($minPrice != '')
                             <div class="price">
-                                <span class="new-price">Rs 135.00</span>
-                                <span class="old-price">Rs 145.00</span>
+                                @if($disc_price != '0')
+                                <span class="old-price">Rs {{ $minPrice }}</span>
+                                 <span class="new-price">Rs {{ $disc_price }}</span>
+                                 @else
+                                    <span class="new-price">Rs {{ $minPrice }}</span>
+                                @endif
                             </div>
+                            @endif
 
                             <div class="products-review">
                                 <div class="rating">
@@ -69,9 +106,9 @@
                             </div>
 
                             <ul class="products-info">
-                                <li><span>Brand :</span> <a href="#">Aneta</a></li>
+                                <li><span>Brand :</span> <a href="#">{{$brand_data->name}}</a></li>
                                 <li><span>Availability :</span> <a href="#">In stock</a></li>
-                                <li><span>Category :</span> <a href="#">Lipid Lowering</a></li>
+                                <li><span>Category :</span> <a href="#">{{$cat_data->name}}</a></li>
                             </ul>
 
                             <div class="products-size-wrapper">
@@ -101,13 +138,15 @@
 								<a href="customer-service.html"><i class='bx bxs-truck' ></i>Free Shipping</a>
                             </div>
 
+                            @if($product_data->short_description != '')
                             <div class="buy-checkbox-btn">
                                 <div class="item">
                                    <ul class="products-info">
-                                <li>Short Description : Pharmaceutical production, which includes the manufacturing of Generic tablets, capsules, and ointment/gels, is generally a difficult, tightly controlled process that necessitates close attention to detail and observance of exacting quality standards.</li>
+                                <li>Short Description : {{ $product_data->short_description }}</li>
                             </ul>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
 
@@ -125,44 +164,35 @@
                             </ul>
         
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="description" role="tabpanel">
-                                    <p>This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
-                                    <ul>
-                                        <li>Instant Drodo bestseller</li>
-                                        <li>Translated into 18 languages</li>
-                                        <li>1 Most Recommended Book of the year.</li>
-                                        <li>A neglected project, widely dismissed, its champion written off as unhinged.</li>
-                                        <li>Yields a negative result in an experiment because of a flaw in the design of the experiment.</li>
-                                        <li>An Amazon, Bloomberg, Financial Times, Forbes, Inc., Newsweek, Strategy + Business, Tech Crunch, Washington Post Best Business Book of the year</li>
-                                    </ul>
+                                <div class="tab-pane fade show active" id="description" role="tabpanel">{!! $product_data->description !!}
                                 </div>
         
                                 <div class="tab-pane fade" id="shipping" role="tabpanel">
-                                    <p>This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                    {!! $product_data->dose !!}
                                 </div>
         
                                 <div class="tab-pane fade" id="userfor" role="tabpanel">
-                                   <p>This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->use_for !!}
                                 </div>
 								
 								<div class="tab-pane fade" id="composition" role="tabpanel">
-                                   <p>C This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->composition !!}
                                 </div>
 								
 								<div class="tab-pane fade" id="inductions" role="tabpanel">
-                                   <p>I This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->inductions !!}
                                 </div>
 								
 								<div class="tab-pane fade" id="caution" role="tabpanel">
-                                   <p>caution Test I This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->caution !!}
                                 </div>
 								
 								<div class="tab-pane fade" id="storage" role="tabpanel">
-                                   <p>caution Test I This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->storage !!}
                                 </div>
 								
 								<div class="tab-pane fade" id="direction" role="tabpanel">
-                                   <p>caution Test I This story, dazzling in its powerful simplicity and soul-stirring wisdom, is about an Andalusian shepherd boy named Santiago who travels from his homeland in Spain to the Egyptian desert in search of a treasure buried near the Pyramids. Lorem ipsum dolor sit.</p>
+                                   {!! $product_data->direction_of_use !!}
                                 </div>
                             </div>
                         </div>
@@ -170,6 +200,12 @@
                 </div>
             </div>
 
+            @php
+
+//echo "<pre>";print_r($relatedproduct);echo "</pre>";
+            @endphp
+
+            @if(isset($relatedproduct) && count($relatedproduct) > 0)
             <div class="related-products">
                 <div class="container">
                     <div class="section-title">
@@ -177,11 +213,36 @@
                     </div>
 
                     <div class="products-slides owl-carousel owl-theme">
+
+                         @foreach($relatedproduct as $all_product)
+
+                         @php
+
+                            $Base_image = DB::table('product_image')
+                                       ->where('pid', $all_product->id)
+                                       ->where('baseimage', 1)
+                                       ->first();
+
+                        @endphp
+
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
+                                <a href="{{url('product-detail/' . $all_product->page_url)}}" class="d-block">
+
+                                    @if($Base_image != '')
+                                    <img src="{{asset('public/upload/product/large/'.$Base_image->image)}}" alt=""/>
+                                    @else
+                                    <img src="{{asset('public/upload/product/large/no-image.png')}}" alt=""/>
+                                    @endif
+
+                                    </a>
     
+                               @if($all_product->new_product == 1)
                                 <div class="new">New</div>
+                                @endif
+                                @if($all_product->best_seller == 1)
+                                <div class="sale">Sale</div>
+                                @endif
     
                                 <div class="buttons-list">
                                     <ul>
@@ -198,15 +259,45 @@
                             </div>
     
                             <div class="content">
-                                <h3><a href="#">TELMANETA CD</a></h3>
-                                <div class="price">
-                                    <span class="old-price">Rs 200.00</span>
-									<span class="new-price">Rs 180.00</span>
-                                </div>
+                                <h3><a href="{{url('product-detail/' . $all_product->page_url)}}">{{ $all_product->name }}</a></h3>
+
+                                @php
+                                    $minPrice = DB::table('product_attribute')
+                                    ->where('pid', $all_product->id)
+                                    ->min('price');
+
+                                   // echo "<pre>";print_r($all_product);echo "</pre>";
+
+                                    if($all_product->discount_type != ''){
+                                        if($all_product->discount_type == 0){ //percentage
+                                            $disc_price_new = $minPrice * $all_product->discount /100 ;
+
+                                            $disc_price = $minPrice - $disc_price_new;
+                                        }elseif($all_product->discount_type == 1){
+                                            $disc_price = $minPrice - $all_product->discount;
+                                        }else{
+                                            $disc_price = '0';
+                                        }
+                                    }else{
+                                        $disc_price = '0';
+                                    }
+                                @endphp
+
+                                    
+                                @if($minPrice != '')
+                                    <div class="price">
+                                        @if($disc_price != '0')
+                                         <span class="old-price">Rs {{ $minPrice }}</span>
+                                         <span class="new-price">Rs {{ $disc_price }}</span>
+                                         @else
+                                            <span class="new-price">Rs {{ $minPrice }}</span>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
-    
-                        <div class="single-products-box">
+                        @endforeach
+                        <!-- <div class="single-products-box">
                             <div class="image">
                                 <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
     
@@ -232,9 +323,9 @@
                                     <span class="new-price">Rs 80.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
     
-                        <div class="single-products-box">
+                        <!-- <div class="single-products-box">
                             <div class="image">
                                 <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
     
@@ -316,10 +407,12 @@
                                     <span class="new-price">Rs 130.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
+
+            @endif
         </section>
         <!-- End Product Details Area -->
 @include('front.includes.footer')

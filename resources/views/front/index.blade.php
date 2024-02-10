@@ -378,17 +378,42 @@
         <!-- End Products Promotions Area -->
 
          <!-- Start Products Area -->
+         @if(isset($new_arrival_pro) && count($new_arrival_pro) > 0 )
          <section class="products-area pb-40">
             <div class="container">
                 <div class="section-title">
                     <h2>New Arrivals</h2>
                 </div>
 
+
+
                 <div class="row">
+
+                    @foreach($new_arrival_pro as $new_arrival_pro_data)
+
+                    @php 
+
+                    $baseImage = DB::table('product_image')->where('pid',$new_arrival_pro_data->id)->where('baseimage',1)->first();
+
+                    @endphp
+ 
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+                                <a href="{{url('product-detail/' . $new_arrival_pro_data->page_url)}}" class="d-block">
+                                    @if($baseImage != '')
+                                    <img src="{{ asset('public/upload/product/large/'.$baseImage->image) }}" alt="image">
+                                    @else
+                                    <img src="{{ asset('public/upload/product/large/no-image.png') }}" alt="image">
+                                    @endif
+
+                                </a>
+                                @if($new_arrival_pro_data->new_product == 1)
+                                <div class="new">New</div>
+                                @endif
+                                @if($new_arrival_pro_data->best_seller == 1)
+                                <div class="sale">Sale</div>
+                                @endif
         
                                 <div class="buttons-list">
                                     <ul>
@@ -408,15 +433,59 @@
     
                             
                         <div class="content">
-                            <h3><a href="#">TELMANETA CD</a></h3>
-                            <div class="price">
-                                <span class="new-price">Rs 99.00</span>
-                            </div>
+                            <h3><a href="{{url('product-detail/' . $new_arrival_pro_data->page_url)}}">{{ $new_arrival_pro_data->name }}</a></h3>
+
+                            @php 
+                                $ProductminPrice = DB::table('product_attribute')->where('pid',$new_arrival_pro_data->id)->min('price');
+
+                                /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
+
+                            @endphp
+
+                            @if($new_arrival_pro_data->discount_type != '')
+
+                                @if($new_arrival_pro_data->discount_type == 0)
+                                    @php
+                                    $new_disc_price = $ProductminPrice * $new_arrival_pro_data->discount/100;
+
+                                    $new_price = $ProductminPrice - $new_disc_price;
+                                    @endphp
+                            
+                                @elseif($new_arrival_pro_data->discount_type == 1)
+                                    @php
+                                    $new_price = $ProductminPrice - $new_arrival_pro_data->discount;
+                                    @endphp
+
+                                @else
+                                    @php
+                                    $new_price = 0;
+                                    @endphp
+                                @endif
+
+                            @else
+                                @php
+                                $new_price = 0;
+                                @endphp
+                            @endif
+
+
+                            @if($ProductminPrice != '')
+                                <div class="price">
+                                    @if($new_price != '0')
+                                     <span class="old-price">Rs {{ $ProductminPrice }}</span>
+                                     <span class="new-price">Rs {{ $new_price }}</span>
+                                     @else
+                                        <span class="new-price">Rs {{ $ProductminPrice }}</span>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    @endforeach
+
+                   <!--  <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
                                 <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
@@ -447,8 +516,8 @@
 									</div>
 							</div>
                         </div>
-                    </div>
-
+                    </div> -->
+<!-- 
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
@@ -630,10 +699,12 @@
                             </div>
                         </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
+
+        @endif
         <!-- End Products Area -->
 		
 		 <!-- Start Brands Area -->

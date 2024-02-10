@@ -21,10 +21,11 @@
                         <div class="login-form">
                             <h2>Login</h2>
 
-                            <form>
+                            <form class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all" action="{{ route('signin') }}" id="login-form" method="POST">
+                            @csrf
                                 <div class="form-group">
-                                    <label>Username or email</label>
-                                    <input type="text" class="form-control" placeholder="Username or email">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" placeholder="Email">
                                 </div>
 
                                 <div class="form-group">

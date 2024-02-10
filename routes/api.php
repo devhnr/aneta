@@ -23,5 +23,8 @@ use App\Http\Controllers\api\Apicontroller;
 //Route::post('/api/register', [Apicontroller::class, 'register']);
 
 Route::post('/register','\App\Http\Controllers\api\Apicontroller@register');
+Route::post('/login','\App\Http\Controllers\api\Apicontroller@login');
+Route::post('/otp_verify','\App\Http\Controllers\api\Apicontroller@otp_verify');
+Route::post('/category','\App\Http\Controllers\api\Apicontroller@category');
 //Route::post('/items', [Apicontroller::class, 'store']);
 
