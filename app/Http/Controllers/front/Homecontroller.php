@@ -18,7 +18,9 @@ class Homecontroller extends Controller
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+        $data['new_arrival_pro'] = DB::table('products')->where('new_product',1)->orderBy('id', 'DESC')->get();
+
+        //echo "<pre>";print_r($data);echo "</pre>";exit;
     	return view('front.index',$data);
     }
     public function about_us(){
