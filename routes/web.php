@@ -82,6 +82,9 @@ Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_prod
 Route::get('/contact', '\App\Http\Controllers\front\Homecontroller@contact');
 Route::post('vendor_check_mail', 'App\Http\Controllers\admin\CustomerController@vendor_check_mail');
 
+Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
+Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout');
+
 
 Route::controller(UserRegistration::class)->group(function () {
 

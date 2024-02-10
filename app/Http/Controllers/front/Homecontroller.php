@@ -55,6 +55,14 @@ class Homecontroller extends Controller
         return view('front.contact',$data);
     }
 
+    public function cart(){
+
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+        return view('front.cart',$data);
+    }
+
    
     
 }
