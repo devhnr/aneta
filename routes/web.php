@@ -240,6 +240,7 @@ Route::get('/admin', function () {
     Route::get('/admin/delete_product', [ProductController::class, 'destroy'])->name('delete_product');
     Route::get('remove_product_att/{pid}/{id}', [ProductController::class, 'remove_product_att'])->name('remove_product_att');
     Route::post('product_new', '\App\Http\Controllers\admin\ProductController@product_new');
+    Route::post('/product_best_seller', [ProductController::class, 'product_best_seller'])->name('product_best_seller');
     
     Route::resource('admin/cms','App\Http\Controllers\admin\CmsController');
     Route::get('cms-delete',[CmsController::class,'destroy'])->name

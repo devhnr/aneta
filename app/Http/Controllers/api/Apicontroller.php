@@ -29,15 +29,15 @@ class Apicontroller extends Controller
         $data['added_from'] = 1;
 
         $front_users_data = DB::table('front_users')->where('email' , '=' ,  $data['email'])->first();
-        $aaray = array();
+        //$aaray = array();
         if(isset($front_users_data)){
 
-            $aaray[] = array('status' => 'FAIL', 'error' => 'This User Already Register With this email');
+            $aaray = array('status' => 'FAIL', 'error' => 'This User Already Register With this email');
         }else{
 
             DB::table('front_users')->insert($data);
 
-            $aaray[] = array(
+            $aaray = array(
                     'status' => 'SUCCESS',
                 );
         }
@@ -63,9 +63,9 @@ class Apicontroller extends Controller
             $data['otp'] = $otp;
             DB::table('front_users')->where('mobile' , '=' ,  $mobile)->update($data);
 
-            $aaray[] = array('status' => 'SUCCESS','otp' =>$otp,'token' => $token,'userid' => $front_users_data->id);            
+            $aaray = array('status' => 'SUCCESS','otp' =>$otp,'token' => $token,'userid' => $front_users_data->id);            
         }else{
-            $aaray[] = array('status' => 'FAIL', 'error' => 'This Number Not Exit');            
+            $aaray = array('status' => 'FAIL', 'error' => 'This Number Not Exit');            
         }
 
         echo json_encode($aaray);
@@ -87,13 +87,13 @@ class Apicontroller extends Controller
         // echo $token_old."<br>";
 
         if($token_old != $token){
-            $aaray[] = array('status' => 'FAIL','error' =>'Invalid Token'); 
+            $aaray = array('status' => 'FAIL','error' =>'Invalid Token'); 
         }else{
 
             $front_users_data = DB::table('front_users')->where('id' , '=' ,  $userid)->where('otp' , '=' ,  $otp)->first();
 
             if(isset($front_users_data)){
-                $aaray[] = array(
+                $aaray = array(
                         'status' => 'SUCCESS',
                         'company_name' => $front_users_data->vendor_name,
                         'name'         => $front_users_data->name,
@@ -101,7 +101,7 @@ class Apicontroller extends Controller
                         'mobile' => $front_users_data->mobile
                     );
             }else{
-                $aaray[] = array('status' => 'FAIL','error' =>'Invalid Otp');
+                $aaray = array('status' => 'FAIL','error' =>'Invalid Otp');
             }
 
         }
@@ -120,7 +120,7 @@ class Apicontroller extends Controller
         $token_old = md5($userid.$current_year.'aneta');
 
         if($token_old != $token){
-            $aaray[] = array('status' => 'FAIL','error' =>'Invalid Token'); 
+            $aaray = array('status' => 'FAIL','error' =>'Invalid Token'); 
         }else{
 
             $category = DB::table('categories')->orderBy('id','DESC')->get();
