@@ -79,6 +79,7 @@ Route::get('/about-us', '\App\Http\Controllers\front\Homecontroller@about_us');
 Route::get('/product-list', '\App\Http\Controllers\front\Homecontroller@product_list');
 // Route::get('/product-detail', '\App\Http\Controllers\front\Homecontroller@product_detail');
 Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
+Route::post('price_show','\App\Http\Controllers\front\Front_productcontroller@price_show');
 Route::get('/contact', '\App\Http\Controllers\front\Homecontroller@contact');
 Route::post('vendor_check_mail', 'App\Http\Controllers\admin\CustomerController@vendor_check_mail');
 

@@ -312,7 +312,7 @@
 
 
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
 
                                                 <div class="form-group"> <label for="categoryname">Size</label>
 
@@ -360,7 +360,7 @@
                                             </div> --}}
 
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
 
                                                 <div class="form-group"> <label for="categoryname">Package Detail</label>
 
@@ -372,7 +372,7 @@
 
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
 
                                                 <div class="form-group"> <label for="categoryname">Price</label>
 
@@ -386,7 +386,7 @@
 
 
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
 
                                                 <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -403,7 +403,7 @@
                                             <a href="#"
                                                 onclick="singledelete('{{ route('remove_product_att', ['pid' => $attribute_data[$i]->pid, 'id' => $attribute_data[$i]->id]) }}')"
                                                 class="btn btn-danger pull-right remove_field1"
-                                                style="margin-right: 0;margin-top: 22px;width: 9%;float: right;height: 40px;margin-left: 166px; display: none;">Remove</a>
+                                                style="margin-right: 0;margin-top: 22px;width: 9%;float: right;height: 40px;margin-left: 166px;">Remove</a>
 
 
 
@@ -442,7 +442,7 @@
 
 
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
 
                                             <div class="form-group">
 
@@ -490,7 +490,7 @@
 
                                         </div> --}}
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
 
                                             <div class="form-group">
 
@@ -506,7 +506,7 @@
 
 
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
 
                                             <div class="form-group">
 
@@ -521,7 +521,7 @@
 
 
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
 
                                             <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -551,7 +551,7 @@
                                     <div class="col-sm-12">
 
                                         <button
-                                            style="border: medium none;margin-right: -21px;line-height: 26px;margin-top: -62px; display: none;"
+                                            style="border: medium none;margin-right: -21px;line-height: 26px;margin-top: -62px;"
                                             class="submit btn bg-purple pull-right" type="button"
                                             id="add_field_button12">Add Price </button>
 

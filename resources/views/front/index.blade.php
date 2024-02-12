@@ -65,48 +65,10 @@
         </section>
         <!-- End Home Slides Area -->
 		
-		 <!-- Start Banner Categories Area -->
-        <section class="banner-categories-area pt-70 pb-40">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single-banner-categories-box">
-                            <img src="{{asset('public/site/assets/img/banner-categories/banner-categories-img1.jpg')}}" alt="image">
-
-                            <div class="content">
-                                <span class="sub-title">Temperature</span>
-                                <h3><a href="#">Ear Thermometers</a></h3>
-                                <div class="btn-box">
-                                    <div class="d-flex align-items-center">
-                                        <a href="#" class="default-btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single-banner-categories-box">
-                            <img src="{{asset('public/site/assets/img/banner-categories/banner-categories-img2.jpg')}}" alt="image">
-
-                            <div class="content">
-                                <span class="sub-title">Personal</span>
-                                <h3><a href="#">Favorite Collection</a></h3>
-                                <div class="btn-box">
-                                    <div class="d-flex align-items-center">
-                                        <a href="#" class="default-btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Banner Categories Area -->
+		
 		
 		<!-- Start Categories Area -->
-        <section class="categories-area pb-40">
+        <section class="categories-area pb-40 pt-40">
             <div class="container">
                 <div class="section-title">
                     <h2>Categories</h2>
@@ -330,52 +292,45 @@
         </section>
         <!-- End Products Area -->
 		
-		 <!-- Start Products Promotions Area -->
-        <section class="products-promotions-area pb-40">
+	    <!-- Start Banner Categories Area -->
+        <section class="banner-categories-area pt-70 pb-40">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-products-promotions-box">
-                            <img src="{{asset('public/site/assets/images/promotions-img1.jpg')}}" alt="image">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-banner-categories-box">
+                            <img src="{{asset('public/site/assets/img/banner-categories/banner-categories-img1.jpg')}}" alt="image">
 
                             <div class="content">
-                                <span class="sub-title">Special Deal</span>
-                                <h3>Mega Sale Mela</h3>
-                                <span class="discount"><span>up to</span> 70% OFF</span>
-                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
+                                <span class="sub-title">Temperature</span>
+                                <h3><a href="#">Ear Thermometers</a></h3>
+                                <div class="btn-box">
+                                    <div class="d-flex align-items-center">
+                                        <a href="#" class="default-btn">Shop Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-products-promotions-box">
-                            <img src="{{asset('public/site/assets/images/promotions-img2.jpg')}}" alt="image">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-banner-categories-box">
+                            <img src="{{asset('public/site/assets/img/banner-categories/banner-categories-img2.jpg')}}" alt="image">
 
                             <div class="content">
-                                <span class="sub-title">New Arrivals</span>
-                                <h3>Hand Washer</h3>
-                                <span class="discount"><span>up to</span>Rs 49.00</span>
-                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
-                        <div class="single-products-promotions-box">
-                            <img src="{{asset('public/site/assets/images/promotions-img3.jpg')}}" alt="image">
-
-                            <div class="content">
-                                <span class="sub-title">Hot Collection</span>
-                                <h3>Glucose Meter</h3>
-                                <span class="discount"><span>up to</span> 20% OFF</span>
-                                <a href="#" class="link-btn">Shop Now <i class="flaticon-next"></i></a>
+                                <span class="sub-title">Personal</span>
+                                <h3><a href="#">Favorite Collection</a></h3>
+                                <div class="btn-box">
+                                    <div class="d-flex align-items-center">
+                                        <a href="#" class="default-btn">Shop Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End Products Promotions Area -->
+        <!-- End Banner Categories Area -->
 
          <!-- Start Products Area -->
          @if(isset($new_arrival_pro) && count($new_arrival_pro) > 0 )
@@ -408,10 +363,45 @@
                                     @endif
 
                                 </a>
+
+                                @php 
+                                $ProductminPrice = DB::table('product_attribute')->where('pid',$new_arrival_pro_data->id)->min('price');
+
+                                /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
+
+                                @endphp
+
+                                @if($new_arrival_pro_data->discount_type != '')
+
+                                    @if($new_arrival_pro_data->discount_type == 0)
+                                        @php
+                                        $new_disc_price = $ProductminPrice * $new_arrival_pro_data->discount/100;
+
+                                        $new_price = $ProductminPrice - $new_disc_price;
+                                        @endphp
+                                
+                                    @elseif($new_arrival_pro_data->discount_type == 1)
+                                        @php
+                                        $new_price = $ProductminPrice - $new_arrival_pro_data->discount;
+                                        @endphp
+
+                                    @else
+                                        @php
+                                        $new_price = 0;
+                                        @endphp
+                                    @endif
+
+                                @else
+                                    @php
+                                    $new_price = 0;
+                                    @endphp
+                                @endif
+
+
                                 @if($new_arrival_pro_data->new_product == 1)
                                 <div class="new">New</div>
                                 @endif
-                                @if($new_arrival_pro_data->best_seller == 1)
+                                @if($new_price != 0)
                                 <div class="sale">Sale</div>
                                 @endif
         
@@ -435,38 +425,7 @@
                         <div class="content">
                             <h3><a href="{{url('product-detail/' . $new_arrival_pro_data->page_url)}}">{{ $new_arrival_pro_data->name }}</a></h3>
 
-                            @php 
-                                $ProductminPrice = DB::table('product_attribute')->where('pid',$new_arrival_pro_data->id)->min('price');
-
-                                /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
-
-                            @endphp
-
-                            @if($new_arrival_pro_data->discount_type != '')
-
-                                @if($new_arrival_pro_data->discount_type == 0)
-                                    @php
-                                    $new_disc_price = $ProductminPrice * $new_arrival_pro_data->discount/100;
-
-                                    $new_price = $ProductminPrice - $new_disc_price;
-                                    @endphp
                             
-                                @elseif($new_arrival_pro_data->discount_type == 1)
-                                    @php
-                                    $new_price = $ProductminPrice - $new_arrival_pro_data->discount;
-                                    @endphp
-
-                                @else
-                                    @php
-                                    $new_price = 0;
-                                    @endphp
-                                @endif
-
-                            @else
-                                @php
-                                $new_price = 0;
-                                @endphp
-                            @endif
 
 
                             @if($ProductminPrice != '')

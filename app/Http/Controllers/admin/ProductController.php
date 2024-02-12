@@ -909,7 +909,7 @@ class ProductController extends Controller
 
                 Image::make($image)
 
-                    ->resize(685, 800)
+                    ->resize(600, 765)
 
                     ->save(public_path('upload/product/large/' . $filename));
 
@@ -925,7 +925,7 @@ class ProductController extends Controller
 
                 Image::make($image)
 
-                    ->resize(115, 134)
+                    ->resize(170, 220)
 
                     ->save(public_path('upload/product/medium/' . $filename));
 
@@ -933,7 +933,7 @@ class ProductController extends Controller
 
                 Image::make($image)
 
-                    ->resize(685, 800)
+                    ->resize(600, 765)
 
                     ->save(public_path('upload/product/detailpage/' . $filename));
 
