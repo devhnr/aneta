@@ -256,7 +256,7 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
                                         <div class="form-group"> <label for="categoryname">Size</label>
 
@@ -298,7 +298,7 @@
 
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
                                         <div class="form-group"> <label for="categoryname">Package detail</label>
 
@@ -311,7 +311,7 @@
 
 
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
                                         <div class="form-group"> <label for="categoryname">Price</label>
 
@@ -322,7 +322,7 @@
 
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
                                         <div class="form-group"> <label for="categoryname">Quantity</label>
 
@@ -348,7 +348,7 @@
                                     <div class="col-sm-12">
 
                                         <button
-                                            style="border: medium none;margin-right: 0px;line-height: 25px;margin-top: -62px; display: none;"
+                                            style="border: medium none;margin-right: 0px;line-height: 25px;margin-top: -62px;"
                                             class="submit btn bg-purple pull-right" type="button"
                                             id="add_field_button12">Add Price </button>
 

@@ -23,7 +23,93 @@
         <title>Aneta Pharmaceuticals Pvt LTD - Making Life Healthy</title>
 
         <link rel="icon" type="image/png" href="{{asset('public/site/assets/img/favicon_1.png')}}">
+         <style>
+            .valierror {
+        background-color: #ee2e34;
+        border-color: #ee2e34;
+        color: #fff;
+    }
+    .alert-message {
+        background-size: 40px 40px;
+        background-image: linear-gradient(
+    135deg, rgba(255, 255, 255, .05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%, transparent 75%, transparent);
+        /* box-shadow: inset 0 -1px 0 rgb(255 255 255 / 40%); */
+        width: 100%;
+        border: 0px solid;
+        color: #fff;
+        padding: 10px;
+        
+        animation: animate-bg 5s linear infinite;
+        display: block;
+        margin-bottom: 5px;
+        top: 0;
+    z-index: 9999;
+    }
+    .successmain {
+        background-color: #09c6ab;
+        border-color: #09c6ab;
+    }
+    .size_active {
+        background: #ABABAB;
+        color: #000;
+        border: 1px solid #09c6ab !important;
+    }
+    .color_active {
+        border: 1px solid #09c6ab !important;
+    }
+    .alert-message_cart {
+        background-size: 40px 40px;
+        background-image: linear-gradient(
+    135deg, rgba(255, 255, 255, .05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%, transparent 75%, transparent);
+        width: 100%;
+        border: 0px solid;
+        color: #000;
+        padding: 10px;
+        animation: animate-bg 5s linear infinite;
+    }
+    .topalert_cart {
+        z-index: 9999;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        color: #fff !important;
+        position: fixed;
+        top: 0px;
+    }
+    .successcart {
+        background-color: #09c6ab;
+        border-color: #09c6ab;
+    }    
+    @media (min-width: 992px){
+        .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+        float: right;
+        }    
+    }
+    .contact_successmain {
+        background-color: #09c6ab;
+        border-color: #09c6ab;
+        z-index: 9999999;
+        position: absolute;
+    }
+    .contact_successmain1 {
+        background-color: #09c6ab;
+        border-color: #09c6ab;
+        z-index: 9999999;
+        /*position: absolute;*/
+    }
+    .ui-menu{
+        z-index: 3500 !important;
+    }
+     .ad-tag {
+        position: absolute; left:initial;
+        right: 12px;
+        top: 4%;
+    }
+    </style>
     </head>
+
     <body>
 
         <!-- Start Top Header Area -->

@@ -86,10 +86,10 @@
                             @if($minPrice != '')
                             <div class="price">
                                 @if($disc_price != '0')
-                                <span class="old-price">Rs {{ $minPrice }}</span>
-                                 <span class="new-price">Rs {{ $disc_price }}</span>
+                                <span class="old-price">Rs <span id="disc_old_price">{{ $minPrice }}</span></span>
+                                 <span class="new-price">Rs <span id="disc_new_price">{{ $disc_price }}</span></span>
                                  @else
-                                    <span class="new-price">Rs {{ $minPrice }}</span>
+                                    <span class="new-price">Rs <span id="new_price">{{ $minPrice }}</span></span>
                                 @endif
                             </div>
                             @endif
@@ -111,31 +111,48 @@
                                 <li><span>Category :</span> <a href="#">{{$cat_data->name}}</a></li>
                             </ul>
 
+                            @if(isset($package_detail) && count($package_detail) > 0)
                             <div class="products-size-wrapper">
                                 <span>Size:</span>
 
                                 <ul>
-                                    <li><a href="#">Pack of 5</a></li>
+                                    @foreach($package_detail as $package_detail_data)
+                                    <li><a href="javascript:void(0)" onclick="pack_change('{{ $product_data->id }}',{{$package_detail_data->id}});">{{$package_detail_data->package_detail}}</a></li>
+                                    @endforeach
+                                    <!-- 
                                     <li class="active"><a href="#">Pack of 10</a></li>
                                     <li><a href="#">Pack of 20</a></li>
                                     <li><a href="#">Pack of 25</a></li>
-                                    <li><a href="#">Pack of 30</a></li>
+                                    <li><a href="#">Pack of 30</a></li> -->
                                 </ul>
                             </div>
+
+                            @endif
+
+                            <div class="col-12"><span id="cartvalidate" class="error alert-message valierror"
+                                    style="display:none;"></span> </div>
+                            <div class="col-12"><span id="product_added" class="successmain alert-message"
+                                    style="display:none;"></span> </div>
 
                             <div class="products-add-to-cart">
                                 <div class="input-counter">
                                     <span class="minus-btn"><i class='bx bx-minus'></i></span>
-                                    <input type="text" value="1" min="1">
+                                    <input type="text" name="quantity" value="1" id="quantity_max" min="1" readonly>
                                     <span class="plus-btn"><i class='bx bx-plus'></i></span>
+
+                                    <!-- <input type="button" value="-" class="qty-minus-new qty-btn" data-quantity="minus" data-field="quantity">
+                                    <input class="input-text qty-text" type="number" name="quantity" value="1" id="quantity_max" min="1" readonly>
+                                    <input type="button" value="+" class="qty-plus-new qty-btn" data-quantity="plus" data-field="quantity"> -->
                                 </div>
 
-                                <button type="submit" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
+                                <input type="hidden" name="package_detail_id" value="" id="package_detail_id">
+
+                                <button type="button" onclick="add_to_cart('{{ $product_data->id }}'); return false;" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
                             </div>
 
                             <div class="wishlist-btn">
                                 <a href="#"><i class='bx bx-heart'></i> Add to Wishlist</a>
-								<a href="customer-service.html"><i class='bx bxs-truck' ></i>Free Shipping</a>
+								<a href="#"><i class='bx bxs-truck' ></i>Free Shipping</a>
                             </div>
 
                             @if($product_data->short_description != '')
@@ -224,6 +241,28 @@
                                        ->first();
 
                         @endphp
+						
+						@php
+							$minPrice = DB::table('product_attribute')
+							->where('pid', $all_product->id)
+							->min('price');
+
+						   // echo "<pre>";print_r($all_product);echo "</pre>";
+
+							if($all_product->discount_type != ''){
+								if($all_product->discount_type == 0){ //percentage
+									$disc_price_new = $minPrice * $all_product->discount /100 ;
+
+									$disc_price = $minPrice - $disc_price_new;
+								}elseif($all_product->discount_type == 1){
+									$disc_price = $minPrice - $all_product->discount;
+								}else{
+									$disc_price = '0';
+								}
+							}else{
+								$disc_price = '0';
+							}
+						@endphp
 
                         <div class="single-products-box">
                             <div class="image">
@@ -240,7 +279,7 @@
                                @if($all_product->new_product == 1)
                                 <div class="new">New</div>
                                 @endif
-                                @if($all_product->best_seller == 1)
+                                @if($disc_price != 0)
                                 <div class="sale">Sale</div>
                                 @endif
     
@@ -261,33 +300,13 @@
                             <div class="content">
                                 <h3><a href="{{url('product-detail/' . $all_product->page_url)}}">{{ $all_product->name }}</a></h3>
 
-                                @php
-                                    $minPrice = DB::table('product_attribute')
-                                    ->where('pid', $all_product->id)
-                                    ->min('price');
-
-                                   // echo "<pre>";print_r($all_product);echo "</pre>";
-
-                                    if($all_product->discount_type != ''){
-                                        if($all_product->discount_type == 0){ //percentage
-                                            $disc_price_new = $minPrice * $all_product->discount /100 ;
-
-                                            $disc_price = $minPrice - $disc_price_new;
-                                        }elseif($all_product->discount_type == 1){
-                                            $disc_price = $minPrice - $all_product->discount;
-                                        }else{
-                                            $disc_price = '0';
-                                        }
-                                    }else{
-                                        $disc_price = '0';
-                                    }
-                                @endphp
+                                
 
                                     
                                 @if($minPrice != '')
                                     <div class="price">
                                         @if($disc_price != '0')
-                                         <span class="old-price">Rs {{ $minPrice }}</span>
+                                         <span class="old-price" >Rs {{ $minPrice }}</span>
                                          <span class="new-price">Rs {{ $disc_price }}</span>
                                          @else
                                             <span class="new-price">Rs {{ $minPrice }}</span>
@@ -416,3 +435,104 @@
         </section>
         <!-- End Product Details Area -->
 @include('front.includes.footer')
+<script type="text/javascript">
+    function add_to_cart(product_id) {
+
+        var package_detail_id = $('#package_detail_id').val();
+
+        if (package_detail_id == '') {
+            $("#cartvalidate").html("Please Select Size");
+            $('#cartvalidate').show().delay(0).fadeIn('show');
+            $('#cartvalidate').show().delay(2000).fadeOut('show');
+            return false;
+        }
+    }
+
+    function pack_change(product_id,pack_id) {
+
+        $('#package_detail_id').val(pack_id);
+       
+        var discount = '{{ $product_data->discount }}';
+
+        var discount_type = '{{ $product_data->discount_type }}';
+
+        var package_detail_id = $('#package_detail_id').val();
+
+        // alert(color);
+        var url = '{{ url('price_show') }}';
+        // alert(url);
+         $.ajax({
+            url: url,
+            type: 'post',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "package_detail_id": package_detail_id,
+                "p_id": product_id
+            },
+            success: function(msg) {
+
+               var response_ajax = JSON.parse(msg);
+
+                if (response_ajax.response == "success") {
+                    
+                    if(discount_type == 2){
+                       
+                       // document.getElementById('disc_old_price').innerHTML =(response_ajax.price);
+                       
+                       
+                        document.getElementById('new_price').innerHTML =(response_ajax.price);
+                       
+                    }else{
+                        
+                        if (discount > 0) {
+                            
+                            if(discount_type == 0){
+                                
+                                var msg = response_ajax.price - (response_ajax.price * (discount / 100));
+                                document.getElementById('disc_new_price').innerHTML =Math.round(msg);
+                                
+                                 document.getElementById('disc_old_price').innerHTML =Math.round(response_ajax.price);
+                            } 
+                            
+                            if(discount_type == 1){
+                                
+                                var msg = response_ajax.price - discount;
+                                document.getElementById('disc_new_price').innerHTML =Math.round(msg);
+                                
+                                 document.getElementById('disc_old_price').innerHTML =Math.round(response_ajax.price);
+                            }
+                        }
+                    }
+                   $("#quantity_max").val(1);
+                    $("#quantity_max").attr("max", response_ajax.qty);
+                }
+            }
+        });
+
+
+
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Get the input element and plus/minus buttons
+    var inputElement = document.getElementById("quantity_max");
+    var minusButton = document.querySelector(".qty-minus-new");
+    var plusButton = document.querySelector(".qty-plus-new");
+
+    // Add click event listener to the minus button
+    minusButton.addEventListener("click", function() {
+        var currentValue = parseInt(inputElement.value);
+        if (currentValue > inputElement.min) {
+            inputElement.value = currentValue - 1;
+        }
+    });
+
+    // Add click event listener to the plus button
+    plusButton.addEventListener("click", function() {
+        var currentValue = parseInt(inputElement.value);
+        if (currentValue < inputElement.max) {
+            inputElement.value = currentValue + 1;
+        }
+    });
+});
+</script>
