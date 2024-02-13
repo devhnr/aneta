@@ -50,6 +50,7 @@ class Front_productcontroller extends Controller
         if($result != ''){
             $array = array(
                 'response'=> 'success',
+                'size_id' => $result->size_id,
                 'qty' => $result->qty,
                 'price' => $result->price,
               );
