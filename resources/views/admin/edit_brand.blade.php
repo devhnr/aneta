@@ -42,6 +42,19 @@
                                         placeholder="Enter Page Url" value="{{ $brand_data->page_url }}" />
                                     <p id="page_url_error" style="display: none;color: red"></p>
                                 </div>
+                                {{-- <div class="col-md-12"> --}}
+                                    <div class="form-group">
+                                        <label for="name">Image(95px x 85px)</label>
+                                        <input id="image" name="image" type="file" class="form-control"
+                                            value="" />
+    
+                                        @if ($brand_data->image != '')
+                                            <img src="{{ asset('public/upload/brand/large/' . $brand_data->image) }}"
+                                                style="width: 50px;height:50px;" />
+                                        @endif
+    
+                                    </div>
+                                {{-- </div> --}}
                             </div>
                             
                             <div class="text-end mt-4">

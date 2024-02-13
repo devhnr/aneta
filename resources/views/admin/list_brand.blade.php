@@ -212,6 +212,12 @@
 
                                             <th>Page Url</th>
 
+                                            <th>Image</th>
+
+                                            <th>Set as home</th>
+
+                                            <th>Set Order</th>
+
 
 
                                           
@@ -244,12 +250,23 @@
 
                                                 <td>{{ $data->page_url }}</td>
 
-                                               
 
+                                                <td><img src="{{ url('public/upload/brand/large/' . $data->image) }}"
+                                                    width="50px" height="50px">
+                                                </td>
 
+                                                <td>
+                                                    <input type="checkbox" id="set_as_home" name="set_as_home"
+                                                        value="1" onclick="setashome('{{ $data->id }}', this)"
+                                                        @if ($data->set_as_home == '1') checked @endif />
+                                                </td>
 
+                                                <td class="left"><input type="text" value="{{ $data->set_order }}"
+                                                    onchange="updateorder_popup(this.value, '{{ $data->id }}');"
+                                                    class="form-control" />
+                                                </td>
 
-                                                @if (in_array('13', $edit_perm))
+                                               @if (in_array('13', $edit_perm))
                                                     <td class="text-right">
 
                                                         <a class="btn btn-primary"
@@ -361,14 +378,14 @@
     <!-- /Select one record Category Modal -->
 
     <!-- sale Modal -->
-    <div class="modal custom-modal fade custom_css_model" id="cat_model" role="dialog">
+    <div class="modal custom-modal fade custom_css_model" id="brand_model" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-text text-center">
-                        <h3 id="cat_poup_text"></h3>
-                        <input type="hidden" name="cat_val" id="cat_val" value="">
-                        <input type="hidden" name="cat_id" id="cat_id" value="">
+                        <h3 id="brand_poup_text"></h3>
+                        <input type="hidden" name="brand_val" id="brand_val" value="">
+                        <input type="hidden" name="brand_id" id="brand_id" value="">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                         <button type="button" class="btn btn-primary" onclick="set_as_homes();">Yes</button>
                     </div>
@@ -465,7 +482,7 @@
 
                 type: "POST",
 
-                url: "{{ url('set_order_category') }}",
+                url: "{{ url('set_order_brand') }}",
 
                 data: {
 
@@ -513,31 +530,31 @@
 
             //    alert(id + " " + value);
 
-            $('#cat_id').val(id);
+            $('#brand_id').val(id);
 
             if (value.checked) {
-                $('#cat_val').val('1');
-                $('#cat_poup_text').text("Are You Sure You Want Set As Home");
-                $('#cat_model').modal('show');
+                $('#brand_val').val('1');
+                $('#brand_poup_text').text("Are You Sure You Want Set As Home");
+                $('#brand_model').modal('show');
             } else {
-                $('#cat_val').val('0');
-                $('#cat_poup_text').text("Are You Sure You Want to remove From Set As Home");
-                $('#cat_model').modal('show');
+                $('#brand_val').val('0');
+                $('#brand_poup_text').text("Are You Sure You Want to remove From Set As Home");
+                $('#brand_model').modal('show');
             }
         }
 
         function set_as_homes() {
 
 
-            var id = $('#cat_id').val();
-            var val_new = $('#cat_val').val();
+            var id = $('#brand_id').val();
+            var val_new = $('#brand_val').val();
 
             //    alert(val_new + " " + id);
 
 
             $.ajax({
                 type: "POST",
-                url: "{{ url('set_as_home') }}",
+                url: "{{ url('set_as_home_brand') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "id": id,
@@ -550,7 +567,7 @@
                         $('#success_message').text("Set As Home has been Updated successfully");
                         $('.success_show').show().delay(0).fadeIn('show');
                         $('.success_show').show().delay(5000).fadeOut('show');
-                        $('#cat_model').modal('hide');
+                        $('#brand_model').modal('hide');
                     }
                 }
             });

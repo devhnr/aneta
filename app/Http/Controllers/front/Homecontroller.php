@@ -18,9 +18,20 @@ class Homecontroller extends Controller
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
+        $data['banner'] = DB::table('banners')->orderBy('id','DESC')->get();
+
+        $data['subbanner'] = DB::table('subbanners')->orderBy('id','DESC')->get();
+
+        $data['categories'] = DB::table('categories')->where('set_as_home',1)->orderBy('set_order')->get();
+
+        $data['best_seller_pro'] = DB::table('products')->where('best_seller',1)->orderBy('id', 'DESC')->get();
+
         $data['new_arrival_pro'] = DB::table('products')->where('new_product',1)->orderBy('id', 'DESC')->get();
 
-        //echo "<pre>";print_r($data);echo "</pre>";exit;
+        $data['brand'] = DB::table('brands')->where('set_as_home',1)->orderBy('set_order')->get();
+       
+        // echo "<pre>";print_r($data);echo "</pre>";exit;
+
     	return view('front.index',$data);
     }
     public function about_us(){

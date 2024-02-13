@@ -40,10 +40,33 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $data['name'] = $request->input('name');
-        $data['page_url'] = $request->input('page_url');
+        $brand = new Brand;
 
-        DB::table('brands')->insert($data);
+        $brand->name = $request->name;
+        $brand->page_url = $request->page_url;
+
+        if($request->hasfile('image') != '')
+        {
+            $image = $request->file('image');
+            $remove_space = str_replace(' ', '-', $image->getClientOriginalName());
+            $data['image'] = time() . $remove_space;
+
+            $destinationPath = public_path('upload/brand/large/');
+            $img = Image::make($image->path());
+            $width=95;
+            $height=85;
+
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['image']);
+                
+            $destinationPath = public_path('upload/brand');
+            $image->move($destinationPath,$data['image']);
+
+            $brand->image = $data['image'];
+        }
+
+
+        $brand->save();
 
         return redirect()->route('brand.index')->with('success','Brand Added Successfully.');  
     }
@@ -81,10 +104,34 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data['name'] = $request->input('name');
-        $data['page_url'] = $request->input('page_url');
+        $brand = Brand::find($id);
        
-        DB::table('brands')->where('id',$id)->update($data);
+        $brand->name     = $request->name;
+        $brand->page_url = $request->page_url;
+       
+        if($request->hasfile('image') != '')
+        {
+            $image = $request->file('image');
+            $remove_space = str_replace(' ', '-', $image->getClientOriginalName());
+            $data['image'] = time() . $remove_space;
+
+            $destinationPath = public_path('upload/brand/large/');
+            $img = Image::make($image->path());
+            $width=135;
+            $height=85;
+
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['image']);
+                
+            $destinationPath = public_path('upload/brand');
+            $image->move($destinationPath,$data['image']);
+
+            $brand->image = $data['image'];
+        }
+       
+        // DB::table('brands')->where('id',$id)->update($brand);
+
+        $brand->save();
 
         return redirect()->route('brand.index')->with('success','Brand Updated Successfully.');
     }
@@ -103,5 +150,25 @@ class BrandController extends Controller
 
         return redirect()->route('brand.index')->with('success','Brand Deleted successfully');
 
+    }
+    public function set_order_brand()
+    {
+        $id = $_POST['id'];
+        $val = $_POST['val'];
+        // echo $id."-".$val;exit;
+        DB::table('brands')->where('id', $id)->update(array('set_order' => $val));
+        echo "1";
+        // return redirect()->route('product.index')->with('success','Set Order has been Updated successfully');
+    }
+    public function set_as_home_brand(Request $request){
+        $id = $request->id;
+
+        $val = $request->val;
+
+        // echo $id."-".$val;exit;
+
+        DB::table('brands')->where('id', $id)->update(array('set_as_home' => $val));
+
+        echo "1";
     }
 }

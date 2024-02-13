@@ -55,8 +55,8 @@ class BannerController extends Controller
             $destinationPath = public_path('upload/banner/large');
             $img = Image::make($image->path());
 
-            $width=575;
-            $height=728;
+            $width=570;
+            $height=570;
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['image']);
 
@@ -144,8 +144,8 @@ class BannerController extends Controller
             $destinationPath = public_path('upload/banner/large');
             $img = Image::make($image->path());
 
-            $width=575;
-            $height=728;
+            $width=570;
+            $height=570;
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['image']);
 

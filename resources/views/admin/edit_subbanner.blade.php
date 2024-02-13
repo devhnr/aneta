@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Image(600px x 253px)</label>
+                                        <label for="name">Image(600px x 300px)</label>
                                         <input id="image" name="image" type="file" class="form-control"
                                             value="" />
 

@@ -129,6 +129,9 @@ Route::get('/admin', function () {
 
     Route::resource('/admin/brand', '\App\Http\Controllers\admin\BrandController');
     Route::get('/admin/delete_brand', [BrandController::class, 'destroy'])->name('delete_brand');
+    Route::post('set_order_brand', '\App\Http\Controllers\admin\BrandController@set_order_brand');
+    Route::post('set_as_home_brand', '\App\Http\Controllers\admin\BrandController@set_as_home_brand');
+
 
     Route::resource('/admin/banner', '\App\Http\Controllers\admin\BannerController');
     Route::get('/admin/delete_banner', [BannerController::class, 'destroy'])->name('delete_banner');
