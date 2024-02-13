@@ -53,7 +53,7 @@ class SubbannerController extends Controller
             $destinationPath = public_path('upload/subbanner/large/');
             $img = Image::make($image->path());
             $width=600;
-            $height=253;
+            $height=300;
 
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['image']);
@@ -114,7 +114,7 @@ class SubbannerController extends Controller
             $destinationPath = public_path('upload/subbanner/large/');
             $img = Image::make($image->path());
             $width=600;
-            $height=253;
+            $height=300;
 
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['image']);

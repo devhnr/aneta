@@ -39,6 +39,12 @@
                                     <input id="page_url" name="page_url" type="text" class="form-control"
                                         placeholder="Enter Page Url" value="" />
                                 </div>
+                                <div class="form-group">
+                                    <label for="image">Image(95px x 85px)</label>
+                                    <input id="image" name="image" type="file" class="form-control"
+                                        value="" />
+                                    <p id="image_error" style="display: none;color: red"></p>
+                                </div>
                             </div>
                           
                             <div class="text-end mt-4">
@@ -86,6 +92,13 @@
                 jQuery('#page_url_error').show().delay(2000).fadeOut('show');
                 return false;
             }
+            // var image = jQuery("#image").val();
+            // if (image == '') {
+            //     jQuery('#image_error').html("Please Select Image");
+            //     jQuery('#image_error').show().delay(0).fadeIn('show');
+            //     jQuery('#image_error').show().delay(2000).fadeOut('show');
+            //     return false;
+            // }
            
             $('#spinner_button').show();
             $('#submit_button').hide();

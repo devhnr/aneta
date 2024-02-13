@@ -139,7 +139,7 @@
                                    <input type="button" value="-" class="qty-minus-new qty-btn" data-quantity="minus" data-field="quantity" style="width: 22%;display: inline-block;">
 
                                     <input type="text" name="quantity" value="1" id="quantity_max" min="1" style="width: 46%;
-    display: inline-block;" readonly>
+                                    display: inline-block;" readonly>
 
                                     <input type="button" value="+" class="qty-plus-new qty-btn" data-quantity="plus" data-field="quantity" style="width: 22%;display: inline-block;">
 
@@ -175,50 +175,89 @@
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
 
 
+                                @if($product_data->description != "" )
                                 <li class="nav-item"><a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description">Description</a></li>
+                                @endif
 
-
+                                @if($product_data->dose != "" )
                                 <li class="nav-item"><a class="nav-link" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping">Dose</a></li>
-                                
+                                @endif
+
+                                @if($product_data->use_for != "" )
                                 <li class="nav-item"><a class="nav-link" id="userfor-tab" data-bs-toggle="tab" href="#userfor" role="tab" aria-controls="userfor">Use For</a></li>
+                                @endif
+
+                                @if($product_data->composition != "" )
                                 <li class="nav-item"><a class="nav-link" id="composition-tab" data-bs-toggle="tab" href="#composition" role="tab" aria-controls="composition">Composition</a></li>
+                                @endif
+
+                                @if($product_data->inductions != "" )
                                 <li class="nav-item"><a class="nav-link" id="inductions-tab" data-bs-toggle="tab" href="#inductions" role="tab" aria-controls="inductions">Inductions</a></li>
+                                @endif
+
+                                @if($product_data->caution != "" )
                                 <li class="nav-item"><a class="nav-link" id="caution-tab" data-bs-toggle="tab" href="#caution" role="tab" aria-controls="caution">Caution</a></li>
+                                @endif
+
+                                @if($product_data->storage != "" )
                                 <li class="nav-item"><a class="nav-link" id="storage-tab" data-bs-toggle="tab" href="#storage" role="tab" aria-controls="storage">Storage</a></li>
+                                @endif
+
+                                @if($product_data->direction_of_use != "" )
                                 <li class="nav-item"><a class="nav-link" id="direction-tab" data-bs-toggle="tab" href="#direction" role="tab" aria-controls="direction">Direction of Use</a></li>
+                                @endif
+
                             </ul>
         
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="description" role="tabpanel">{!! $product_data->description !!}
+
+                                @if($product_data->description !="")
+                                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                                        {!! $product_data->description !!}
                                 </div>
-        
+                                @endif
+
+                                @if($product_data->dose != "" )
                                 <div class="tab-pane fade" id="shipping" role="tabpanel">
                                     {!! $product_data->dose !!}
                                 </div>
+                                @endif
         
+                                @if($product_data->use_for != "" )
                                 <div class="tab-pane fade" id="userfor" role="tabpanel">
                                    {!! $product_data->use_for !!}
                                 </div>
-								
+                                @endif
+
+                                @if($product_data->composition != "" )
 								<div class="tab-pane fade" id="composition" role="tabpanel">
                                    {!! $product_data->composition !!}
                                 </div>
+                                @endif
 								
+                                @if($product_data->inductions != "" )
 								<div class="tab-pane fade" id="inductions" role="tabpanel">
                                    {!! $product_data->inductions !!}
                                 </div>
+                                @endif
 								
+                                @if($product_data->caution != "" )
 								<div class="tab-pane fade" id="caution" role="tabpanel">
                                    {!! $product_data->caution !!}
                                 </div>
+                                @endif
 								
+                                @if($product_data->storage != "" )
 								<div class="tab-pane fade" id="storage" role="tabpanel">
                                    {!! $product_data->storage !!}
                                 </div>
+                                @endif
 								
+                                @if($product_data->direction_of_use != "" )
 								<div class="tab-pane fade" id="direction" role="tabpanel">
                                    {!! $product_data->direction_of_use !!}
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
