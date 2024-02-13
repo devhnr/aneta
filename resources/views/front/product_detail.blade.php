@@ -117,7 +117,7 @@
 
                                 <ul>
                                     @foreach($package_detail as $package_detail_data)
-                                    <li><a href="javascript:void(0)" onclick="pack_change('{{ $product_data->id }}',{{$package_detail_data->id}});">{{$package_detail_data->package_detail}}</a></li>
+                                    <li><a href="javascript:void(0)" onclick="pack_change('{{ $product_data->id }}',{{$package_detail_data->id}});" class="" id="add_class_{{$package_detail_data->id}}">{{$package_detail_data->package_detail}}</a></li>
                                     @endforeach
                                     <!-- 
                                     <li class="active"><a href="#">Pack of 10</a></li>
@@ -136,9 +136,12 @@
 
                             <div class="products-add-to-cart">
                                 <div class="input-counter">
-                                    <span class="minus-btn"><i class='bx bx-minus'></i></span>
-                                    <input type="text" name="quantity" value="1" id="quantity_max" min="1" readonly>
-                                    <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                   <input type="button" value="-" class="qty-minus-new qty-btn" data-quantity="minus" data-field="quantity" style="width: 22%;display: inline-block;">
+
+                                    <input type="text" name="quantity" value="1" id="quantity_max" min="1" style="width: 46%;
+    display: inline-block;" readonly>
+
+                                    <input type="button" value="+" class="qty-plus-new qty-btn" data-quantity="plus" data-field="quantity" style="width: 22%;display: inline-block;">
 
                                     <!-- <input type="button" value="-" class="qty-minus-new qty-btn" data-quantity="minus" data-field="quantity">
                                     <input class="input-text qty-text" type="number" name="quantity" value="1" id="quantity_max" min="1" readonly>
@@ -170,8 +173,13 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="products-details-tabs">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+
                                 <li class="nav-item"><a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description">Description</a></li>
+
+
                                 <li class="nav-item"><a class="nav-link" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping">Dose</a></li>
+                                
                                 <li class="nav-item"><a class="nav-link" id="userfor-tab" data-bs-toggle="tab" href="#userfor" role="tab" aria-controls="userfor">Use For</a></li>
                                 <li class="nav-item"><a class="nav-link" id="composition-tab" data-bs-toggle="tab" href="#composition" role="tab" aria-controls="composition">Composition</a></li>
                                 <li class="nav-item"><a class="nav-link" id="inductions-tab" data-bs-toggle="tab" href="#inductions" role="tab" aria-controls="inductions">Inductions</a></li>
@@ -451,6 +459,17 @@
     function pack_change(product_id,pack_id) {
 
         $('#package_detail_id').val(pack_id);
+
+        var lis = document.querySelectorAll('ul li');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].classList.remove('active');
+        }
+
+        // Add 'active' class to the clicked <li> element
+        var clickedLi = document.getElementById('add_class_' + pack_id).parentNode;
+        clickedLi.classList.add('active');
+
+
        
         var discount = '{{ $product_data->discount }}';
 
