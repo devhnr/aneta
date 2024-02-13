@@ -86,6 +86,9 @@ Route::post('vendor_check_mail', 'App\Http\Controllers\admin\CustomerController@
 Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
 Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout');
 
+Route::post('add_to_cart','\App\Http\Controllers\front\Cartcontroller@add_to_cart');
+Route::post('cart_remove', '\App\Http\Controllers\front\Cartcontroller@cart_remove');
+Route::post('update_cart', '\App\Http\Controllers\front\Cartcontroller@update_cart');
 
 Route::controller(UserRegistration::class)->group(function () {
 
@@ -96,113 +99,6 @@ Route::controller(UserRegistration::class)->group(function () {
     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
 });
 
-// Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
-// Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
-
-// Route::get('/wishlist', '\App\Http\Controllers\front\Homecontroller@wishlist');
-// Route::get('/my-profile', '\App\Http\Controllers\front\Homecontroller@my_profile');
-
-// Route::get('/edit-profile', '\App\Http\Controllers\front\Homecontroller@edit_profile');
-// Route::get('/edit-address', '\App\Http\Controllers\front\Homecontroller@edit_address');
-// Route::get('/add-address', '\App\Http\Controllers\front\Homecontroller@add_address');
-// Route::get('/about-company', '\App\Http\Controllers\front\Homecontroller@about_company');
-// Route::get('/our-services', '\App\Http\Controllers\front\Homecontroller@our_services');
-// Route::get('/latest-blogs', '\App\Http\Controllers\front\Homecontroller@latest_blogs');
-// Route::get('/contact-us', '\App\Http\Controllers\front\Homecontroller@contact_us');
-// Route::get('/terms-conditions', '\App\Http\Controllers\front\Homecontroller@terms_conditions');
-// Route::get('/privacy-policy', '\App\Http\Controllers\front\Homecontroller@privacy_policy');
-// Route::get('/what-we-offer', '\App\Http\Controllers\front\Homecontroller@what_we_offer');
-// Route::get('/return', '\App\Http\Controllers\front\Homecontroller@return');
-// Route::get('/free-delivery', '\App\Http\Controllers\front\Homecontroller@free_delivery');
-// Route::get('/100-days-refund', '\App\Http\Controllers\front\Homecontroller@days_refund');
-// Route::get('/multiple-payments', '\App\Http\Controllers\front\Homecontroller@multiple_payments');
-// Route::get('/sustainable', '\App\Http\Controllers\front\Homecontroller@sustainable');
-
-// Route::get('/product/{groupurl}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
-// Route::get('/product/{groupurl}/{cat_url}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
-// Route::get('/product/{groupurl}/{cat_url}/{subcat_url}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
-
-// Route::get('/collection/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@collection');
-
-
-// Route::post('size_show','\App\Http\Controllers\front\Front_productcontroller@size_show');
-// Route::post('price_show','\App\Http\Controllers\front\Front_productcontroller@price_show');
-
-// Route::post('add_to_cart','\App\Http\Controllers\front\Cartcontroller@add_to_cart');
-// Route::post('cart_remove', '\App\Http\Controllers\front\Cartcontroller@cart_remove');
-// Route::post('empty_cart', '\App\Http\Controllers\front\Cartcontroller@empty_cart');
-// Route::post('update_cart', '\App\Http\Controllers\front\Cartcontroller@update_cart');
-// Route::post('couponcheck', '\App\Http\Controllers\front\Cartcontroller@couponcheck');
-// Route::post('removecoupon', '\App\Http\Controllers\front\Cartcontroller@removecoupon');
-
-// Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout');
-
-// Route::get('thankyou', [checkoutcontroller::class, 'thankyou'])->name("thankyou");
-// Route::get('fail', [checkoutcontroller::class, 'fail'])->name("fail");
-// Route::post('/ship_state_change', '\App\Http\Controllers\front\checkoutcontroller@ship_state_change');
-// Route::post('/bill_state_change', '\App\Http\Controllers\front\checkoutcontroller@bill_state_change');
-// Route::post('/order_place', '\App\Http\Controllers\front\checkoutcontroller@order_place')->name('order_place');
-// Route::post('/hdfcrequestHandler', '\App\Http\Controllers\front\checkoutcontroller@hdfcrequestHandler')->name('hdfcrequestHandler');
-
-// // Route::get('/hdfc_redirect_url', '\App\Http\Controllers\front\checkoutcontroller@hdfc_redirect_url')->name('hdfc_redirect_url');
-
-// Route::match(['get', 'post'], '/hdfc-redirect-url', '\App\Http\Controllers\front\checkoutcontroller@hdfc_redirect_url')->name('hdfc-redirect-url');
-
-// // Route::any('/hdfc_redirect_url', '\App\Http\Controllers\front\checkoutcontroller@hdfc_redirect_url')->name('hdfc_redirect_url');
-
-
-// Route::post('check_email','\App\Http\Controllers\front\Homecontroller@check_email');
-
-// Route::post('news_letter_email','\App\Http\Controllers\front\Homecontroller@news_letter_email');
-
-
-
-
-// Route::controller(UserRegistration::class)->group(function () {
-
-//     Route::match(['get', 'post'], '/signup', 'register')->name('signup');
-//     Route::match(['get', 'post'], '/signin', 'login')->name('signin');
-//     Route::post('checkmail', 'checkmail');
-//     Route::post('check-login','checklogin');
-//     Route::post('email-check-login','emailCheck');
-
-    
-//     Route::post('resetpassword', 'get_password')->name('reset-password');
-//     Route::get('reset-password/{uid}', 'reset_password')->name('reset_password');
-//     Route::post('set_password/{uid}', 'set_password')->name('set_password');
-//     Route::get('forget-password','lost_password');
-//     Route::get('signout','signout');
-
-
-//     Route::get('/my-profile', 'my_profile');
-//     Route::get('/my-orders', 'my_orders');
-//     Route::get('/edit-profile', 'edit_profile');
-//     Route::get('/edit-address/{id}', 'edit_address');
-//     Route::get('/changepassword', 'changepassword');
-//     Route::post('update-password', 'update_password')->name('update-password');
-    
-
-//     Route::get('/remove-address/{id}', 'remove_address');
-
-
-//     Route::get('/add-address', 'add_address');
-
-//     Route::post('state_show', 'state_show');
-    
-//     Route::get('/wishlist', 'wishlist');
-//     Route::post('/add-to-wishlist', 'add_to_wishlist')->name('add_to_wishlist');
-//     Route::get('/wishlist/delete/{id}', 'delete_wishlist')->name('delete_wishlist');
-
-//     Route::post('update-profile', 'update_profile')->name('update_profile');
-//     Route::post('add-address', 'add_useraddress')->name('add_address');
-//     Route::post('update-address', 'update_address')->name('update_address');
-
-//     Route::post('/add-review', 'add_review')->name('add_review');
-
-//     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
-// });
-
-/*------End Front routes  ------*/
 
 
 
@@ -252,7 +148,7 @@ Route::get('/admin', function () {
 
     Route::resource('admin/coupan','App\Http\Controllers\admin\CoupanController');
     Route::get('delete_coupan',[CoupanController::class,'destroy'])->name('delete_coupan');
-    Route::post('change_status_coupan','App\Http\Controllers\admin\Coupancontroller@change_status_coupan');
+    Route::post('change_status_coupan','App\Http\Controllers\admin\CoupanController@change_status_coupan');
 
 
     Route::resource('/admin/customer', '\App\Http\Controllers\admin\CustomerController');
@@ -285,6 +181,10 @@ Route::get('/admin', function () {
 
     Route::resource('/admin/brand', '\App\Http\Controllers\admin\BrandController');
     Route::get('/admin/delete_brand', [BrandController::class, 'destroy'])->name('delete_brand');
+    Route::post('set_order_brand', '\App\Http\Controllers\admin\BrandController@set_order_brand');
+    Route::post('set_as_home_brand', '\App\Http\Controllers\admin\BrandController@set_as_home_brand');
+    Route::post('couponcheck', '\App\Http\Controllers\front\Cartcontroller@couponcheck');
+    Route::post('removecoupon', '\App\Http\Controllers\front\Cartcontroller@removecoupon');
     
     
    

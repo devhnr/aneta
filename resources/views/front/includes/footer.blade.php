@@ -493,3 +493,35 @@
         <script src="{{asset('public/site/assets/js/main.js')}}"></script>
     </body>
 </html>
+<script>
+    function remove_to_cart(rowId) {
+
+var answer = window.confirm("Do you want to remove this product from cart?");
+
+ if (answer) {
+        var url = '{{ url('cart_remove') }}';
+        $.ajax({
+          url: url,
+          type: 'post',
+          data: {
+            "_token": "{{ csrf_token() }}",
+            "rowId": rowId
+          },
+          success: function(msg) {
+
+            if (msg != '') {
+            //   $("#message_error").html("Product Removed From Cart");
+            //   $('#message_error').show().delay(0).fadeIn('show');
+            //   $('#message_error').show().delay(2000).fadeOut('show');
+              $("#mydiv_pc").load(location.href + " #mydiv_pc");
+            //   $("#header_cart").load(location.href + " #header_cart");
+            //  $("#header_cart_count").load(location.href + " #header_cart_count");
+              return false;
+            }
+
+          }
+
+        });
+    }
+}
+</script>
