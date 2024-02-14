@@ -250,7 +250,7 @@
                                 <div class="btn-box">
                                     @if($subbanner_data->link !="")
                                     <div class="d-flex align-items-center">
-                                        <a href="#" class="default-btn">Shop Now</a>
+                                        <a href="{{$subbanner_data->link}}" class="default-btn">Shop Now</a>
                                     </div>
                                     @endif
                                 </div>
