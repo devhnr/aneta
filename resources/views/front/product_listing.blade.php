@@ -26,7 +26,7 @@
                                     <input class="js-range-of-price" type="text" data-min="0" data-max="1055" name="filter_by_price" data-step="10">
                                 </div>
                             </div>
-
+{{-- 
                             <div class="woocommerce-widget color-list-widget">
                                 <h3 class="woocommerce-widget-title">Color</h3>
 
@@ -45,7 +45,7 @@
                                     <li><a href="#" title="Plum" class="color-plum"></a></li>
                                     <li><a href="#" title="Teal" class="color-teal"></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
 
                             <div class="woocommerce-widget brands-list-widget">
                                 <h3 class="woocommerce-widget-title">Category</h3>

@@ -126,20 +126,8 @@
                     </div>
 
                     <div class="col-lg-6 col-md-5">
-                     
-                       
-
                         <ul class="top-header-menu">
-                            @if(Session::get('userdata') =='')
-                            <li>
-                      {{-- <i class="fa fa-user-circle" style="color: #3D9630;"></i>--}}
-                                <a href="{{url('/signin')}}">Login</a></li>
-                            @else
-                            <li>
-                      {{-- <i class="fa fa-user-circle" style="color: #3D9630;"></i>--}}
-                                <a href="{{url('/signout')}}">Logout</a></li>
-                            @endif
-                          
+                           <li><i class="fa fa-user-circle" style="color: #3D9630;"></i> <a href="{{url('/signin')}}">My Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -174,20 +162,25 @@
                                 </li>
 								
 								 <li class="nav-item"><a href="#" class="nav-link">Products <i class='bx bx-chevron-down'></i></a>
-                                  @php
-                                  $categories=DB::table('categories')->orderBy('set_order')->get();
-
-                                  
-                                    // echo "<pre>";print_r($categories);echo"</pre>";
-                                  @endphp
-
-                                   
                                     <ul class="dropdown-menu">
-                                        @foreach($categories as $categories_data)
-                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">{{$categories_data->name}}</a></li>
-                                        @endforeach
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Lipid Lowering</a></li>
+
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Cardiovascular</a></li>
+
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Anti-Histamines</a></li>
+
+                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">Anti-Diabetic</a></li>
+
+                                       <!--<li class="nav-item"><a href="#" class="nav-link">Single Post <i class='bx bx-chevron-right'></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item"><a href="single-blog-1.html" class="nav-link">Default</a></li>
+        
+                                                <li class="nav-item"><a href="single-blog-2.html" class="nav-link">With Video</a></li>
+        
+                                                <li class="nav-item"><a href="single-blog-3.html" class="nav-link">With Image Slider</a></li>
+                                            </ul>
+                                        </li>-->
                                     </ul>
-                                   
                                 </li>
 								<li class="nav-item"><a href="{{ url('/about-us') }}" class="nav-link ">About Us</a></li>
 								<li class="nav-item"><a href="#" class="nav-link ">Blogs</a></li>
@@ -203,9 +196,7 @@
 
                                 <div class="option-item">
                                     <div class="cart-btn">
-                                        <span id="header_cart_count">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>{{Cart::count()}}</span></a>
-                                        </span>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>3</span></a>
                                     </div>
                                 </div>
 

@@ -231,11 +231,11 @@
                     </button>
 
                     <div class="modal-body">
-                        <div id="header_cart">
+
                         @if(Cart::count() > 0)
 
                         <h3>My Cart <span id="header_cart_count_footer">({{Cart::count()}})</span></h3>
-                       
+                        <div id="header_cart">
                         <div class="products-cart-content">
 
                             @php
@@ -321,7 +321,7 @@
                             <span class="subtotal">Rs {{$subtotal}}</span>
                         </div>
 
-                        
+                        </div>
 
                         <div class="products-cart-btn">
                             <a href="{{url('checkout')}}" class="default-btn">Proceed to Checkout</a>
@@ -330,8 +330,6 @@
                     @else
                         <p class="notification_style">No Product In Cart</p>
                     @endif
-
-                </div>
 
                     </div>
                 </div>
@@ -548,11 +546,6 @@
         <script src="{{asset('public/site/assets/js/main.js')}}"></script>
     </body>
 </html>
-@if (Session::get('L_strsucessMessage') != '')
-
-        <script>document.getElementById('message_succsess').innerHTML = "{{ Session::get('L_strsucessMessage') }}";$('#message_succsess').show().delay(0).fadeIn('show');$('#message_succsess').show().delay(3000).fadeOut('show');</script>
-        
-        @endif
 <script>
     function remove_to_cart(rowId) {
 

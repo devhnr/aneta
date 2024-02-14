@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Mime\Email;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class Homecontroller extends Controller
 {
     public function index(){
-
-       
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
@@ -29,6 +28,8 @@ class Homecontroller extends Controller
         $data['new_arrival_pro'] = DB::table('products')->where('new_product',1)->orderBy('id', 'DESC')->get();
 
         $data['brand'] = DB::table('brands')->where('set_as_home',1)->orderBy('set_order')->get();
+       
+       
        
         // echo "<pre>";print_r($data);echo "</pre>";exit;
 
