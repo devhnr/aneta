@@ -127,7 +127,7 @@
 
                     @php 
 
-                    $baseImage = $best_seller_pro_data->base_image;
+                    $baseImage = DB::table('product_image')->where('pid',$best_seller_pro_data->id)->where('baseimage',1)->first();
 
                     @endphp
 
@@ -136,7 +136,7 @@
             <div class="image">
                 <a href="{{url('product-detail/' . $best_seller_pro_data->page_url)}}" class="d-block">
                     @if($baseImage != '')
-                    <img src="{{ asset('public/upload/product/large/'.$baseImage) }}" alt="image">
+                    <img src="{{ asset('public/upload/product/large/'.$baseImage->image) }}" alt="image">
                     @else
                     <img src="{{ asset('public/upload/product/large/no-image.png') }}" alt="image">
                     @endif
@@ -144,7 +144,7 @@
                 </a>
 
             @php 
-            $ProductminPrice = $best_seller_pro_data->min_price;
+            $ProductminPrice = DB::table('product_attribute')->where('pid',$best_seller_pro_data->id)->min('price');
 
             /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
 
@@ -250,7 +250,7 @@
                                 <div class="btn-box">
                                     @if($subbanner_data->link !="")
                                     <div class="d-flex align-items-center">
-                                        <a href="{{$subbanner_data->link}}" class="default-btn">Shop Now</a>
+                                        <a href="#" class="default-btn">Shop Now</a>
                                     </div>
                                     @endif
                                 </div>
@@ -296,7 +296,7 @@
 
                     @php 
 
-                    $baseImage = $new_arrival_pro_data->base_image;
+                    $baseImage = DB::table('product_image')->where('pid',$new_arrival_pro_data->id)->where('baseimage',1)->first();
 
                     @endphp
  
@@ -305,7 +305,7 @@
                             <div class="image">
                                 <a href="{{url('product-detail/' . $new_arrival_pro_data->page_url)}}" class="d-block">
                                     @if($baseImage != '')
-                                    <img src="{{ asset('public/upload/product/large/'.$baseImage) }}" alt="image">
+                                    <img src="{{ asset('public/upload/product/large/'.$baseImage->image) }}" alt="image">
                                     @else
                                     <img src="{{ asset('public/upload/product/large/no-image.png') }}" alt="image">
                                     @endif
@@ -313,7 +313,7 @@
                                 </a>
 
                                 @php 
-                                $ProductminPrice = $new_arrival_pro_data->min_price;
+                                $ProductminPrice = DB::table('product_attribute')->where('pid',$new_arrival_pro_data->id)->min('price');
 
                                 /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
 

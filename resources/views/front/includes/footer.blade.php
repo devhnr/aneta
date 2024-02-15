@@ -231,26 +231,72 @@
                     </button>
 
                     <div class="modal-body">
-                        <h3>My Cart (3)</h3>
+                        <div id="header_cart">
+                        @if(Cart::count() > 0)
 
+                        <h3>My Cart <span id="header_cart_count_footer">({{Cart::count()}})</span></h3>
+                       
                         <div class="products-cart-content">
+
+                            @php
+                                $subtotal =0;
+                            @endphp
+
+                            @foreach(Cart::content() as $items)
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
-                                    <a href="#"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+                                    <a href="{{url('product-detail/' . $items->options->page_url)}}"><img src="{{asset('public/upload/product/small/'.$items->options->image)}}" alt="image"></a>
                                 </div>
 
                                 <div class="products-content">
-                                    <h3><a href="#">TELMANETA CD</a></h3>
+                                    <h3><a href="{{url('product-detail/' . $items->options->page_url)}}">{{$items->name}}</a></h3>
+
+                                    @php
+
+                                    if($items->options->discount_type != ''){
+                                        if($items->options->discount_type == 0){ //percentage
+                                            $disc_price_new = $items->price * $items->options->discount /100 ;
+
+                                            $disc_price = $items->price - $disc_price_new;
+
+                                            $p_price = $disc_price;
+                                        }elseif($items->options->discount_type == 1){
+                                            $disc_price = $items->price - $items->options->discount;
+                                            $p_price = $disc_price;
+                                        }else{
+                                            $disc_price = '0';
+                                            $p_price = $items->price;
+                                        }
+
+                                    }else{
+                                        $disc_price = '0';
+                                    }
+
+                                    @endphp
+
                                     <div class="products-price">
-                                        <span>1</span>
+                                        <span>{{ $items->qty }}</span>
                                         <span>x</span>
-                                        <span class="new-price">Rs 99.00</span>
+                                        @if($disc_price != '0')
+                                            <span class="new-price"><del>Rs. {{ $items->price }}</del> Rs. {{$disc_price}}</span>
+                                        @else
+                                            <span class="new-price">Rs.  {{$items->price}}</span>
+                                        @endif
                                     </div>
                                 </div>
-                                <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
+                                <a href="javascript:void(0);"  onclick="remove_to_cart('{{ $items->rowId }}'); return false;" class="remove-btn"><i class='bx bx-trash'></i></a>
                             </div>
 
-                            <div class="products-cart d-flex align-items-center">
+                            @php
+                                if($items->qty >= 1){
+                                    $subtotal += $items->qty * round($p_price);
+                                }else{
+                                    $subtotal += round($p_price);
+                                }
+                            @endphp
+
+                            @endforeach
+                            {{-- <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
                                     <a href="#"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
                                 </div>
@@ -264,7 +310,7 @@
                                     </div>
                                 </div>
                                 <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
-                            </div>
+                            </div> --}}
 
                             
                         </div>
@@ -272,12 +318,21 @@
                         <div class="products-cart-subtotal">
                             <span>Subtotal</span>
 
-                            <span class="subtotal">Rs 228.00</span>
+                            <span class="subtotal">Rs {{$subtotal}}</span>
                         </div>
+
+                        
 
                         <div class="products-cart-btn">
                             <a href="{{url('checkout')}}" class="default-btn">Proceed to Checkout</a>
                         </div>
+
+                    @else
+                        <p class="notification_style">No Product In Cart</p>
+                    @endif
+
+                </div>
+
                     </div>
                 </div>
             </div>
@@ -514,8 +569,9 @@ var answer = window.confirm("Do you want to remove this product from cart?");
             //   $('#message_error').show().delay(0).fadeIn('show');
             //   $('#message_error').show().delay(2000).fadeOut('show');
               $("#mydiv_pc").load(location.href + " #mydiv_pc");
-            //   $("#header_cart").load(location.href + " #header_cart");
-            //  $("#header_cart_count").load(location.href + " #header_cart_count");
+              $("#header_cart").load(location.href + " #header_cart");
+             $("#header_cart_count").load(location.href + " #header_cart_count");
+             $("#header_cart_count_footer").load(location.href + " #header_cart_count_footer");
               return false;
             }
 

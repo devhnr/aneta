@@ -196,7 +196,9 @@
 
                                 <div class="option-item">
                                     <div class="cart-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>3</span></a>
+                                        <span id="header_cart_count">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>{{Cart::count()}}</span></a>
+                                        </span>
                                     </div>
                                 </div>
 
