@@ -23,15 +23,40 @@ class Homecontroller extends Controller
 
         $data['categories'] = DB::table('categories')->where('set_as_home',1)->orderBy('set_order')->get();
 
-        $data['best_seller_pro'] = DB::table('products')->where('best_seller',1)->orderBy('id', 'DESC')->get();
+        // $data['best_seller_pro'] = DB::table('products')->where('best_seller',1)->orderBy('id', 'DESC')->get();
 
-        $data['new_arrival_pro'] = DB::table('products')->where('new_product',1)->orderBy('id', 'DESC')->get();
+        $data['best_seller_pro'] =  DB::table('products')
+                                    ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
+                                    ->leftJoin('product_image', 'products.id', '=', 'product_image.pid')
+                                    ->where('products.best_seller', 1)
+                                    ->where('product_image.baseimage', 1)
+                                    ->orderBy('products.id', 'DESC')
+                                    ->select('products.*', 
+                                            DB::raw('MIN(product_attribute.price) as min_price'), 
+                                            'product_image.image as base_image')
+                                    ->groupBy('products.id')
+                                    ->get();
+
+        // $data['new_arrival_pro'] = DB::table('products')
+        //                             ->where('new_product',1)
+        //                             ->orderBy('id', 'DESC')
+        //                             ->get();
+
+        $data['new_arrival_pro'] =  DB::table('products')
+                                    ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
+                                    ->leftJoin('product_image', 'products.id', '=', 'product_image.pid')
+                                    ->where('products.new_product', 1)
+                                    ->where('product_image.baseimage', 1)
+                                    ->orderBy('products.id', 'DESC')
+                                    ->select('products.*', 
+                                            DB::raw('MIN(product_attribute.price) as min_price'), 
+                                            'product_image.image as base_image')
+                                    ->groupBy('products.id')
+                                    ->get();
 
         $data['brand'] = DB::table('brands')->where('set_as_home',1)->orderBy('set_order')->get();
        
-       
-       
-        // echo "<pre>";print_r($data);echo "</pre>";exit;
+
 
     	return view('front.index',$data);
     }

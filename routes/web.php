@@ -83,6 +83,7 @@ Route::post('price_show','\App\Http\Controllers\front\Front_productcontroller@pr
 Route::get('/contact', '\App\Http\Controllers\front\Homecontroller@contact');
 Route::post('vendor_check_mail', 'App\Http\Controllers\admin\CustomerController@vendor_check_mail');
 
+
 Route::get('/cart', '\App\Http\Controllers\front\Homecontroller@cart');
 Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout');
 
@@ -96,9 +97,10 @@ Route::controller(UserRegistration::class)->group(function () {
     Route::match(['get', 'post'], '/signin', 'login')->name('signin');
     Route::match(['get', 'post'], '/lost-password', 'lost_password')->name('lost_password');
 
-    Route::post('check-login','checklogin');
+  Route::post('check-login','checklogin');
     Route::post('check-isactive','userLoginCheck');
     Route::get('signout','signout');
+
 
     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
 });
@@ -106,7 +108,7 @@ Route::controller(UserRegistration::class)->group(function () {
 
 
 
-
+Route::post('vendor_check_mobile', 'App\Http\Controllers\admin\CustomerController@vendor_check_mobile');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -162,6 +164,9 @@ Route::get('/admin', function () {
     Route::get('/delete_customer', [CustomerController::class, 'destroy'])->name('delete_customer');
     Route::get('/admin/download/{filename}', [CustomerController::class, 'download_gst']);
     Route::post('change_status','App\Http\Controllers\admin\CustomerController@change_status');
+        
+    Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
+
        
     Route::resource('/admin/permission', '\App\Http\Controllers\admin\PermissionController');
     
@@ -198,6 +203,7 @@ Route::get('/admin', function () {
    
 
 });
+
 
     Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
