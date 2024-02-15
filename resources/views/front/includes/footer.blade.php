@@ -548,7 +548,7 @@
         <script src="{{asset('public/site/assets/js/main.js')}}"></script>
     </body>
 </html>
-@if (Session::get('L_strsucessMessage') != '')
+    @if (Session::get('L_strsucessMessage') != '')
 
         <script>document.getElementById('message_succsess').innerHTML = "{{ Session::get('L_strsucessMessage') }}";$('#message_succsess').show().delay(0).fadeIn('show');$('#message_succsess').show().delay(3000).fadeOut('show');</script>
         
