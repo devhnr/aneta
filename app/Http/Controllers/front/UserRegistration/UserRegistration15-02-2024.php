@@ -434,18 +434,6 @@ class UserRegistration extends Controller
         });
         return redirect()->to('/')->with('L_strsucessMessage','E-mail has been sent Successfully');
     }
-    function userLoginCheck(Request $request){
-        $email = $request->email_id;
-        $isActive = \DB::table('front_users')->where('email',$email)->where('is_active',0)->first();
-
-       
-        if($isActive !=''){
-            echo 1;
-        }else{
-            echo 0;
-        }
-
-    }
     public function signout()
     {   
         Session::flush();
