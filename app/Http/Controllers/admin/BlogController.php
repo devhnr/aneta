@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Blog;
 use Image;
+use DB;
 
 class BlogController extends Controller
 {
@@ -42,7 +43,30 @@ class BlogController extends Controller
         
         $blog=New Blog;
         $blog->title      = $request->title;
+        $blog->page_url      = $request->page_url;
         $blog->name  = $request->name;
+        // $blog->user_name  = $request->user_name;
+
+        if($request->hasfile('user_image') != '')
+        {
+            $user_image = $request->file('user_image');
+            $remove_space = str_replace(' ', '-', $user_image->getClientOriginalName());
+            $data['user_image'] = time() . $remove_space;
+
+            $destinationPath = public_path('upload/blog/user_image/large/');
+            $img = Image::make($user_image->path());
+            $width=300;
+            $height=300;
+
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['user_image']);
+                
+            $destinationPath = public_path('upload/user_image/');
+            $user_image->move($destinationPath,$data['user_image']);
+
+            $blog->user_image = $data['user_image'];
+        }
+       
         $blog->date  = $request->date;
         $blog->description  = $request->description;
        
@@ -123,7 +147,30 @@ class BlogController extends Controller
     {
         $blog=Blog::find($id);
         $blog->title      = $request->title;
+        $blog->page_url      = $request->page_url;
         $blog->name  = $request->name;
+
+        if($request->hasfile('user_image') != '')
+        {
+            $user_image = $request->file('user_image');
+            $remove_space = str_replace(' ', '-', $user_image->getClientOriginalName());
+            $data['user_image'] = time() . $remove_space;
+
+            $destinationPath = public_path('upload/blog/user_image/large/');
+            $img = Image::make($user_image->path());
+            $width=300;
+            $height=300;
+
+            $img->resize($width,$height,function($constraint){
+            })->save($destinationPath.'/'.$data['user_image']);
+                
+            $destinationPath = public_path('upload/user_image/');
+            $user_image->move($destinationPath,$data['user_image']);
+
+            $blog->user_image = $data['user_image'];
+        }
+       
+
         $blog->date  = $request->date;
         $blog->description  = $request->description;
        
@@ -182,5 +229,23 @@ class BlogController extends Controller
         Blog::whereIn('id',$id)->delete();
         return redirect()->route('blog.index')->with('success', 'Blog Data Deleted Successfully');
 
+    }
+    public function set_order_blog()
+    {
+        $id = $_POST['id'];
+        $val = $_POST['val'];
+        // echo $id."-".$val;exit;
+        DB::table('blogs')->where('id', $id)->update(array('set_order' => $val));
+        echo "1";
+        // return redirect()->route('product.index')->with('success','Set Order has been Updated successfully');
+    }
+    public function set_as_home_blog(Request $request){
+        $id = $request->id;
+
+        $val = $request->val;
+
+        // echo $id."-".$val;exit;
+
+        DB::table('blogs')->where('id', $id)->update(array('set_as_home' => $val));    echo "1";
     }
 }

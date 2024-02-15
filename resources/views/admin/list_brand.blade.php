@@ -63,7 +63,7 @@
 
                         </a>
 
-                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_category();">
+                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_brand();">
 
                             <i class="fas fa-trash"></i> Delete
 
@@ -307,7 +307,7 @@
 
     <!-- Delete Category Modal -->
 
-    <div class="modal custom-modal fade" id="delete_category" role="dialog">
+    <div class="modal custom-modal fade" id="delete_brand_model" role="dialog">
 
         <div class="modal-dialog modal-dialog-centered">
 
@@ -432,11 +432,11 @@
     <!-- /set orderModal -->
 
     <script>
-        function delete_category() {
+        function delete_brand() {
 
             // alert('test');
-
-            var checked = $("#form input:checked").length > 0;
+            
+            var checked = $("#form input[name='selected[]']:checked").length > 0;
 
             if (!checked) {
 
@@ -444,7 +444,7 @@
 
             } else {
 
-                $('#delete_category').modal('show');
+                $('#delete_brand_model').modal('show');
 
             }
 

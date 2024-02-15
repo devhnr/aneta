@@ -514,9 +514,8 @@
                 success :function(msg){
                     if(msg != 0){
 
-                        $("#header_cart").load(location.href + " #header_cart");
-                        $("#header_cart_count").load(location.href + " #header_cart_count");
-                        $("#header_cart_count_footer").load(location.href + " #header_cart_count_footer");
+                        // $("#header_cart").load(location.href + " #header_cart");
+                        // $("#header_cart_count").load(location.href + " #header_cart_count");
 
                         $("#message_succsess").html("Product Added To Cart");
                         $('#message_succsess').show().delay(0).fadeIn('show');

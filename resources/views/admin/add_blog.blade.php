@@ -35,16 +35,23 @@
                                     <p id="title_error" style="display: none;color: red"></p>
                                 </div>
                                 <div class="form-group">
+                                    <label for="name">Page Url</label>
+                                    <input id="page_url" name="page_url" type="text" class="form-control"
+                                        placeholder="Enter Page Url" value="" />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Blog Name</label>
                                     <input id="name" name="name" type="text" class="form-control"
                                         placeholder="Enter Blog Name" value="" />
                                     <p id="name_error" style="display: none;color: red"></p>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="name">Page Url</label>
-                                    <input id="page_url" name="page_url" type="text" class="form-control"
-                                        placeholder="Enter Page Url" value="" />
-                                </div> --}}
+                               
+                                <div class="form-group">
+                                    <label for="name">User Image (300x x 300px)</label>
+                                    <input id="user_image" name="user_image" type="file" class="form-control"
+                                        value="" />
+                                    <p id="user_image_error" style="display: none;color: red"></p>
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Date</label>
                                     <input id="date" name="date" type="date" class="form-control"
@@ -127,7 +134,7 @@
 @section('footer_js')
     <script>
         $(function() {
-            $("#name").keyup(function() {
+            $("#title").keyup(function() {
                 var Text = $(this).val();
                 Text = Text.toLowerCase();
                 Text = Text.replace(/[^a-zA-Z0-9]+/g, '-');
@@ -154,6 +161,17 @@
                 jQuery('#name_error').show().delay(2000).fadeOut('show');
                 $('html, body').animate({
                     scrollTop: $('#name').offset().top - 150
+                }, 1000);
+                return false;
+            }
+           
+            var user_image = jQuery("#user_image").val();
+            if (user_image == '') {
+                jQuery('#user_image_error').html("Please Select User Image");
+                jQuery('#user_image_error').show().delay(0).fadeIn('show');
+                jQuery('#user_image_error').show().delay(2000).fadeOut('show');
+                $('html, body').animate({
+                    scrollTop: $('#user_image').offset().top - 150
                 }, 1000);
                 return false;
             }

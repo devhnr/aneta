@@ -672,7 +672,6 @@
 		
 		
 		<!-- Start Blog Area -->
-        @if(isset($blog) && !empty($blog))
         <section class="blog-area pb-40">
             <div class="container">
                 <div class="section-title">
@@ -680,30 +679,28 @@
                 </div>
 
                 <div class="row">
-                    @foreach($blog as $blog_data)
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-post">
                             <div class="post-image">
-                                <a href="{{ url('/blog-details/'.$blog_data->page_url) }}" class="d-block"><img src="{{asset('public/upload/blog/list_image/large/'.$blog_data->list_image) }}" alt="image"></a>
+                                <a href="single-blog-1.html" class="d-block"><img src="{{asset('public/site/assets/img/blog/blog-img1.jpg')}}" alt="image"></a>
                             </div>
 
                             <div class="post-content">
-                                <h3><a href="{{ url('/blog-details/'.$blog_data->page_url) }}">{{$blog_data->title}}</a></h3>
+                                <h3><a href="single-blog-1.html">A researcher is conducting research on coronavirus in the lab</a></h3>
                                 <ul class="post-meta align-items-center d-flex">
                                     <li>
                                         <div class="flex align-items-center">
-                                            <img src="{{asset('public/upload/blog/user_image/large/'.$blog_data->user_image)}}" alt="image">
-                                            <a href="#">{{$blog_data->name}}</a>
+                                            <img src="{{asset('public/site/assets/img/user1.jpg')}}" alt="image">
+                                            <a href="#">Rajesh Pandya</a>
                                         </div>
                                     </li>
-                                    <li>{{$blog_data->date}}</li>
+                                    <li>06-06-2021</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    @endforeach
 
-                    {{-- <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="single-blog-post">
                             <div class="post-image">
                                 <a href="single-blog-1.html" class="d-block"><img src="{{asset('public/site/assets/img/blog/blog-img2.jpg')}}" alt="image"></a>
@@ -743,11 +740,10 @@
                                 </ul>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </section>
-        @endif
         <!-- End Blog Area -->
 		
 @include('front.includes.footer')

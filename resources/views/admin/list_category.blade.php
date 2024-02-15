@@ -442,7 +442,7 @@
 
                // alert('test');
 
-               var checked = $("#form input:checked").length > 0;
+               var checked = $("#form input[name='selected[]']:checked").length > 0;
 
                if (!checked) {
 

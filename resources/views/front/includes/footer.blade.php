@@ -74,27 +74,22 @@
                             <h3>Information</h3>
 
                             <ul class="link-list">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms-of-service.html">Terms & Conditions</a></li>
-                                <li><a href="customer-service.html">Delivery Information</a></li>
-                                <li><a href="customer-service.html">Orders and Returns</a></li>
+                                <li><a href="{{ url('/about-us') }}">About Us</a></li>
+                                <li><a href="{{ url('/contact') }}">Contact Us</a></li>
+								<li><a href="{{ url('/blogs') }}">Blogs</a></li>
+								<li><a href="#">FAQs</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-sm-6 col-md-6">
                         <div class="single-footer-widget">
-                            <h3>Customer Care</h3>
+                            <h3>Policies</h3>
 
                             <ul class="link-list">
-                                <li><a href="faq.html">Help & FAQs</a></li>
-                                <li><a href="profile-authentication.html">My Account</a></li>
-                                <li><a href="cart.html">Order History</a></li>
-                                <li><a href="cart.html">Wishlist</a></li>
-                                <li><a href="contact.html">Newsletter</a></li>
-                                <li><a href="purchase-guide.html">Purchasing Policy</a></li>
+								<li><a href="#">Terms & Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Retirn Policy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -548,7 +543,7 @@
         <script src="{{asset('public/site/assets/js/main.js')}}"></script>
     </body>
 </html>
-    @if (Session::get('L_strsucessMessage') != '')
+@if (Session::get('L_strsucessMessage') != '')
 
         <script>document.getElementById('message_succsess').innerHTML = "{{ Session::get('L_strsucessMessage') }}";$('#message_succsess').show().delay(0).fadeIn('show');$('#message_succsess').show().delay(3000).fadeOut('show');</script>
         

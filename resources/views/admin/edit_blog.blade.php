@@ -36,16 +36,26 @@
                                     <p id="title_error" style="display: none;color: red"></p>
                                 </div>
                                 <div class="form-group">
+                                    <label for="name">Page Url</label>
+                                    <input id="page_url" name="page_url" type="text" class="form-control"
+                                        placeholder="Enter Page Url" value="{{ $blog->page_url }}" />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Blog Name</label>
                                     <input id="name" name="name" type="text" class="form-control"
                                         placeholder="Enter Blog Name" value="{{ $blog->name }}" />
                                     <p id="name_error" style="display: none;color: red"></p>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="name">Page Url</label>
-                                    <input id="page_url" name="page_url" type="text" class="form-control"
-                                        placeholder="Enter Page Url" value="" />
-                                </div> --}}
+                                <div class="form-group">
+                                    <label for="name">User Image (300x x 300px)</label>
+                                    <input id="user_image" name="user_image" type="file" class="form-control"
+                                        value="" />
+                                        @if ($blog->list_image != '')
+                                        <img src="{{ url('public/upload/blog/user_image/large/' . $blog->user_image) }}"
+                                            style="width: 50px;height: 50px;">
+                                    @endif
+                                </div>
+                               
                                 <div class="form-group">
                                     <label for="name">Date</label>
                                     <input id="date" name="date" type="date" class="form-control"
@@ -134,7 +144,7 @@
 @section('footer_js')
     <script>
         $(function() {
-            $("#name").keyup(function() {
+            $("#title").keyup(function() {
                 var Text = $(this).val();
                 Text = Text.toLowerCase();
                 Text = Text.replace(/[^a-zA-Z0-9]+/g, '-');

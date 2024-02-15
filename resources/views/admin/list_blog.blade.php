@@ -62,7 +62,7 @@
 
                     </a> --}}
 
-                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_blog();">
+                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_category();">
 
                             <i class="fas fa-trash"></i> Delete
 
@@ -86,6 +86,13 @@
             </div>
         @endif
 
+        <div class="alert alert-success alert-dismissible fade show success_show" style="display: none;">
+
+            <strong>Success! </strong><span id="success_message"></span>
+
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+
+        </div>
 
 
         <div class="row">
@@ -113,10 +120,15 @@
                                             <!-- <th>Select</th> -->
                                             <th>Select</th>
                                             <th>Blog Title</th>
+                                            <th>Page Url</th>
                                             <th>Blog Name</th>
+                                           
+                                            <th>User Image</th>
                                             <th>Date</th>
                                             <th>List Image</th>
                                             <th>Detail Image</th>
+                                            <th>Set As Home</th>
+                                            <th>Set Order</th>
 
                                             @if (in_array('12', $edit_perm))
                                                 <th class="text-right">Actions</th>
@@ -148,7 +160,15 @@
                                                         {{ $data->title }}
                                                     </td>
                                                     <td>
+                                                        {{ $data->page_url }}
+                                                    </td>
+                                                    <td>
                                                         {{ $data->name }}
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <img src="{{ url('public/upload/blog/user_image/large/' . $data->user_image) }}"
+                                                            width="50px" height="50px">
                                                     </td>
 
                                                     <td>
@@ -166,6 +186,17 @@
                                                     <td>
                                                         <img src="{{ url('public/upload/blog/detail_image/large/' . $data->detail_image) }}"
                                                             width="50px" height="50px">
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="set_as_home" name="set_as_home"
+                                                            value="1" onclick="setashome('{{ $data->id }}', this)"
+                                                            @if ($data->set_as_home == '1') checked @endif />
+                                                    </td>
+    
+                                                    <td class="left"><input type="text" value="{{ $data->set_order }}"
+                                                        onchange="updateorder_popup(this.value, '{{ $data->id }}');"
+                                                        class="form-control" />
                                                     </td>
 
 
@@ -293,6 +324,61 @@
 
     <!-- /Select one record Category Modal -->
 
+    <!-- sale Modal -->
+    <div class="modal custom-modal fade custom_css_model" id="blog_model" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-text text-center">
+                        <h3 id="blog_poup_text"></h3>
+                        <input type="hidden" name="blog_val" id="blog_val" value="">
+                        <input type="hidden" name="blog_id" id="blog_id" value="">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary" onclick="set_as_homes();">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /sale Modal -->
+
+
+
+    <!-- set order Modal -->
+
+    <div class="modal custom-modal fade" id="set_order_model" role="dialog">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <div class="modal-text text-center">
+
+                        <h3>Are you sure you want to Set order of Blog</h3>
+
+                        <input type="hidden" name="set_order_val" id="set_order_val" value="">
+
+                        <input type="hidden" name="set_order_id" id="set_order_id" value="">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                        <button type="button" class="btn btn-primary" onclick="updateorder();">Yes</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- /set orderModal -->
+
+
 
 
 
@@ -300,23 +386,23 @@
 
 
     <script>
-        function delete_blog() {
+        function delete_category() {
 
             // alert('test');
 
 
 
-            var checked = $("#form input:checked").length > 0;
+            var checked = $("#form input[name='selected[]']:checked").length > 0;
 
-            if (!checked) {
+        if (!checked) {
 
-                $('#select_one_record').modal('show');
+            $('#select_one_record').modal('show');
 
-            } else {
+        } else {
 
-                $('#delete_model').modal('show');
+            $('#delete_model').modal('show');
 
-            }
+        }
 
         }
 
@@ -328,6 +414,125 @@
 
         }
     </script>
+    <script>
+        
+       function updateorder_popup(val, id) {
+
+            $('#set_order_val').val(val);
+
+            $('#set_order_id').val(id);
+
+            $('#set_order_model').modal('show');
+
+            }
+
+
+
+            function updateorder() {
+
+            var id = $('#set_order_id').val();
+
+            var val = $('#set_order_val').val();
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "{{ url('set_order_blog') }}",
+
+                data: {
+
+                    "_token": "{{ csrf_token() }}",
+
+                    "id": id,
+
+                    "val": val
+
+                },
+
+                success: function(returnedData) {
+
+                    // alert(returnedData);
+
+                    if (returnedData == 1) {
+
+                        // alert('yes');
+
+                        $('#success_message').text("Set Order has been Updated successfully");
+
+                        //$('.success_show').show();
+
+                        $('.success_show').show().delay(0).fadeIn('show');
+
+                        $('.success_show').show().delay(5000).fadeOut('show');
+
+
+
+                        $('#set_order_model').modal('hide');
+
+                    }
+
+                }
+
+            });
+
+
+
+            }
+
+    </script>
+     <script>
+        function setashome(id, value) {
+
+            //   alert(id + " " + value);
+
+            $('#blog_id').val(id);
+
+            if (value.checked) {
+                $('#blog_val').val('1');
+                $('#blog_poup_text').text("Are You Sure You Want Set As Home");
+                $('#blog_model').modal('show');
+            } else {
+                $('#blog_val').val('0');
+                $('#blog_poup_text').text("Are You Sure You Want to remove From Set As Home");
+                $('#blog_model').modal('show');
+            }
+        }
+
+        function set_as_homes() {
+
+
+            var id = $('#blog_id').val();
+            var val_new = $('#blog_val').val();
+
+            //    alert(val_new + " " + id);
+
+
+            $.ajax({
+                type: "POST",
+                url: "{{ url('set_as_home_blog') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "val": val_new
+                },
+                success: function(returnedData) {
+
+                    if (returnedData == 1) {
+
+                        //  alert('yes');
+
+                        $('#success_message').text("Set As Home has been Updated successfully");
+                        $('.success_show').show().delay(0).fadeIn('show');
+                        $('.success_show').show().delay(5000).fadeOut('show');
+                        $('#blog_model').modal('hide');
+                    }
+                }
+            });
+
+        }
+    </script>
+
     <script>
         if ($.fn.DataTable.isDataTable('#example')) {
             $('#example').DataTable().destroy();

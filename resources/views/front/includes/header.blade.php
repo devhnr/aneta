@@ -136,8 +136,8 @@
                                 <a href="{{url('/signin')}}">Login</a></li>
                             @else
                             <li>
-                      {{-- <i class="fa fa-user-circle" style="color: #3D9630;"></i>--}}
-                                <a href="{{url('/signout')}}">Logout</a></li>
+                      <i class="fa fa-user-circle" style="color: #3D9630;"></i>
+                                <a href="{{url('/my-profile')}}">My Account</a></li>
                             @endif
                           
                         </ul>
