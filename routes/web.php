@@ -96,9 +96,12 @@ Route::controller(UserRegistration::class)->group(function () {
     Route::match(['get', 'post'], '/signup', 'register')->name('signup');
     Route::match(['get', 'post'], '/signin', 'login')->name('signin');
     Route::match(['get', 'post'], '/lost-password', 'lost_password')->name('lost_password');
-    Route::post('check-login','checklogin');
+
+  Route::post('check-login','checklogin');
     Route::post('check-isactive','userLoginCheck');
     Route::get('signout','signout');
+
+
     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
 });
 

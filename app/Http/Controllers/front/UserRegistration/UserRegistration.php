@@ -15,23 +15,101 @@ use Illuminate\Support\Facades\Redirect;
 class UserRegistration extends Controller
 {
     public function register(Request $request){
+        
         if($request->action == 'user-register'){
-            
-            $data['name']  = $name = $request->username;
-            $data['email'] = $email = $request->email;
+
            
-            $data['password'] = $password = Hash::make($request->password);
-            $data['mobile'] = $mobile = $request->mobile;
-            $data['create_at'] = \Carbon\Carbon::now();
+            //echo "test";exit;
+            $data['vendor_name']=$request->vendor_name;
+            $data['name']=$request->name;
+            $data['mobile']=$request->mobile;
+            $data['pincode']=$request->pincode;
+            $data['email']=$request->email;
+            $data['password']= Hash::make($request->password);        
+            $data['address']=$request->address; 
+            $data['owner1_name']=$request->owner1_name; 
+            $data['owner1_pincode']=$request->owner1_pincode; 
+            $data['owner1_contact_no']=$request->owner1_contact_no; 
+            $data['owner1_address']=$request->owner1_address;
+            $data['owner2_name']=$request->owner2_name; 
+            $data['owner2_pincode']=$request->owner2_pincode; 
+            $data['owner2_contact_no']=$request->owner2_contact_no; 
+            $data['owner2_address']=$request->owner2_address; 
+            $data['is_active']= $is_active = 1; 
+    
+            if ($request->hasFile('documents')) 
+        {
+                 
+            $file = $request->file('documents');
+                 
+            $path = public_path('upload/customer/gst_professional_certificate/');
+                
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+           
+            $file->move($path, $fileName);
+            
+            $data['documents']= $fileName;
+               
+        }
+        if ($request->hasFile('owner_aadhar')) 
+        {
+                 
+            $file = $request->file('owner_aadhar');
+                 
+            $path = public_path('upload/customer/owner_aadhar/');
+                
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+           
+            $file->move($path, $fileName);
+            
+            $data['owner_aadhar']= $fileName;
+               
+        }
+        if ($request->hasFile('pan')) 
+        {
+                 
+            $file = $request->file('pan');
+                 
+            $path = public_path('upload/customer/pan/');
+                
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+           
+            $file->move($path, $fileName);
+            
+            $data['pan']= $fileName;
+               
+        }
+        if ($request->hasFile('pharmacy_license')) 
+        {
+                 
+            $file = $request->file('pharmacy_license');
+                 
+            $path = public_path('upload/customer/pharmacy_license/');
+                
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+           
+            $file->move($path, $fileName);
+            
+            $data['pharmacy_license']= $fileName;
+               
+        }
+     
+           
+            // DB::table('front_users')->insert($data);
+    
+           
             $plainPassword = $request->password;
             $data['id'] = DB::table('front_users')->insertGetId($data);
+            
             $newuserdata = array(
                     'userid'  => $data['id'],
-                    'name'  => $data['name'],
-                    'email'  => $data['email'],
-                    'mobile'  => $data['mobile'],
+                    'name'  => $request->name,
+                    'email'  => $request->email,
+                    'mobile'  => $request->mobile,
                     'logged_in' => true
                 );
+                
+
             Session::put('userdata', $newuserdata);
             $html = '<!doctype html> <html>
         
@@ -109,7 +187,7 @@ class UserRegistration extends Controller
                 <div class="wrapper" >
                 
                     <div class="logo">
-                        <img src="'.asset("public/site/images/sagar-logo.png").'" style="width: 30%;" >
+                        <img src="'.asset("public/site/assets/img/logo.png").'" style="width: 30%;" >
                     </div>
                     <div class="email-wrapper" >
                         <table style="border-collapse:collapse;" width="100%" border="0" cellspacing="0" cellpadding="10">          
@@ -133,9 +211,9 @@ class UserRegistration extends Controller
                                         <tr>
                                             <td width="50%">        
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="5">   
-                                                    <tr><td width="100px">Name: </td><td>'.$name.'</td></tr>
-                                                    <tr><td width="100px">Email: </td><td>'.$email.'</td></tr>
-                                                    <tr><td width="100px">Mobile: </td><td>'.$mobile.'</td></tr>
+                                                    <tr><td width="100px">Name: </td><td>'.$request->name.'</td></tr>
+                                                    <tr><td width="100px">Email: </td><td>'.$request->email.'</td></tr>
+                                                    <tr><td width="100px">Mobile: </td><td>'.$request->mobile.'</td></tr>
                                                     <tr><td width="100px">Password: </td><td>'.$plainPassword.'</td></tr>
                                                 </table>
                                             </td>   
@@ -148,13 +226,13 @@ class UserRegistration extends Controller
                 </div>
             </body>
         </html>';
-        $subject = "Thank you for Registration - Sagar store";
-        $to = $email;
+        $subject = "Thank you for Registration -Aneta";
+        $to = $request->email;
         // $to = $request->email;
         Mail::send([], [], function($message) use($html, $to, $subject) {
             $message->to($to);
             $message->subject($subject);
-            $message->from('devang.hnrtechnologies@gmail.com', 'Sagar store');
+            $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
             $message->html($html);
         });
         
