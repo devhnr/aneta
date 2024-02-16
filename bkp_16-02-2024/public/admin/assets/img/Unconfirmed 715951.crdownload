@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="Aneta_Logo_Icon" data-name="Aneta Logo Icon" transform="translate(-1613 -570)">
+    <rect id="Rectangle_57" data-name="Rectangle 57" width="40" height="40" transform="translate(1613 570)" fill="none"></rect>
+    <g id="Group_192" data-name="Group 192" transform="translate(120.124 186.999)">
+      <path id="Path_40" data-name="Path 40" d="M39.752,70.457V86.33H31.829V83.241A20,20,0,0,1,0,70.457H8.091a12.081,12.081,0,0,0,23.321,0Z" transform="translate(1493 335.701)" fill="#00499c" fill-rule="evenodd"></path>
+      <path id="Path_41" data-name="Path 41" d="M19.752,0A19.912,19.912,0,0,1,31.829,4.061V.973h7.922V16.845h-8.34a12.081,12.081,0,0,0-23.321,0H0A20,20,0,0,1,19.752,0" transform="translate(1493 382.999)" fill="#3d9630" fill-rule="evenodd"></path>
+      <path id="Path_42" data-name="Path 42" d="M36.708,39.876h2.411V37.466a3.166,3.166,0,0,1,3.156-3.157h0a3.166,3.166,0,0,1,3.157,3.157v2.411h2.411A3.166,3.166,0,0,1,51,43.032h0a3.166,3.166,0,0,1-3.157,3.157H45.432V48.6a3.166,3.166,0,0,1-3.157,3.157h0A3.166,3.166,0,0,1,39.118,48.6V46.19H36.708a3.166,3.166,0,0,1-3.157-3.157h0a3.166,3.166,0,0,1,3.157-3.156" transform="translate(1470.476 359.968)" fill="#3d9630" fill-rule="evenodd"></path>
+    </g>
+  </g>
+</svg>
