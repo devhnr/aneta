@@ -253,23 +253,17 @@
 
                                             <th>Select</th>
 
-                                            <th>Company Name</th>
+                                            <th>Vendor Name</th>
 
-                                            <th>Contact Person</th>
+                                            <th>Name</th>
 
-                                            <th>Email Id</th>
+                                            <th>Email</th>
 
-                                            <th>Contact No</th>
 
-                                            <th>Documents</th>
 
-                                            {{-- <th>Gst/Professional Tax Certificate</th>
+                                            <th>Mobile</th>
 
-                                            <th>Owner Aadhar</th>
-
-                                            <th>Pan</th>
-
-                                            <th>Pharmacy License</th> --}}
+                                            <th>Download</th>
 
                                             <th>Status</th>
 
@@ -317,52 +311,11 @@
                                                 <td>{{ $data->mobile }}</td>
 
                                                 <td class="text-right">
-                                                    @isset($data->documents)
-                                                        <a class=""
-                                                            href="{{ url('admin/download/gst/' . $data->documents) }}">
-                                                            <span>Gst/Professional Tax Certificate</span>
-                                                        </a><br>
-                                                    @endisset
-
-                                                    @isset($data->owner_aadhar)
-                                                        <a class=""
-                                                            href="{{ url('admin/download/aadhar/' . $data->owner_aadhar) }}">
-                                                            <span>Owner Aadhar</span>
-                                                        </a><br>
-                                                    @endisset
-
-                                                    @isset($data->pan)
-                                                        <a class="" href="{{ url('admin/download/pan/' . $data->pan) }}">
-                                                            <span>Pan</span>
-                                                        </a><br>
-                                                    @endisset
-
-                                                    @isset($data->pharmacy_license)
-                                                        <a class=""
-                                                            href="{{ url('admin/download/pharmacy-license/' . $data->pharmacy_license) }}">
-                                                            <span>Pharmacy License</span>
-                                                        </a>
-                                                    @endisset
-
+                                                    <a class="btn btn-sm btn-primary me-2"
+                                                        href="{{ url('admin/download/' . $data->documents) }}"><i
+                                                            class="fas fa-download me-1">
+                                                            Download</i></a>
                                                 </td>
-                                                {{-- <td class="text-right">
-                                                    <a class="" style="color: #212529"
-                                                        href="{{ url('admin/download/aadhar/' . $data->owner_aadhar) }}">
-                                                        {{ $data->owner_aadhar }}
-                                                    </a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="" style="color: #212529"
-                                                        href="{{ url('admin/download/pan/' . $data->pan) }}">
-                                                        {{ $data->pan }}
-                                                    </a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="" style="color: #212529"
-                                                        href="{{ url('admin/download/pharmacy-license/' . $data->pharmacy_license) }}">
-                                                        {{ $data->pharmacy_license }}
-                                                    </a>
-                                                </td> --}}
                                                 <td>
                                                     <div class="">
                                                         <label class="toggle">

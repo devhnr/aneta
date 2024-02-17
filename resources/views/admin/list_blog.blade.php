@@ -122,8 +122,7 @@
                                             <th>Blog Title</th>
                                             <th>Page Url</th>
                                             <th>Blog Name</th>
-                                           
-                                            <th>User Image</th>
+                                            {{-- <th>User Image</th> --}}
                                             <th>Date</th>
                                             <th>List Image</th>
                                             <th>Detail Image</th>
@@ -166,10 +165,10 @@
                                                         {{ $data->name }}
                                                     </td>
                                                    
-                                                    <td>
+                                                    {{-- <td>
                                                         <img src="{{ url('public/upload/blog/user_image/large/' . $data->user_image) }}"
                                                             width="50px" height="50px">
-                                                    </td>
+                                                    </td> --}}
 
                                                     <td>
                                                         @php

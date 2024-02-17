@@ -28,6 +28,7 @@ use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\SubbannerController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\ContactUsController;
 
 
 
@@ -74,13 +75,14 @@ Route::get('/hdfc', function () {
 /*------Front routes start ------*/
 
 
+
 Route::get('/', '\App\Http\Controllers\front\Homecontroller@index');
 Route::get('/about-us', '\App\Http\Controllers\front\Homecontroller@about_us');
 Route::get('/product-list', '\App\Http\Controllers\front\Homecontroller@product_list');
 // Route::get('/product-detail', '\App\Http\Controllers\front\Homecontroller@product_detail');
 Route::get('/product-detail/{page_url}', '\App\Http\Controllers\front\Front_productcontroller@product_detail');
 Route::post('price_show','\App\Http\Controllers\front\Front_productcontroller@price_show');
-Route::get('/contact', '\App\Http\Controllers\front\Homecontroller@contact');
+Route::match(['get', 'post'], '/contact', '\App\Http\Controllers\front\Homecontroller@contact')->name('contact');
 Route::get('/blogs', '\App\Http\Controllers\front\Homecontroller@blogs');
 Route::get('/blog-details/{blog_page_url}', '\App\Http\Controllers\front\Homecontroller@blog_details');
 Route::post('vendor_check_mail', 'App\Http\Controllers\admin\CustomerController@vendor_check_mail');
@@ -92,6 +94,7 @@ Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout
 Route::post('add_to_cart','\App\Http\Controllers\front\Cartcontroller@add_to_cart');
 Route::post('cart_remove', '\App\Http\Controllers\front\Cartcontroller@cart_remove');
 Route::post('update_cart', '\App\Http\Controllers\front\Cartcontroller@update_cart');
+// Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
 
 Route::controller(UserRegistration::class)->group(function() {
 
@@ -111,6 +114,7 @@ Route::controller(UserRegistration::class)->group(function() {
 	Route::get('my-profile', 'my_profile');
 	Route::get('edit-profile', 'edit_profile');
 	Route::post('/update-profile', 'update_profile')->name('update_profile');
+    Route::get('/admin/download/{documentType}/{filename}', [UserRegistration::class, 'download']);
 	
     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
 });
@@ -172,7 +176,7 @@ Route::get('/admin', function () {
 
     Route::resource('/admin/customer', '\App\Http\Controllers\admin\CustomerController');
     Route::get('/delete_customer', [CustomerController::class, 'destroy'])->name('delete_customer');
-    Route::get('/admin/download/{filename}', [CustomerController::class, 'download_gst']);
+    // Route::get('/admin/download/{filename}', [CustomerController::class, 'download_gst']);
     Route::post('change_status','App\Http\Controllers\admin\CustomerController@change_status');
         
     Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
@@ -210,6 +214,9 @@ Route::get('/admin', function () {
     Route::post('set_as_home_brand', '\App\Http\Controllers\admin\BrandController@set_as_home_brand');
     Route::post('couponcheck', '\App\Http\Controllers\front\Cartcontroller@couponcheck');
     Route::post('removecoupon', '\App\Http\Controllers\front\Cartcontroller@removecoupon');
+
+    Route::resource('/admin/contact', '\App\Http\Controllers\admin\ContactUsController');
+    Route::get('/admin/delete_contact', [ContactUsController::class, 'destroy'])->name('delete_contact');
     
     
    

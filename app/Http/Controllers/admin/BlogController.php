@@ -97,8 +97,8 @@ class BlogController extends Controller
 
             $destinationPath = public_path('upload/blog/detail_image/large/');
             $img = Image::make($detail_image->path());
-            $width=1155;
-            $height=875;
+            $width=1175;
+            $height=400;
 
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['detail_image']);
@@ -201,8 +201,8 @@ class BlogController extends Controller
 
             $destinationPath = public_path('upload/blog/detail_image/large/');
             $img = Image::make($detail_image->path());
-            $width=1155;
-            $height=875;
+            $width=1175;
+            $height=400;
 
             $img->resize($width,$height,function($constraint){
             })->save($destinationPath.'/'.$data['detail_image']);

@@ -181,17 +181,19 @@
 										<div class="custom-form-labels">
 											<p class="custom-forms-label">GST Certificate/ Professional TAX Certificate</p>
 											<h6 class="custom-forms-text">
+												
 												<a class="btn btn-sm btn-primary me-2"
-												href="{{ url('public/upload/customer/gst_professional_certificate/'.$my_profile->documents)}}"><i
-													class="fa fa-download">
+                                            	  href="{{ url('admin/download/gst/' . $my_profile->documents) }}">
+													<i class="fa fa-download">
 													Download</i></a></h6>
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 mb-20">
 										<div class="custom-form-labels">
 											<p class="custom-forms-label">Owner Aadhar</p>
-											<h6 class="custom-forms-text"><a class="btn btn-sm btn-primary me-2"
-												href="{{ url('public/upload/customer/owner_aadhar/'.$my_profile->owner_aadhar)}}"><i
+											<h6 class="custom-forms-text">
+												<a class="btn btn-sm btn-primary me-2"
+                                            	  href="{{ url('admin/download/aadhar/' . $my_profile->owner_aadhar) }}"><i
 													class="fa fa-download">
 													Download</i></a></h6>
 										</div>
@@ -199,8 +201,9 @@
 									<div class="col-lg-6 col-md-6 col-sm-6 mb-20">
 										<div class="custom-form-labels">
 											<p class="custom-forms-label">PAN</p>
-											<h6 class="custom-forms-text"><a class="btn btn-sm btn-primary me-2"
-												href="{{ url('public/upload/customer/pan/'.$my_profile->pan)}}"><i
+											<h6 class="custom-forms-text">
+												<a class="btn btn-sm btn-primary me-2"
+												href="{{ url('admin/download/pan/'.$my_profile->pan) }}"><i
 													class="fa fa-download">
 													Download</i></a></h6>
 										</div>
@@ -208,8 +211,9 @@
 									<div class="col-lg-6 col-md-6 col-sm-6 mb-20">
 										<div class="custom-form-labels">
 											<p class="custom-forms-label">Pharmacy Licence</p>
-											<h6 class="custom-forms-text"><a class="btn btn-sm btn-primary me-2"
-												href="{{ url('public/upload/customer/pharmacy_license/'.$my_profile->pharmacy_license)}}"><i
+											<h6 class="custom-forms-text">
+												<a class="btn btn-sm btn-primary me-2"
+												href="{{ url('admin/download/pharmacy-license/'.$my_profile->pharmacy_license) }}"><i
 													class="fa fa-download">
 													Download</i></a></h6>
 										</div>

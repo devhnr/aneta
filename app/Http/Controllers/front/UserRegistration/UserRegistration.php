@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserRegistration extends Controller
 {
-    public function register(Request $request){
+public function register(Request $request){
+       
         
         if($request->action == 'user-register'){
 
            
-            //echo "test";exit;
+        //     echo"<pre>";
+        // print_r($request->all());
+        // echo"</pre>";exit;
+
             $data['vendor_name']=$request->vendor_name;
             $data['name']=$request->name;
             $data['mobile']=$request->mobile;
@@ -110,7 +114,7 @@ class UserRegistration extends Controller
                 );
                 
 
-            Session::put('userdata', $newuserdata);
+            // Session::put('userdata', $newuserdata);
             $html = '<!doctype html> <html>
         
             <head>
@@ -211,10 +215,38 @@ class UserRegistration extends Controller
                                         <tr>
                                             <td width="50%">        
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="5">   
-                                                    <tr><td width="100px">Name: </td><td>'.$request->name.'</td></tr>
-                                                    <tr><td width="100px">Email: </td><td>'.$request->email.'</td></tr>
-                                                    <tr><td width="100px">Mobile: </td><td>'.$request->mobile.'</td></tr>
-                                                    <tr><td width="100px">Password: </td><td>'.$plainPassword.'</td></tr>
+                                                    <tr><td width="150px">Company Name: </td><td>'.$request->vendor_name.'</td></tr>
+                                                    <tr><td width="150px">Address: </td><td>'.$request->address.'</td></tr>
+                                                    <tr><td width="150px">Pincode: </td><td>'.$request->pincode.'</td></tr>
+                                                    <tr><td width="150px">Contact Person: </td><td>'.$request->name.'</td></tr>
+                                                    <tr><td width="150px">Contact No: </td><td>'.$request->mobile.'</td></tr>
+                                                    <tr><td width="150px">Email ID: </td><td>'.$request->email.'</td></tr>
+                                                    <tr><td width="150px">Password: </td><td>'.$plainPassword.'</td></tr><br><br>
+                                                    <tr><td style="margin: 0px;padding: 0px;"><h3 style="margin: 5px;">Owner-1 Details</h3></td></tr>
+                                                    <tr><td width="150px">Owner Name 1: </td><td>'.$request->owner1_name.'</td></tr>';
+                                                    if($request->owner1_address){
+                                                        $html .= '<tr><td width="100px">Address-1: </td><td>'.$request->owner1_address.'</td></tr>';
+                                                    }$html .= '                              
+                                                    
+                                                    <tr><td width="150px">Pincode-1: </td><td>'.$request->owner1_pincode.'</td></tr>
+                                                    <tr><td width="150px">Contact No-1: </td><td>'.$request->owner1_contact_no.'</td></tr>';
+                                                    
+                                                    if($request->owner2_name !=''){
+                                                        $html .= '<tr><td style="margin: 0px;padding: 0px;"><h3 style="margin: 5px;">Owner-2 Details</h3></td><tr>'; 
+                                                    }
+                                                    if($request->owner2_name !=''){
+                                                        $html .= '<tr><td width="150px">Owner Name-2: </td><td>'.$request->owner2_name.'</td></tr>'; 
+                                                    }
+                                                    if($request->owner2_address !=''){
+                                                        $html .= '<tr><td width="150px">Address-2: </td><td>'.$request->owner2_address.'</td></tr>';
+                                                    }
+                                                    if($request->owner2_pincode !=''){
+                                                        $html .= '<tr><td width="150px">Pincode-2: </td><td>'.$request->owner2_address.'</td></tr>';
+                                                    }
+                                                    if($request->owner2_pincode !=''){
+                                                        $html .= '<tr><td width="150px">Contact No-2: </td><td>'.$request->owner2_contact_no.'</td></tr>';
+                                                    } $html .= '                                
+                                                    
                                                 </table>
                                             </td>   
                                         </tr>   
@@ -227,10 +259,19 @@ class UserRegistration extends Controller
             </body>
         </html>';
         $subject = "Thank you for Registration -Aneta";
-        $to = $request->email;
-        // $to = $request->email;
+        $to = $request->email;      
+        // echo $html;exit;
         Mail::send([], [], function($message) use($html, $to, $subject) {
             $message->to($to);
+            $message->subject($subject);
+            $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
+            $message->html($html);
+        });
+
+        $admin = "mayudin.hnrtechnologies@gmail.com";
+        
+        Mail::send([], [], function($message) use($html, $admin, $subject) {
+            $message->to($admin);
             $message->subject($subject);
             $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
             $message->html($html);
@@ -244,6 +285,30 @@ class UserRegistration extends Controller
         $data['meta_description'] = "";
 
     	return view('front.register',$data);
+    }
+    public function download($documentType, $filename)
+    {        
+        $filepath = '';
+    
+        switch ($documentType) {
+            case 'gst':
+                $filepath = public_path("upload/customer/gst_professional_certificate/{$filename}");
+                break;
+            case 'aadhar':
+                $filepath = public_path("upload/customer/owner_aadhar/{$filename}");
+                break;
+            case 'pan':
+                $filepath = public_path("upload/customer/pan/{$filename}");
+                break;
+            case 'pharmacy-license':
+                $filepath = public_path("upload/customer/pharmacy_license/{$filename}");
+                break;
+            default:
+                // Handle invalid document type
+                return response()->json(['error' => 'Invalid document type'], 404);
+        }
+    
+        return response()->download($filepath);
     }
     public function checkmail()
     {

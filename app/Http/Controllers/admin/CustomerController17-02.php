@@ -265,9 +265,14 @@ class CustomerController extends Controller
 
         return redirect()->route('customer.index')->with('success','Customer Data Deleted Successfully');
     }
+    public function download_gst($filename)
+    {
+        // echo "test";exit;
+        $filepath = public_path("upload/customer/gst_professional_certificate/{$filename}");
 
-
-    
+        // echo "<pre>";print_r($filepath);echo "</pre>";exit;
+        return Response::download($filepath);
+    }
     public  function change_status(){
 
 
@@ -280,23 +285,6 @@ class CustomerController extends Controller
 
         echo"1";
 
-    }
-    function vendor_check_mobile(){
-
-        $mobile = $_POST['mobile']; // Replace with the email you want to search for
-
-        $result = DB::table('front_users')
-            ->select('*')
-            ->where('mobile', $mobile)
-            ->first();
-
-        if ($result) {
-            return 1;
-        } else {
-            return 0;
-        }
-
-            echo $result;
     }
     function vendor_check_mail(){
 
@@ -315,30 +303,21 @@ class CustomerController extends Controller
 
             echo $result;
     }
+    function vendor_check_mobile(){
 
-    public function download($documentType, $filename)
-    {        
-        $filepath = '';
-    
-        switch ($documentType) {
-            case 'gst':
-                $filepath = public_path("upload/customer/gst_professional_certificate/{$filename}");
-                break;
-            case 'aadhar':
-                $filepath = public_path("upload/customer/owner_aadhar/{$filename}");
-                break;
-            case 'pan':
-                $filepath = public_path("upload/customer/pan/{$filename}");
-                break;
-            case 'pharmacy-license':
-                $filepath = public_path("upload/customer/pharmacy_license/{$filename}");
-                break;
-            default:
-                // Handle invalid document type
-                return response()->json(['error' => 'Invalid document type'], 404);
+        $mobile = $_POST['mobile']; // Replace with the email you want to search for
+
+        $result = DB::table('front_users')
+            ->select('*')
+            ->where('mobile', $mobile)
+            ->first();
+
+        if ($result) {
+            return 1;
+        } else {
+            return 0;
         }
-    
-        return response()->download($filepath);
+
+            echo $result;
     }
-    
 }
