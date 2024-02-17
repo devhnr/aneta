@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="image">Detail Image (1155px x 875px)</label>
+                                        <label for="image">Detail Image (1175px x 400px)</label>
                                         <input id="detail_image" name="detail_image" type="file" class="form-control"
                                             value="" />
                                         <p id="detail_image_error" style="display: none;color: red"></p>

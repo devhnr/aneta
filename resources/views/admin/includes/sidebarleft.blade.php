@@ -161,6 +161,16 @@
             </li>
         @endif
 
+        @if (in_array('14', $permission1))
+            <li class="{{ request()->segment(2) == 'contact' ? 'active' : '' }}">
+
+                <a href="{{route('contact.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
+
+                    <span>Contact</span></a>
+
+            </li>
+        @endif
+
 
 
 

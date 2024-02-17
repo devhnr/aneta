@@ -16,28 +16,28 @@
     });
 
 
-    function submitForm(){
-        // Initiate Variables With Form Content
-        var name = $("#name").val();
-        var email = $("#email").val();
-        var phone_number = $("#phone_number").val();
-        var message = $("#message").val();
+    // function submitForm(){
+    //     // Initiate Variables With Form Content
+    //     var name = $("#name").val();
+    //     var email = $("#email").val();
+    //     var phone_number = $("#phone_number").val();
+    //     var message = $("#message").val();
 
 
-        $.ajax({
-            type: "POST",
-            url: "assets/php/form-process.php",
-            data: "name=" + name + "&email=" + email + "&phone_number=" + phone_number + "&message=" + message,
-            success : function(text){
-                if (text == "success"){
-                    formSuccess();
-                } else {
-                    formError();
-                    submitMSG(false,text);
-                }
-            }
-        });
-    }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "assets/php/form-process.php",
+    //         data: "name=" + name + "&email=" + email + "&phone_number=" + phone_number + "&message=" + message,
+    //         success : function(text){
+    //             if (text == "success"){
+    //                 formSuccess();
+    //             } else {
+    //                 formError();
+    //                 submitMSG(false,text);
+    //             }
+    //         }
+    //     });
+    // }
 
     function formSuccess(){
         $("#contactForm")[0].reset();
