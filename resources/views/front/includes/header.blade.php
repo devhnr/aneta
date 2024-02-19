@@ -107,6 +107,28 @@
         right: 12px;
         top: 4%;
     }
+
+    .newsletter-form-new .input-newsletter {
+    display: block;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    background-color: transparent;
+    color: var(--blackColor);
+    height: 50px;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    padding-left: 15px;
+    border-radius: 5px;
+    font-weight: 400;
+}
+
+.single-footer-widget .newsletter-form-new .default-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
     </style>
     </head>
 
@@ -184,7 +206,7 @@
                                    
                                     <ul class="dropdown-menu">
                                         @foreach($categories as $categories_data)
-                                        <li class="nav-item"><a href="{{ url('/product-list') }}" class="nav-link">{{$categories_data->name}}</a></li>
+                                        <li class="nav-item"><a href="{{url('/product/'.$categories_data->page_url)}}" class="nav-link">{{$categories_data->name}}</a></li>
                                         @endforeach
                                     </ul>
                                    
