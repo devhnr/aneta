@@ -107,6 +107,20 @@
         right: 12px;
         top: 4%;
     }
+
+    .newsletter-form-new .input-newsletter {
+    display: block;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    background-color: transparent;
+    color: var(--blackColor);
+    height: 50px;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    padding-left: 15px;
+    border-radius: 5px;
+    font-weight: 400;
+}
     </style>
     </head>
 

@@ -148,8 +148,8 @@
                     </div>
 
                     <div class="cart-buttons">
-                        <div class="row ">
-                            <div class="col-lg-8 col-sm-8 col-md-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-sm-7 col-md-7">
                                 <div class="shopping-coupon-code">
                                     <input type="text" class="form-control" placeholder="Coupon code" name="coupon_code" id="coupon_code" >
                                     <button type="button" onclick="apply_coupon();">Apply Coupon</button>
@@ -159,10 +159,15 @@
                             <div id="coupon_success" class="successmain alert-message "
                                 style="display:none; margin-bottom: 5px; width: 76%; color:green;    margin-top: 18px;"></div>
                             </div>
-                            <div class="col-lg-4 col-sm-4 col-md-4">
+                            
 
+                            {{-- <div class="col-lg-5 col-sm-5 col-md-5 text-end">
+                                <a href="#" class="default-btn"><i class="flaticon-view"></i> Update Cart</a>
+                            </div> --}}
+                        </div>
+                    </div>
 
-                    <div class="cart-totals" style="margin-top:0 ;">
+                    <div class="cart-totals">
                         <div id="sidebar_cart">
                         <h3>Cart Totals</h3>
 
@@ -184,15 +189,10 @@
 
                                 $coupon_discounted = session('coupan_data.discount');
 
-                            }
+                                }
 
-                            if($subtotal <= 1499){
-                                $shippingcahrge = 499;
-                            }else{
+
                                 $shippingcahrge = 0;
-                            }
-
-                                
 
                                 $order_total=round($subtotal  - $coupon_discounted + $shippingcahrge );
 
@@ -224,19 +224,9 @@
                             <li>Total <span>Rs {{$order_total}}</span></li>
                         </ul>
 
-                        <a href="{{url('checkout')}}" class="default-btn"><i class="flaticon-trolley"></i> Proceed to Checkout</a>
+                        <a href="#" class="default-btn"><i class="flaticon-trolley"></i> Proceed to Checkout</a>
                         </div>
                     </div>
-
-                            </div>
-                            
-
-                            {{-- <div class="col-lg-5 col-sm-5 col-md-5 text-end">
-                                <a href="#" class="default-btn"><i class="flaticon-view"></i> Update Cart</a>
-                            </div> --}}
-                        </div>
-                    </div>
-
                 </form>
                 </div>
                 @else

@@ -437,17 +437,8 @@
 
 
 
-                                <label style="font-size:14px; font-weight:normal;" class="" for="inputEmail">Set Base
-
-                                    Image
-
-
-
-                                    Hover
-
-
-
-                                </label>
+                                {{-- <label style="font-size:14px; font-weight:normal;" class="" for="inputEmail">Set Base  Image  Hover
+                                </label> --}}
 
 
 
@@ -463,9 +454,9 @@
 
 
 
-                                <input type="radio" name="baseimageHover" value="{{ $images->pid }}"
+                                {{-- <input type="radio" name="baseimageHover" value="{{ $images->pid }}"
                                     @if ($images->baseimageHover == '1') {{ '"checked=checked"' }} @endif
-                                    onclick="setbaseimghover_popup('{{ $images->id }}','{{ $images->pid }}','{{ $i }}');" />
+                                    onclick="setbaseimghover_popup('{{ $images->id }}','{{ $images->pid }}','{{ $i }}');" /> --}}
 
 
 

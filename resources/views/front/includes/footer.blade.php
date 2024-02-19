@@ -98,11 +98,13 @@
                         <div class="single-footer-widget">
                             <h3>Newsletter</h3>
                             <p>Sign up for our mailing list to get the latest updates & offers.</p>
-                            <form class="newsletter-form" data-bs-toggle="validator">
-                                <input type="text" class="input-newsletter" placeholder="Enter your email address" name="EMAIL" required autocomplete="off">
-                                <button type="submit" class="default-btn">Subscribe Now</button>
-                                <div id="validator-newsletter" class="form-result"></div>
-                            </form>
+                            <form action="{{ url('news_letter_email') }}"  id="news_letter" class="newsletter-form-new" data-bs-toggle="validator" method="post">
+                                @csrf
+                               <input type="text" class="input-newsletter" placeholder="Enter your email address" name="email" id="email" required autocomplete="off">
+                                <p id="email_error" style="display: none;color: red"></p>
+                                <input type="hidden" name="action" value="news-form">
+                                <button type="button" class="default-btn" onclick="javascript:validation()">Subscribe Now</button>
+                             </form>
                         </div>
                     </div>
                 </div>
@@ -580,4 +582,53 @@ var answer = window.confirm("Do you want to remove this product from cart?");
         });
     }
 }
+</script>
+
+<script type="text/javascript">
+
+    function validation(){
+        // alert("test");
+        var email = $("#email").val();
+        if(email == ''){
+            $("#email_error").html("Please Enter Email Address");
+            $('#email_error').show().delay(0).fadeIn('show');
+            $('#email_error').show().delay(2000).fadeOut('show');
+            return false;
+        }
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+                jQuery('#email_error').html("Please Enter Proper Email");
+                jQuery('#email_error').show().delay(0).fadeIn('show');
+                jQuery('#email_error').show().delay(2000).fadeOut('show');
+                $('html, body').animate({
+                    scrollTop: $('#email').offset().top - 150
+                }, 1000);
+                return false;
+            }
+
+        var url = "{{ url('check_email') }}";
+
+        $.ajax({
+            url : url,
+            type : 'post',
+            data : {
+                '_token' : '{{ csrf_token() }}',
+                'email' : email
+            },
+            success:function(returndata){
+                    // alert(returndata);
+                    if(returndata == 0)
+                    {
+                        $("#email_error").html("Email Address Already Exists");
+                        $('#email_error').show().delay(0).fadeIn('show');
+                        $('#email_error').show().delay(2000).fadeOut('show');
+                        return false;
+                        }
+                        if(returndata == 1){
+                            // alert(hello);  
+                        $('#news_letter').submit();
+                        }
+            }
+        });
+    }
 </script>

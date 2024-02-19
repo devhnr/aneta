@@ -31,13 +31,15 @@ class Homecontroller extends Controller
 
         $data['best_seller_pro'] =  DB::table('products')
                                     ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
-                                    ->leftJoin('product_image', 'products.id', '=', 'product_image.pid')
+                                    ->leftJoin('product_image', function($join) {
+                                        $join->on('products.id', '=', 'product_image.pid')
+                                            ->where('product_image.baseimage', '=', 1);
+                                    })
                                     ->where('products.best_seller', 1)
-                                    ->where('product_image.baseimage', 1)
                                     ->orderBy('products.id', 'DESC')
                                     ->select('products.*', 
                                             DB::raw('MIN(product_attribute.price) as min_price'), 
-                                            'product_image.image as base_image')
+                                            DB::raw("COALESCE(product_image.image, 'no-image.png') as base_image"))
                                     ->groupBy('products.id')
                                     ->get();
 
@@ -46,15 +48,17 @@ class Homecontroller extends Controller
         //                             ->orderBy('id', 'DESC')
         //                             ->get();
 
-        $data['new_arrival_pro'] =  DB::table('products')
+        $data['new_arrival_pro'] = DB::table('products')
                                     ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
-                                    ->leftJoin('product_image', 'products.id', '=', 'product_image.pid')
+                                    ->leftJoin('product_image', function($join) {
+                                        $join->on('products.id', '=', 'product_image.pid')
+                                            ->where('product_image.baseimage', '=', 1);
+                                    })
                                     ->where('products.new_product', 1)
-                                    ->where('product_image.baseimage', 1)
                                     ->orderBy('products.id', 'DESC')
                                     ->select('products.*', 
                                             DB::raw('MIN(product_attribute.price) as min_price'), 
-                                            'product_image.image as base_image')
+                                            DB::raw("COALESCE(product_image.image, 'no-image.png') as base_image"))
                                     ->groupBy('products.id')
                                     ->get();
 
@@ -188,7 +192,7 @@ class Homecontroller extends Controller
                                         </tr>
                                         <tr>
                                             <td style="line-height:20px;">
-                                               Please find the below Registration details
+                                               Please find the below Contact details
                                             </td> 
                                         </tr>
                                     </table>
@@ -217,9 +221,11 @@ class Homecontroller extends Controller
             </body>
         </html>';
         $subject = "Contact-Us -Aneta";
-        $to = "abhishek.hnrtechnologies@gmail.com";
+        $to = "devang.hnrtechnologies@gmail.com";
         // $to = $request->email;
-        // $to = $request->email;
+
+      
+
         Mail::send([], [], function($message) use($html, $to, $subject) {
             $message->to($to);
             $message->subject($subject);
@@ -227,7 +233,18 @@ class Homecontroller extends Controller
             $message->html($html);
         });
 
-            return redirect()->to('/')->with('L_strsucessMessage','Contact Us Detail Submitted Successfully.');
+        $message1 = '<div style="width:700px; height:auto; margin:0 auto;"><p>Dear '.$request->full_name.',</p><p>Hope you are doing good!</p><p>We aim to enrich your living experience through our specialised services. We will get in touch with you within 24 hours.</p><p>Regards,<br>Team Aneta</p></div>';
+
+         $to = $request->email;
+
+        Mail::send([], [], function($message) use($message1, $to, $subject) {
+
+            $message->to($to);
+            $message->subject($subject);
+            $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
+            $message->html($message1);
+        });
+            return redirect()->to('/contact')->with('L_strsucessMessage','Contact Us Detail Submitted Successfully.');
         }
 
         $data['meta_title'] = "";
@@ -280,6 +297,174 @@ class Homecontroller extends Controller
     //     $data['meta_description'] = "";
     //     return view('front.edit_profile',$data);
     // }
+
+    public function check_email(Request $request){
+
+        $email = $request->email;
+        $result = DB::table('subscribes')->where('email',$email)->first();
+        
+        if($result !=''){
+            echo 0;
+        }else{
+
+            // echo "test";exit;
+            echo 1;
+        }
+    }
+
+    public function news_letter_email(Request $request){
+
+        // echo "<pre>";print_r($request->all());echo "</pre>";exit;
+
+        if($request->action == 'news-form'){
+
+        $data['email'] = $request->email;
+        $data['created_at'] = date('Y-m-d');
+
+        DB::table('subscribes')->insert($data);
+
+        $html = '<!doctype html> <html>
+        
+            <head>
+                <meta charset="utf-8">
+                <title>Subscribes Email</title>
+                <style>
+                    .logo {
+                        text-align: center;
+                        width: 100%;
+                          }
+        
+                    .wrapper {
+                        width: 100%;
+                        max-width:500px;
+                        margin:auto;               
+                        font-size:14px;
+                        line-height:24px;
+                        font-family:Helvetica Neue, Helvetica, Helvetica, Arial, sans-serif;
+                        color:#555;
+                    }
+        
+                    .wrapper div {                
+                        height: auto;
+                        float: left;
+                        margin-bottom: 15px;
+                        width:100%;
+                    }
+                    .text-center {
+                        text-align: center;                
+                    }
+        
+                    .email-wrapper {
+                        padding:5px;
+                        border:1px solid #ccc;
+                        width:100%;
+                    }
+        
+                    .big {
+        
+                        text-align: center;
+        
+                        font-size: 26px;
+        
+                        color: #e31e24;
+        
+                        font-weight: bold;
+        
+                        margin-bottom: 0 !important;
+        
+                        text-transform: uppercase;
+        
+                        line-height: 34px;
+                    }
+        
+                    .welcome {                
+        
+                        font-size: 17px;                
+        
+                        font-weight: bold;
+                    }
+        
+                    .footer {
+        
+                        text-align: center;
+        
+                        color: #999;
+        
+                        font-size: 13px;
+                    }
+        
+                </style>
+            </head>     
+            <body>
+                <div class="wrapper" >
+                
+                    <div class="logo">
+                        <img src="'.asset("public/site/assets/img/logo.png").'" style="width: 30%;" >
+                    </div>
+                    <div class="email-wrapper" >
+                        <table style="border-collapse:collapse;" width="100%" border="0" cellspacing="0" cellpadding="10">          
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="5">   
+                                        <tr>
+                                            <td style="font-size:18px;">Hello ,</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height:20px;">
+                                               Please find the below Subscribe details
+                                            </td> 
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="border-top:3px solid #333;" bgcolor="#f7f7f7" width="100%" border="0" cellspacing="0" cellpadding="5">   
+                                        <tr>
+                                            <td width="50%">        
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="5">   
+                                                    
+                                                    <tr><td width="100px">Email: </td><td>'.$data['email'].'</td></tr>
+                                                   
+                                                </table>
+                                            </td>   
+                                        </tr>   
+                                    </table>
+                                </td>   
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </body>
+        </html>';
+        $subject = "Thank you for Subscribe - Aneta";
+        $to = $data['email'];
+        // $to = 'parth.hnrtechnologies@gmail.com';
+        // $to = $request->email;
+        Mail::send([], [], function($message) use($html, $to, $subject) {
+            $message->to($to);
+            $message->subject($subject);
+            $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
+            $message->html($html);
+        });
+
+        // $message1 = '<div style="width:700px; height:auto; margin:0 auto;"><p>Dear '.$request->full_name.',</p><p>Hope you are doing good!</p><p>We aim to enrich your living experience through our specialised services. We will get in touch with you within 24 hours.</p><p>Regards,<br>Team Aneta</p></div>';
+
+        //  $to = 'devang.hnrtechnologies@gmail.com';
+
+        // Mail::send([], [], function($message) use($message1, $to, $subject) {
+
+        //     $message->to($to);
+        //     $message->subject($subject);
+        //     $message->from('devang.hnrtechnologies@gmail.com', 'Aneta');
+        //     $message->html($message1);
+        // });
+   
+        return redirect()->to('/')->with('L_strsucessMessage','News Letter Email Added successfully');
+    }
+}
+
 
 
    
