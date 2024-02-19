@@ -359,6 +359,10 @@ public function register(Request $request){
                     'userid'  => $checklogin->id,
                     'name'  => $checklogin->name,
                     'email'  => $checklogin->email,       
+                    'company_name'  => $checklogin->vendor_name,       
+                    'address'  => $checklogin->address,       
+                    'mobile'  => $checklogin->mobile,       
+                    'pincode'  => $checklogin->pincode,  
                     'logged_in' => true
                 );
                 $check = Session::put('userdata', $newuserdata);
