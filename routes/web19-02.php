@@ -29,8 +29,6 @@ use App\Http\Controllers\admin\SubbannerController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ContactUsController;
-use App\Http\Controllers\admin\SubscribeController;
-use App\Http\Controllers\admin\OrderController;
 
 
 
@@ -96,20 +94,11 @@ Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout
 Route::post('add_to_cart','\App\Http\Controllers\front\Cartcontroller@add_to_cart');
 Route::post('cart_remove', '\App\Http\Controllers\front\Cartcontroller@cart_remove');
 Route::post('update_cart', '\App\Http\Controllers\front\Cartcontroller@update_cart');
-Route::post('/order_place', '\App\Http\Controllers\front\checkoutcontroller@order_place')->name('order_place');
-Route::get('thankyou', [checkoutcontroller::class, 'thankyou'])->name("thankyou");
+// Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
 
 Route::post('news_letter_email','\App\Http\Controllers\front\Homecontroller@news_letter_email');
+
 Route::post('check_email','\App\Http\Controllers\front\Homecontroller@check_email');
-
-Route::resource('admin/order','App\Http\Controllers\admin\OrderController');  
-Route::get('delete_order',[OrderController::class,'destroy'])->name('delete_order');
-Route::get('admin/order/detail/{order_id}', [OrderController::class, 'detail'])->name('detail');
-
-
-Route::get('/product/{groupurl}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
-
-// Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
 
 Route::controller(UserRegistration::class)->group(function() {
 
@@ -232,13 +221,7 @@ Route::get('/admin', function () {
 
     Route::resource('/admin/contact', '\App\Http\Controllers\admin\ContactUsController');
     Route::get('/admin/delete_contact', [ContactUsController::class, 'destroy'])->name('delete_contact');
-
-    Route::resource('/admin/subscribe', '\App\Http\Controllers\admin\SubscribeController');
-    Route::get('/admin/delete_subscribe', [SubscribeController::class, 'destroy'])->name('delete_subscribe');
-
-    Route::resource('admin/order','App\Http\Controllers\admin\OrderController');  
-    Route::get('delete_order',[OrderController::class,'destroy'])->name('delete_order');
-    Route::get('admin/order/detail/{order_id}', [OrderController::class, 'detail'])->name('detail');
+    
     
    
    

@@ -122,6 +122,7 @@
     font-weight: 400;
 }
 
+
 .single-footer-widget .newsletter-form-new .default-btn {
     display: block;
     width: 100%;
@@ -129,6 +130,7 @@
     padding-left: 25px;
     padding-right: 25px;
 }
+
     </style>
     </head>
 

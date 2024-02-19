@@ -120,7 +120,7 @@ Ahmedabad-380015. Gujarat (INDIA)</a></p>
                                     </div> --}}
 
                                    <div>
-                                        <button class="btn btn-primary mb-1" type="button" disabled id="spinner_button"
+                                        <button class="default-btn" type="button" disabled id="spinner_button"
                                             style="display: none;">
                                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                             Loading...

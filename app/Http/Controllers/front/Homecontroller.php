@@ -48,7 +48,7 @@ class Homecontroller extends Controller
         //                             ->orderBy('id', 'DESC')
         //                             ->get();
 
-        $data['new_arrival_pro'] =  DB::table('products')
+        $data['new_arrival_pro'] = DB::table('products')
                                     ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
                                     ->leftJoin('product_image', function($join) {
                                         $join->on('products.id', '=', 'product_image.pid')

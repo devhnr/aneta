@@ -119,7 +119,7 @@
         @if (in_array('3', $permission1))
             <li class="{{ request()->segment(2) == 'product' ? 'active' : '' }}">
 
-                <a href="{{ route('product.index') }}"><i data-feather="file"></i> <span>Product</span></a>
+                <a href="{{ route('product.index') }}"><i data-feather="book"></i> <span>Product</span></a>
 
             </li>
         @endif
@@ -136,7 +136,7 @@
         @if (in_array('4', $permission1))
             <li class="{{ request()->segment(2) == 'cms' ? 'active' : '' }}">
 
-                <a href="{{ route('cms.index') }}"><i data-feather="file"></i><span>CMS</span></a>
+                <a href="{{ route('cms.index') }}"><i data-feather="book"></i><span>CMS</span></a>
 
             </li>
         @endif
@@ -170,6 +170,25 @@
 
             </li>
         @endif
+
+        @if (in_array('15', $permission1))
+            <li class="{{ request()->segment(2) == 'subscribe' ? 'active' : '' }}">
+
+                <a href="{{route('subscribe.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
+
+                    <span>Subscribe</span></a>
+
+            </li>
+        @endif
+        @if (in_array('16', $permission1))
+
+                <li class="{{ request()->segment(2) == 'order' ? 'active' : '' }}">
+
+                    <a href="{{ route('order.index') }}"><i data-feather="clipboard"></i><span>Order</span></a>
+
+                </li>
+
+            @endif
 
 
 
