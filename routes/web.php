@@ -102,6 +102,13 @@ Route::get('thankyou', [checkoutcontroller::class, 'thankyou'])->name("thankyou"
 Route::post('news_letter_email','\App\Http\Controllers\front\Homecontroller@news_letter_email');
 Route::post('check_email','\App\Http\Controllers\front\Homecontroller@check_email');
 
+Route::resource('admin/order','App\Http\Controllers\admin\OrderController');  
+Route::get('delete_order',[OrderController::class,'destroy'])->name('delete_order');
+Route::get('admin/order/detail/{order_id}', [OrderController::class, 'detail'])->name('detail');
+
+
+Route::get('/product/{groupurl}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
+
 // Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
 
 Route::controller(UserRegistration::class)->group(function() {

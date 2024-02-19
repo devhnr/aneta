@@ -60,5 +60,53 @@ class Front_productcontroller extends Controller
         $json = json_encode($array);
         echo $json;
     }
+
+    public function product_listing(Request $request, $cat_url=''){
+
+        $query = DB::table('products as p');
+
+        if ($cat_url != '') {
+            $cat_data = DB::table('categories')->select('*')->where('page_url', '=', $cat_url)->first();
+            $query = $query->where('p.cat_id', '=', $cat_data->id);
+           
+            $sizesProducts = DB::table('products as p')
+                                ->leftJoin('product_attribute as p_attr','p.id','=','p_attr.pid')
+                                ->leftJoin('sizes as s', 'p_attr.size_id', '=', 's.id')
+                                ->select('s.id','s.name as sizename','p_attr.pid as pid')
+                                ->selectRaw('COUNT(DISTINCT p_attr.pid) as product_count')
+                                ->groupBy('s.id', 's.name');
+
+            $sizesProducts = $sizesProducts->where('p.cat_id', '=', $cat_data->id);
+            $data['banner_title'] = $cat_data->name;
+            $data['meta_title'] = $cat_data->meta_title;
+            $data['meta_keyword'] = $cat_data->meta_keywords;
+            $data['meta_description'] = $cat_data->meta_description;
+
+            
+
+            $data['categories_data'] = $cat_data;
+        }
+
+        $query = $query
+                    ->select(
+                        'p.*',
+                        DB::raw('(SELECT price FROM product_attribute WHERE pid = p.id ORDER BY price ASC LIMIT 1) AS min_price',
+                    ),
+                        // DB::raw('(SELECT (MIN(price) - (MIN(price) * p.discount / 100)) FROM product_attribute WHERE pid = p.id) AS discountprice')
+                    )
+                    ->join('product_attribute as pa', 'pa.pid', '=', 'p.id')
+                    ->where('p.id', '<>', 0)
+                    ->groupBy('p.id');
+
+        $pagination = $query->orderBy('p.id', 'DESC')->paginate(9)->withQueryString();
+
+        $data['productCount'] = $pagination->total(); // Use total() to get the total count.
+        $data['all_product_details'] = $pagination;
+        $data['sizesProducts'] = $sizesProducts->get();
+        //echo "<pre>";print_r($data);echo "</pre>";exit;
+        return view('front.product_listing',$data);
+        
+
+    }
     
 }

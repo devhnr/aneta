@@ -64,7 +64,7 @@ class Homecontroller extends Controller
 
         $data['brand'] = DB::table('brands')->where('set_as_home',1)->orderBy('set_order')->get();
        
-        
+        //echo"<pre>";print_r($data['new_arrival_pro']);echo"</pre>";exit;
 
     	return view('front.index',$data);
     }

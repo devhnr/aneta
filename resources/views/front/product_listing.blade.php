@@ -1,12 +1,18 @@
 @include('front.includes.header')
+<style>
+    .pagination .active .page-link{background-color: #3D9630 !important;
+    border-color: #3D9630 !important;}
+    .pagination  .page-link{color: #3D9630 !important;}
+    .page-item.active .page-link{color: #FFF !important;}
+    </style>
 <!-- Start Page Title Area -->
         <section class="page-title-area">
             <div class="container">
                 <div class="page-title-content">
-                    <h1>Lipid Lowering</h1>
+                    <h1>{{ $categories_data->name }}</h1>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li>Lipid Lowering</li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li>{{ $categories_data->name }}</li>
                     </ul>
                 </div>
             </div>
@@ -104,9 +110,10 @@
                     </div>
 
                     <div class="col-lg-9 col-md-12">
+                        @if(isset($all_product_details) && count($all_product_details) > 0)
                         <div class="drodo-grid-sorting row align-items-center">
                             <div class="col-lg-6 col-md-6 result-count">
-                                <p>We found <span class="count">99</span> products available for you</p>
+                                <p>We found <span class="count">{{ $productCount }}</span> products available for you</p>
 
                                 <span class="sub-title d-lg-none"><a href="#" data-bs-toggle="modal" data-bs-target="#productsFilterModal"><i class='bx bx-filter-alt'></i> Filter</a></span>
                             </div>
@@ -125,12 +132,67 @@
                         </div>
 
                         <div class="row">
+
+                            @foreach($all_product_details as $all_product)
+                            @php
+                                $Base_image = DB::table('product_image')
+                                           ->where('pid', $all_product->id)
+                                           ->where('baseimage', 1)
+                                           ->first();
+                              
+                            @endphp
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="single-products-box">
                                     <div class="image">
-                                        <a href="{{ url('/product-detail') }}" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
-										 <div class="new">New</div>
-										 <div class="sale">Sale</div>
+                                        <a href="{{url('product-detail/' . $all_product->page_url)}}" class="d-block">
+                                            @if($Base_image != '')
+                                            <img src="{{asset('public/upload/product/large/'.$Base_image->image)}}" alt="image">
+                                            @else
+                                            <img src="{{asset('public/upload/product/large/no-image.png')}}" alt="image">
+                                            @endif
+                                        
+                                        </a>
+
+                                        @php 
+                                $ProductminPrice = $all_product->min_price;
+
+                                /*echo "<pre>";print_r($ProductminPrice);echo "</pre>";*/
+
+                                @endphp
+
+                                        @if($all_product->discount_type != '')
+
+                                    @if($all_product->discount_type == 0)
+                                        @php
+                                        $new_disc_price = $ProductminPrice * $all_product->discount/100;
+
+                                        $new_price = $ProductminPrice - $new_disc_price;
+                                        @endphp
+                                
+                                    @elseif($all_product->discount_type == 1)
+                                        @php
+                                        $new_price = $ProductminPrice - $all_product->discount;
+                                        @endphp
+
+                                    @else
+                                        @php
+                                        $new_price = 0;
+                                        @endphp
+                                    @endif
+
+                                @else
+                                    @php
+                                    $new_price = 0;
+                                    @endphp
+                                @endif
+
+
+										 @if($all_product->new_product == 1)
+                                        <div class="new">New</div>
+                                        @endif
+                                        @if($new_price != 0)
+                                        <div class="sale">Sale</div>
+                                        @endif
                                         <div class="buttons-list">
                                             <ul>
                                                 
@@ -148,267 +210,35 @@
                                     </div>
             
                                     <div class="content">
-                            <h3><a href="{{ url('/product-detail') }}">TELMANETA CD</a></h3>
+                            <h3><a href="{{url('product-detail/' . $all_product->page_url)}}">{{ $all_product->name }}</a></h3>
                             <div class="price">
-									<span class="old-price">Rs 200.00</span>
-									<span class="new-price">Rs 180.00</span>
+                                @if($new_price != '0')
+                                <span class="old-price">Rs {{ $ProductminPrice }}</span>
+                                <span class="new-price">Rs {{ $new_price }}</span>
+                                @else
+                                   <span class="new-price">Rs {{ $ProductminPrice }}</span>
+                               @endif
 								</div>
                         </div>
                                 </div>
                             </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
-            
-                                        <div class="sale">Sale</div>
-            
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">TELMANETA CH</a></h3>
-							   <div class="price">
-									<span class="old-price">Rs 200.00</span>
-									<span class="new-price">Rs 180.00</span>
-								</div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
-                
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">NETAZOL 150</a></h3>
-                             <div class="price">
-                                <span class="new-price">Rs 159.00</span>
-                            </div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
-										 <div class="new">New</div>
-                
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">NETAZOL 200</a></h3>
-                            <div class="price">
-                                <span class="new-price">Rs 130.00</span>
-                            </div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
-                
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">TELMANETA CD</a></h3>
-                            <div class="price">
-                                <span class="new-price">Rs 99.00</span>
-                            </div>
-                        </div>
-                                </div>
-                            </div>
-							 <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
-										 <div class="new">New</div>
-										 <div class="sale">Sale</div>
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                               
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">TELMANETA CD</a></h3>
-                            <div class="price">
-									<span class="old-price">Rs 200.00</span>
-									<span class="new-price">Rs 180.00</span>
-								</div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/TELMANETA-CH-Camera-2.jpg')}}" alt="image"></a>
-            
-                                        <div class="sale">Sale</div>
-            
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">TELMANETA CH</a></h3>
-							   <div class="price">
-									<span class="old-price">Rs 200.00</span>
-									<span class="new-price">Rs 180.00</span>
-								</div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-150-Camera-2.jpg')}}" alt="image"></a>
-                
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">NETAZOL 150</a></h3>
-                             <div class="price">
-                                <span class="new-price">Rs 159.00</span>
-                            </div>
-                        </div>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-products-box">
-                                    <div class="image">
-                                        <a href="#" class="d-block"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
-										 <div class="new">New</div>
-                
-                                        <div class="buttons-list">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="content">
-                            <h3><a href="#">NETAZOL 200</a></h3>
-                            <div class="price">
-                                <span class="new-price">Rs 130.00</span>
-                            </div>
-                        </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
         
                             
+        
+                            
+        
+                            
+							 
+        
+                            
+        
+                            
+        
+                            {!! $all_product_details->appends($_GET)->render("pagination::bootstrap-4") !!}
 
-                            <div class="col-lg-12 col-md-12">
+                            {{-- <div class="col-lg-12 col-md-12">
                                 <div class="pagination-area text-center">
                                     <a href="#" class="prev page-numbers"><i class='bx bx-chevrons-left'></i></a>
                                     <span class="page-numbers current" aria-current="page">1</span>
@@ -417,8 +247,11 @@
                                     <a href="#" class="page-numbers">4</a>
                                     <a href="#" class="next page-numbers"><i class='bx bx-chevrons-right'></i></a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
+                        @else
+                            {{ 'No Product' }}
+                        @endif
                     </div>
                 </div>
             </div>

@@ -321,7 +321,7 @@
                         
 
                         <div class="products-cart-btn">
-                            <a href="{{url('checkout')}}" class="default-btn">Proceed to Checkout</a>
+                            <a href="{{url('cart')}}" class="default-btn">Proceed</a>
                         </div>
 
                     @else
