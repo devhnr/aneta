@@ -258,7 +258,7 @@ public function register(Request $request){
                 </div>
             </body>
         </html>';
-        $subject = "Thank you for Registration -Aneta";
+        $subject = "Thank you for Registration -Aneta";          
         $to = $request->email;      
         // echo $html;exit;
         Mail::send([], [], function($message) use($html, $to, $subject) {
