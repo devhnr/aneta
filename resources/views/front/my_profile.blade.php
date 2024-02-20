@@ -223,7 +223,7 @@
 							</section>
                         </aside>
 						
-						<aside class="widget-area widget-left-sidebar" style="margin-top: 60px;">
+						{{-- <aside class="widget-area widget-left-sidebar" style="margin-top: 60px;">
                             <section class="widget widget_categories">
 								<div class="col-lg-12 mb-20">
 									<div class="custom-form-text">
@@ -245,7 +245,7 @@
 								</div>
 								
 							</section>
-                        </aside>
+                        </aside> --}}
 					</div>
 			</div>
 		</div>

@@ -29,6 +29,9 @@ use App\Http\Controllers\admin\SubbannerController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ContactUsController;
+use App\Http\Controllers\admin\OurteamController;
+use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\TestimonialsController;
 use App\Http\Controllers\admin\SubscribeController;
 use App\Http\Controllers\admin\OrderController;
 
@@ -108,6 +111,15 @@ Route::get('admin/order/detail/{order_id}', [OrderController::class, 'detail'])-
 
 
 Route::get('/product/{groupurl}', '\App\Http\Controllers\front\Front_productcontroller@product_listing');
+Route::get('/faqs', '\App\Http\Controllers\front\Homecontroller@faqs');
+/* start cms route */
+
+Route::get('/terms-conditions', '\App\Http\Controllers\front\Homecontroller@terms_conditions');
+Route::get('/privacy-policy', '\App\Http\Controllers\front\Homecontroller@privacy_policy');
+Route::get('/return-policy', '\App\Http\Controllers\front\Homecontroller@return_policy');
+
+
+/* end cms route */
 
 // Route::get('/admin/download/{documentType}/{filename}', [CustomerController::class, 'download']);
 
@@ -127,7 +139,10 @@ Route::controller(UserRegistration::class)->group(function() {
 	
 
 	Route::get('my-profile', 'my_profile');
+    Route::get('my-orders', 'my_orders');
 	Route::get('edit-profile', 'edit_profile');
+    Route::get('wishlist', 'wishlist');
+    Route::get('/changepassword', 'changepassword');
 	Route::post('/update-profile', 'update_profile')->name('update_profile');
     Route::get('/admin/download/{documentType}/{filename}', [UserRegistration::class, 'download']);
 	
@@ -241,6 +256,14 @@ Route::get('/admin', function () {
     Route::get('admin/order/detail/{order_id}', [OrderController::class, 'detail'])->name('detail');
     
    
+    Route::resource('/admin/our_team', '\App\Http\Controllers\admin\OurteamController');
+    Route::get('/admin/delete_ourteam', [OurteamController::class, 'destroy'])->name('delete_ourteam');
+    
+    Route::resource('/admin/faq', '\App\Http\Controllers\admin\FaqController');
+    Route::get('/admin/delete_faq', [FaqController::class, 'destroy'])->name('delete_faq');
+    
+        Route::resource('/admin/testimonials', '\App\Http\Controllers\admin\TestimonialsController');
+    Route::get('/admin/delete_testimonials', [TestimonialsController::class, 'destroy'])->name('delete_testimonials');
    
 
 });
