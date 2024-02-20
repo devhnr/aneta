@@ -192,12 +192,15 @@
                             <img src="{{asset('public/site/assets/img/logo.png')}}" alt="logo">
                         </a>
 
+
+
                         <div class="collapse navbar-collapse mean-menu">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link active">Home</a>
+                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link @if(request()->segment(1) == '') {{ 'active' }} @endif">Home </a>
                                 </li>
 								
-								 <li class="nav-item"><a href="#" class="nav-link">Products <i class='bx bx-chevron-down'></i></a>
+								 <li class="nav-item">
+                                    <a href="#" class="nav-link @if(request()->segment(1) == 'product') {{ 'active' }} @endif">Products <i class='bx bx-chevron-down'></i></a>
                                   @php
                                   $categories=DB::table('categories')->orderBy('set_order')->get();
 
@@ -208,14 +211,14 @@
                                    
                                     <ul class="dropdown-menu">
                                         @foreach($categories as $categories_data)
-                                        <li class="nav-item"><a href="{{url('/product/'.$categories_data->page_url)}}" class="nav-link">{{$categories_data->name}}</a></li>
+                                        <li class="nav-item"><a href="{{url('/product/'.$categories_data->page_url)}}" class="nav-link @if(request()->segment(2) == $categories_data->page_url) {{ 'active' }} @endif">{{$categories_data->name}}</a></li>
                                         @endforeach
                                     </ul>
                                    
                                 </li>
-								<li class="nav-item"><a href="{{ url('/about-us') }}" class="nav-link ">About Us</a></li>
-								<li class="nav-item"><a href="{{ url('/blogs') }}" class="nav-link ">Blogs</a></li>
-                                <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+								<li class="nav-item @if(request()->segment(1) == 'about-us') {{ 'active' }} @endif"><a href="{{ url('/about-us') }}" class="nav-link ">About Us</a></li>
+								<li class="nav-item @if(request()->segment(1) == 'blogs') {{ 'active' }} @endif"><a href="{{ url('/blogs') }}" class="nav-link ">Blogs</a></li>
+                                <li class="nav-item @if(request()->segment(1) == 'contact') {{ 'active' }} @endif"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
                             </ul>
 
                             <div class="others-option">
