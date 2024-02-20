@@ -96,7 +96,7 @@
                             @endif
 
                             
-                            <h3><a href="#">{{ $categories_data->name }}</a></h3>
+                            <h3><a href="{{url('/product/'.$categories_data->page_url)}}">{{ $categories_data->name }}</a></h3>
 
                             <a href="#" class="d-block"" class="link-btn"></a>
                         </div>

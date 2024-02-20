@@ -186,7 +186,7 @@
 
                             }
 
-                            if($subtotal <= 1499){
+                            if($subtotal <= 100){
                                 $shippingcahrge = 499;
                             }else{
                                 $shippingcahrge = 0;

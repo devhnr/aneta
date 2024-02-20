@@ -4,6 +4,9 @@
     border-color: #3D9630 !important;}
     .pagination  .page-link{color: #3D9630 !important;}
     .page-item.active .page-link{color: #FFF !important;}
+    .woocommerce-widget-area .brands-list-widget .brands-list-row li a::before {content:inherit}
+    .woocommerce-widget-area .brands-list-widget .brands-list-row li a{padding-left: 0}
+    .woocommerce-widget-area .brands-list-widget .brands-list-row li a.active{color: #3D9630}
     </style>
 <!-- Start Page Title Area -->
         <section class="page-title-area">
@@ -57,7 +60,7 @@
                                 <h3 class="woocommerce-widget-title">Category</h3>
 
                                 <ul class="brands-list-row">
-                                    <li><a href="#">Lipid Lowering</a></li>
+                                    <li><a href="#" class="active">Lipid Lowering</a></li>
                                     <li><a href="#">Cardiovascular</a></li>
                                     <li><a href="#">Anti-Histamines</a></li>
                                     <li class="active"><a href="#">Anti-Diabetic</a></li>
