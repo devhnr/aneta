@@ -654,6 +654,8 @@ public function register(Request $request){
             return view('front.edit_profile',$data);
     }   
 
+    
+
 
     public function changepassword(){
         if(Session::get('userdata') ==''){
