@@ -129,7 +129,7 @@
                                                 <th class="text-center">Product Code</th>
                                                 <th class="text-center">Product Size</th>
                                                 
-                                                <th class="text-center">Product Color</th>
+                                                <th class="text-center">Pack Detail</th>
                                                 <th class="text-center">Price</th>
                                                 <th class="text-center">Quantity</th>
                                                 <th class="text-center">Totals</th>
@@ -156,14 +156,21 @@
                                                 <td class="text-center">{{$item->size_name}}</td>
                                                 
                                                 <td class="text-center">{{$item->package_detail}}</td>
-                                                <td class="text-center">&#8377;{{$item->product_discount_amount}}</td>
+                                                @php
+                                                if($item->product_discount_amount != 0 && $item->product_discount_amount != ''){
+                                                    $product_discount_amount = $item->product_discount_amount;
+                                                }else{
+                                                    $product_discount_amount = $item->product_item_price;
+                                                }
+                                                @endphp
+                                                <td class="text-center">RS {{$product_discount_amount}}</td>
                                                 <td class="text-center">{{$item->product_quantity}}</td>
                                                 @php
 
-                                                    $total = $item->product_discount_amount * $item->product_quantity;
+                                                    $total = $product_discount_amount * $item->product_quantity;
                                                     $sub_total += $total;
                                                 @endphp
-                                                <td class="text-center">&#8377;{{$total}}</td>
+                                                <td class="text-center">RS {{$total}}</td>
                                             </tr>
                                             @endforeach
                                             <tr>
@@ -174,7 +181,7 @@
                                                 <td class="thick-line"></td>
                                                 <td colspan="2" class="thick-line text-center">
                                                     <strong>Subtotal</strong></td>
-                                                <td colspan="2" class="thick-line  text-center">&#8377;{{ $sub_total }}
+                                                <td colspan="2" class="thick-line  text-center">RS {{ $sub_total }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -185,7 +192,7 @@
                                                 <td style="border-top-style: hidden;" class="thick-line"></td>
                                                 <td colspan="2" class="no-line text-center">
                                                     <strong>Discount</strong></td>
-                                                <td colspan="2" class="no-line text-center">&#8377;{{$order->coupondiscount}}
+                                                <td colspan="2" class="no-line text-center">RS {{$order->coupondiscount}}
                                                 </td>
                                                 
                                             </tr>
@@ -198,7 +205,7 @@
                                                 <td style="border-top-style: hidden;" class="thick-line"></td>
                                                 <td colspan="2" class="no-line text-center">
                                                     <strong>Shipping</strong></td>
-                                                <td colspan="2" class="no-line text-center">&#8377;{{$order->shippingcost}}
+                                                <td colspan="2" class="no-line text-center">RS {{$order->shippingcost}}
                                                 </td>
                                                 
                                             </tr>
@@ -211,7 +218,7 @@
                                                 <td style="border-top-style: hidden;" class="thick-line"></td>
                                                 <td colspan="2" class="no-line text-center">
                                                     <strong>Total</strong></td>
-                                                <td colspan="2" class="no-line text-center">&#8377;{{$order->order_total}}
+                                                <td colspan="2" class="no-line text-center">RS {{$order->order_total}}
                                                 </td>
                                                 
                                             </tr>

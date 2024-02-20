@@ -77,7 +77,7 @@
                                 <li><a href="{{ url('/about-us') }}">About Us</a></li>
                                 <li><a href="{{ url('/contact') }}">Contact Us</a></li>
 								<li><a href="{{ url('/blogs') }}">Blogs</a></li>
-								<li><a href="#">FAQs</a></li>
+								<li><a href="{{ url('/faqs') }}">FAQs</a></li>
                             </ul>
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                             <h3>Policies</h3>
 
                             <ul class="link-list">
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Retirn Policy</a></li>
+								<li><a href="{{url('/terms-conditions')}}">Terms & Conditions</a></li>
+								<li><a href="{{url('/privacy-policy')}}">Privacy Policy</a></li>
+								<li><a href="{{url('/return-policy')}}">Return Policy</a></li>
                             </ul>
                         </div>
                     </div>

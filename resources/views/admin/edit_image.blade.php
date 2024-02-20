@@ -223,7 +223,7 @@
 
 
 
-                                        <label>Image (Size : 600px X 765px )</label>
+                                        <label>Image (Size : 685px X 800px )</label>
 
 
 

@@ -909,7 +909,7 @@ class ProductController extends Controller
 
                 Image::make($image)
 
-                    ->resize(600, 765)
+                    ->resize(685, 800)
 
                     ->save(public_path('upload/product/large/' . $filename));
 

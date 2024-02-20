@@ -466,6 +466,47 @@ class Homecontroller extends Controller
 }
 
 
+    public function terms_conditions(){
+
+        $data['cms_data'] = DB::table('cms')->where('id',1)->first();
+
+        $data['meta_title'] = $data['cms_data']->meta_title;
+        $data['meta_keyword'] = $data['cms_data']->meta_keyword;
+        $data['meta_description'] = $data['cms_data']->meta_description;
+
+        return view('front.cms',$data);
+    }
+
+    public function privacy_policy(){
+
+        $data['cms_data'] = DB::table('cms')->where('id',2)->first();
+
+        $data['meta_title'] = $data['cms_data']->meta_title;
+        $data['meta_keyword'] = $data['cms_data']->meta_keyword;
+        $data['meta_description'] = $data['cms_data']->meta_description;
+
+        return view('front.cms',$data);
+    }
+
+    public function return_policy(){
+
+        $data['cms_data'] = DB::table('cms')->where('id',4)->first();
+
+        $data['meta_title'] = $data['cms_data']->meta_title;
+        $data['meta_keyword'] = $data['cms_data']->meta_keyword;
+        $data['meta_description'] = $data['cms_data']->meta_description;
+
+        return view('front.cms',$data);
+    }
+
+    public function faqs(){
+
+        $data['meta_title'] = "";
+        $data['meta_keyword'] = "";
+        $data['meta_description'] = "";
+    	return view('front.faqs',$data);
+
+    }
 
    
     

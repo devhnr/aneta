@@ -575,15 +575,71 @@ public function register(Request $request){
 
         return view('front.my_profile',$data);
     } 
+
     public function my_orders(){
+        
         if(Session::get('userdata') ==''){
             return redirect()->to('signin');
         }
+        $uid = Session::get('userdata')['userid'];
+
+        // $orders_details = DB::table('ci_orders')
+        //     ->select('ci_orders.*', 'ci_shipping_address.first_name', 'ci_shipping_address.last_name')
+        //     ->leftJoin('ci_shipping_address', 'ci_shipping_address.order_id', '=', 'ci_orders.order_id')
+        //     ->where('ci_orders.user_id', '=', $uid)
+        //     ->where('ci_orders.payment_status', '=', 'Success')
+        //     ->orderBy('ci_orders.order_id', 'desc')
+        //     ->get();
+
+
+        $query = DB::table('ci_orders')
+            ->leftJoin('front_users', 'ci_orders.user_id', '=', 'front_users.id')
+            ->leftJoin('ci_shipping_address', 'ci_orders.order_id', '=', 'ci_shipping_address.order_id')
+            ->select('front_users.email as user_email', 'front_users.name as user_name', 'front_users.mobile as user_mobile',  'ci_orders.*', 'ci_shipping_address.*');
+
+            if (!empty($uid)) {
+                $query->where('ci_orders.user_id', $uid);
+            }
+
+            $query->orderBy('ci_orders.order_id', 'DESC');
+
+            $orderList = $query->get();
+
+            // echo "<pre>";print_r($orderList);echo "</pre>";
+            foreach ($orderList as $order) {
+                $itemList = DB::table('ci_order_item')
+                    ->where('order_id', $order->order_id)
+                    ->get();
+
+                $total = 0;
+                $additionalCost = 0;
+
+                foreach ($itemList as $item) {
+                    $product = DB::table('products')
+                        ->where('id', $item->product_id)
+                        ->first();
+
+                    $total += $item->product_item_price * $item->product_quantity;
+                }
+
+                $order->items = $itemList;
+                $order->sub_total = $total;
+            }
+
+            $orderList;  
+
+            $data['orders_details'] = $orderList;
+
+        // echo "<pre>";print_r($data['orders_details']);echo "</pre>";
+
+
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.my_orders',$data);
     }
+
+    
     public function edit_profile(){
         if(Session::get('userdata') ==''){
             return redirect()->to('signin');

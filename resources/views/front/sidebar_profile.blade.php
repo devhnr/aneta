@@ -48,10 +48,10 @@
 
                             <section class="widget widget_categories">
                                 <ul>
-                                    <li><a href="#">My Orders <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
-                                    <li><a href="#">My Wishlist <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
+                                    <li><a href="{{url('/my-orders')}}">My Orders <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
+                                    <li><a href="{{url('/wishlist')}}">My Wishlist <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
                                     <li><a href="{{url('/my-profile')}}">My Profile <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
-                                    <li><a href="#">Change Password <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
+                                    <li><a href="{{url('/changepassword')}}">Change Password <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
                                     <li><a href="{{url('/signout')}}">Logout <span class="post-count"><img class="purchase_img" src="{{asset('public/site/assets/images/Vector-left.png')}}" data-no-retina=""></span></a></li>
                                 </ul>
                             </section>

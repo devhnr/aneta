@@ -99,7 +99,7 @@
                                     class="{{ request()->segment(2) == 'brand' ? 'active' : '' }}">Brand
                                 </a>
                         @endif
-
+                       
 
 
 
@@ -118,26 +118,20 @@
 
         @if (in_array('3', $permission1))
             <li class="{{ request()->segment(2) == 'product' ? 'active' : '' }}">
-
                 <a href="{{ route('product.index') }}"><i data-feather="book"></i> <span>Product</span></a>
-
             </li>
         @endif
 
         @if (in_array('9', $permission1))
             <li class="{{ request()->segment(2) == 'coupan' ? 'active' : '' }}">
-
                 <a href="{{ route('coupan.index') }}"><i data-feather="book"></i> <span>Coupon</span></a>
-
             </li>
         @endif
 
 
         @if (in_array('4', $permission1))
             <li class="{{ request()->segment(2) == 'cms' ? 'active' : '' }}">
-
                 <a href="{{ route('cms.index') }}"><i data-feather="book"></i><span>CMS</span></a>
-
             </li>
         @endif
 
@@ -145,51 +139,60 @@
 
         @if (in_array('12', $permission1))
             <li class="{{ request()->segment(2) == 'blog' ? 'active' : '' }}">
-
                 <a href="{{ route('blog.index') }}"><i data-feather="book"></i> <span>Blog</span></a>
-
             </li>
         @endif
 
         @if (in_array('8', $permission1))
             <li class="{{ request()->segment(2) == 'customer' ? 'active' : '' }}">
-
                 <a href="{{ route('customer.index') }}"><i class="fa fa-users" aria-hidden="true"></i>
-
                     <span>Customers</span></a>
-
             </li>
         @endif
 
         @if (in_array('14', $permission1))
             <li class="{{ request()->segment(2) == 'contact' ? 'active' : '' }}">
-
                 <a href="{{route('contact.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
-
                     <span>Contact</span></a>
-
             </li>
         @endif
 
         @if (in_array('15', $permission1))
             <li class="{{ request()->segment(2) == 'subscribe' ? 'active' : '' }}">
-
                 <a href="{{route('subscribe.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
-
                     <span>Subscribe</span></a>
-
             </li>
         @endif
+
         @if (in_array('16', $permission1))
 
                 <li class="{{ request()->segment(2) == 'order' ? 'active' : '' }}">
-
                     <a href="{{ route('order.index') }}"><i data-feather="clipboard"></i><span>Order</span></a>
-
                 </li>
-
             @endif
 
+        @if (in_array('17', $permission1))
+
+                <li class="{{ request()->segment(2) == 'our_team' ? 'active' : '' }}">
+                    <a href="{{ route('our_team.index') }}"><i data-feather="book"></i><span>Our Team</span></a>
+                </li>
+         @endif
+
+        @if (in_array('18', $permission1))
+
+                <li class="{{ request()->segment(2) == 'faq' ? 'active' : '' }}">
+                    <a href="{{ route('faq.index') }}"><i data-feather="book"></i><span>FAQ</span></a>
+                </li>
+         @endif
+
+        @if (in_array('19', $permission1))
+
+                <li class="{{ request()->segment(2) == 'testimonials' ? 'active' : '' }}">
+                    <a href="{{ route('testimonials.index') }}"><i data-feather="book"></i><span>Testimonials</span></a>
+                </li>
+         @endif
+
+           
 
 
 
