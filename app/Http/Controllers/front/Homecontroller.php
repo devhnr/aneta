@@ -64,11 +64,16 @@ class Homecontroller extends Controller
 
         $data['brand'] = DB::table('brands')->where('set_as_home',1)->orderBy('set_order')->get();
        
-        //echo"<pre>";print_r($data['new_arrival_pro']);echo"</pre>";exit;
-
+        
     	return view('front.index',$data);
     }
     public function about_us(){
+
+        $data['testimonials'] = DB::table('testimonials')->orderBy('id','DESC')->get();
+
+    //   echo"<pre>";print_r($data['testimonials']);echo"</pre>";exit;
+
+        $data['ourteam'] = DB::table('our_team')->orderBy('id','ASC')->get();
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
@@ -264,9 +269,13 @@ class Homecontroller extends Controller
 	
 	public function blogs(){
 
-        $data['blog'] = DB::table('blogs')->where('set_as_home',1)->orderBy('set_order')->get();
+        $query= DB::table('blogs')->orderBy('set_order');
         // echo "<pre>";print_r($data);echo "</pre>";exit;
 
+        
+        $pagination = $query->paginate(9)->withQueryString();
+
+        $data['blog'] = $pagination;
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
@@ -500,6 +509,8 @@ class Homecontroller extends Controller
     }
 
     public function faqs(){
+
+        $data['faq'] = DB::table('faq')->orderBy('id','DESC')->get();
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";

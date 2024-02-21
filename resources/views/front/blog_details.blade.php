@@ -23,7 +23,11 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="blog-details-desc">
                             <div class="article-image">
+                                @if($blog_detail->detail_image !='')
                                 <img src="{{asset('public/upload/blog/detail_image/large/'.$blog_detail->detail_image) }}" alt="image">
+                                @else
+                                <img src="{{ asset('public/upload/blog/detail_image/large/no-image.png') }}" alt="image">
+                                @endif
                             </div>
 
                             <div class="article-content">

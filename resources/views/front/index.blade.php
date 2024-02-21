@@ -29,7 +29,11 @@
         
                                 <div class="col-lg-7 col-md-12">
                                     <div class="banner-image text-center">
+                                        @if($banner_data->image !='')
                                         <img src="{{ asset('public/upload/banner/large/'.$banner_data->image) }}" class="main-image" alt="image">
+                                        @else
+                                        <img src="{{ asset('public/upload/banner/large/no-image.png') }}" alt="image">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -189,10 +193,22 @@
                    
                     <li>
                         <div class="wishlist-btn">
-                                                <a href="#">
-                                                    <i class='bx bx-heart'></i>
-                                                    <span class="tooltip-label">Add to Wishlist</span>
-                                                </a>
+                            @php if(Session::get('userdata') != ''){ 
+
+                                $is_wishlist = Helper::check_wishlist($best_seller_pro_data->id);
+
+                                if($is_wishlist == "1"){
+                                    $icon_class = 'fa-heart';
+                                }else{
+                                    $icon_class = 'fa-heart-o';
+                                }
+                                @endphp
+                            <a href="javascript:void(0);" onclick="wishlist_data('{{ $best_seller_pro_data->id }}')" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
+                            <i class="fa {{ $icon_class }}"></i>
+                            <span class="tooltip-label">Add to Wishlist</span></a>
+                            @php }else{ @endphp
+                            <a href="{{ route('signin')}}" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                            @php } @endphp
                                             </div>
                                         </li>
                                         
@@ -242,7 +258,11 @@
                     @foreach($subbanner as $subbanner_data)
                     <div class="col-lg-6 col-md-6">
                         <div class="single-banner-categories-box">
+                            @if($subbanner_data->image !='')
                             <img src="{{asset('public/upload/subbanner/large/'.$subbanner_data->image)}}" alt="image">
+                            @else
+                            <img src="{{ asset('public/upload/subbanner/large/no-image.png') }}" alt="image">
+                            @endif
 
                             <div class="content">
                                 <span class="sub-title">{{$subbanner_data->title}}</span>
@@ -358,10 +378,23 @@
                                        
                                         <li>
                                             <div class="wishlist-btn">
-                                                <a href="#">
-                                                    <i class='bx bx-heart'></i>
-                                                    <span class="tooltip-label">Add to Wishlist</span>
-                                                </a>
+
+                    @php if(Session::get('userdata') != ''){ 
+
+                        $is_wishlist = Helper::check_wishlist($new_arrival_pro_data->id);
+
+                        if($is_wishlist == "1"){
+                            $icon_class = 'fa-heart';
+                        }else{
+                            $icon_class = 'fa-heart-o';
+                        }
+                        @endphp
+                    <a href="javascript:void(0);" onclick="wishlist_data('{{ $new_arrival_pro_data->id }}')" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
+                    <i class="fa {{ $icon_class }}"></i>
+                    <span class="tooltip-label">Add to Wishlist</span></a>
+                    @php }else{ @endphp
+                    <a href="{{ route('signin')}}" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                    @php } @endphp
                                             </div>
                                         </li>
                                         
@@ -628,7 +661,12 @@
                     @foreach($brand as $brand_data)
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="{{asset('public/upload/brand/large/'.$brand_data->image) }}" alt="image"></a>
+                            <a href="#" class="d-block">
+                            @if($brand_data->image !='')    
+                            <img src="{{asset('public/upload/brand/large/'.$brand_data->image) }}" alt="image"></a>
+                            @else
+                            <img src="{{ asset('public/upload/brand/large/no-image.png') }}" alt="image">
+                            @endif
                         </div>
                     </div>
                     @endforeach
@@ -683,7 +721,13 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-post">
                             <div class="post-image">
-                                <a href="{{ url('/blog-details/'.$blog_data->page_url) }}" class="d-block"><img src="{{asset('public/upload/blog/list_image/large/'.$blog_data->list_image) }}" alt="image"></a>
+                                <a href="{{ url('/blog-details/'.$blog_data->page_url) }}" class="d-block">
+                                @if($blog_data->list_image !='')
+                                <img src="{{asset('public/upload/blog/list_image/large/'.$blog_data->list_image) }}" alt="image">
+                                @else
+                                <img src="{{ asset('public/upload/blog/list_image/large/no-image.png') }}" alt="image">
+                                @endif
+                                </a>
                             </div>
 
                             <div class="post-content">
@@ -691,7 +735,11 @@
                                 <ul class="post-meta align-items-center d-flex">
                                     <li>
                                         <div class="flex align-items-center">
+                                            @if($blog_data->user_image !='')
                                             <img src="{{asset('public/upload/blog/user_image/large/'.$blog_data->user_image) }}" alt="image">
+                                            @else
+                                            <img src="{{ asset('public/upload/blog/user_image/large/no-image.png') }}" alt="image">
+                                            @endif
                                             <a href=""{{ url('/blog-details/'.$blog_data->page_url) }}">{{$blog_data->name}}</a>
                                         </div>
                                     </li>

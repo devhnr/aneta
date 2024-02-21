@@ -205,7 +205,7 @@
 
                                             <th>Customer Name</th>
 
-                                            <th>Role</th>
+                                            <th>Address</th>
 
                                             <th>Image</th>
 

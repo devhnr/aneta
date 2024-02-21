@@ -358,7 +358,7 @@
 
         var contact_person = jQuery("#contact_person").val();
         if (contact_person == '') {
-            jQuery('#contact_person_error').html("Please enter Last Name");
+            jQuery('#contact_person_error').html("Please enter Contact Person Name");
             jQuery('#contact_person_error').show().delay(0).fadeIn('show');
             jQuery('#contact_person_error').show().delay(2000).fadeOut('show');
             $('html, body').animate({

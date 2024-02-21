@@ -81,6 +81,18 @@ class Helper{
             echo "-";
         }
 	}
+    public static function check_wishlist($product_id)
+    {
+        $query = DB::table("wishlist")->where("userid",Session::get('userdata')['userid'])->where("product_id",$product_id);
+        if($query->count() > 0)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+       
+    }
 	
 	
 	

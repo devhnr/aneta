@@ -81,7 +81,7 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Role </label>
+                                        <label for="name">Address </label>
                                         <input id="role" name="role" type="text" class="form-control"
                                          placeholder="Enter Role" value="{{ $testimonials->role }}" />
                                          <p id="role_error" style="display: none;color: red"></p>

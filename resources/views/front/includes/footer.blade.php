@@ -632,3 +632,53 @@ var answer = window.confirm("Do you want to remove this product from cart?");
         });
     }
 </script>
+<script>
+    function wishlist_data(product_id) {
+         // alert(product_id);return false;
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('add-to-wishlist') }}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "product_id": product_id
+
+            },
+            success: function(msg) {
+                if (msg == '1') {
+                    $("#message_succsess").css("display", "block", );
+                    $("#message_succsess").css("text-align", "center");
+                    $("#message_succsess").css("background-color", "#00cccc");
+                    $("#message_succsess").css("color", "white");
+                    $("#message_succsess").addClass("success");
+                    $('#message_succsess').show().delay(0).fadeIn('slow');
+                    $('#message_succsess').hide().delay(2000).fadeOut('slow');
+                    $("#message_succsess").html(
+                        "Product has been added to your Wishlist.");
+
+                    $(".wishlist-btn a i").addClass("active");
+                    // $('html, body').animate({
+                    //     scrollTop: $('#message_succsess').offset().top - 1000
+                    // }, 1000);
+                    setTimeout(function() {
+                        document.location.reload()
+                    }, 2000);
+
+                } else {
+                    $("#message_error").css("display", "block");
+                    $("#message_error").css("text-align", "center");
+                    $('#message_error').show().delay(0).fadeIn('slow');
+                    $('#message_error').hide().delay(2000).fadeOut('slow');
+                    // $('html, body').animate({
+                    //     scrollTop: $('#message_error').offset().top - 1000
+                    // }, 1000);
+                    $("#message_error").html(
+                        "Product is already in your wishlist.");
+                }
+
+            }
+
+
+        });
+
+    }
+</script>

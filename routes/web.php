@@ -141,10 +141,15 @@ Route::controller(UserRegistration::class)->group(function() {
 	Route::get('my-profile', 'my_profile');
     Route::get('my-orders', 'my_orders');
 	Route::get('edit-profile', 'edit_profile');
+
     Route::get('wishlist', 'wishlist');
+    Route::post('/add-to-wishlist', 'add_to_wishlist')->name('add_to_wishlist');
+    
     Route::get('/changepassword', 'changepassword');
 	Route::post('/update-profile', 'update_profile')->name('update_profile');
     Route::get('/admin/download/{documentType}/{filename}', [UserRegistration::class, 'download']);
+
+    Route::post('update-password', 'update_password')->name('update-password');
 	
     //Route::match(['get', 'post'], '/add_review', 'add_review')->name('add_review');
 });

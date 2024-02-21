@@ -108,7 +108,7 @@ Ahmedabad-380015. Gujarat (INDIA)</a></p>
                                         <div class="form-group">
                                             <label>Message</label>
                                             <textarea name="message" id="message" class="form-control" cols="30" rows="6"></textarea>
-                                            <p id="message_error" style="display: none;color: red"></p>
+                                            <p id="message_error_contact" style="display: none;color: red"></p>
                                           
                                         </div>
                                     </div>
@@ -217,9 +217,9 @@ Ahmedabad-380015. Gujarat (INDIA)</a></p>
             }
             var message = jQuery("#message").val();
                 if (message == '') {
-                jQuery('#message_error').html("Please Enter Message");
-                jQuery('#message_error').show().delay(0).fadeIn('show');
-                jQuery('#message_error').show().delay(2000).fadeOut('show');
+                jQuery('#message_error_contact').html("Please Enter Message");
+                jQuery('#message_error_contact').show().delay(0).fadeIn('show');
+                jQuery('#message_error_contact').show().delay(2000).fadeOut('show');
                 $('html, body').animate({
                     scrollTop: $('#message').offset().top - 150
                 }, 1000);
