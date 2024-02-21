@@ -5,7 +5,7 @@
         <div class="page-title-content">
             <h1>About Us</h1>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
                 <li>About Us</li>
             </ul>
         </div>
@@ -133,27 +133,30 @@
                 </div>
             </div>
         </section>
-		
-<section class="feedback-area ptb-70 bg-f7f8fa">
+
+        @if(isset($testimonials) && count($testimonials)>0)
+        <section class="feedback-area ptb-70 bg-f7f8fa">
             <div class="container">
+               
                 <div class="section-title">
                     <h2>WHAT OUR MEMBERS ARE SAYING</h2>
                 </div>
-
+           
                 <div class="feedback-slides-two owl-carousel owl-theme">
+                    @foreach($testimonials as $data)
                     <div class="single-feedback-box">
-                        <p>“The medication I received from Aneta was top quality and worked very well for me. I was very pleased with the results.”</p>
+                        <p>“{{$data->description}}”</p>
                         <div class="client-info">
                             <div class="d-flex align-items-center justify-content-center">
                                 <div class="title">
-                                    <h3>Dharmesh Patel</h3>
-                                    <span>Ahmedabad, Gujarat</span>
+                                    <h3>{{$data->customer_name}}</h3>
+                                    <span>{{$data->role}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="single-feedback-box">
+                    {{-- <div class="single-feedback-box">
                         <p>“Aneta is a trustworthy source for top-notch pharmaceuticals. Result of the business’ dedication to high quality standards.”</p>
                         <div class="client-info">
                             <div class="d-flex align-items-center justify-content-center">
@@ -163,7 +166,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="single-feedback-box">
                         <p>“Very happy with the products and accompanying services that were provided. Delivered with the expected quality and tight deadlines.”</p>
@@ -175,34 +178,47 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
+                    @endforeach
                 </div>
+               
             </div>
-        </section> 
+        </section>
+        @endif 
 <!-- Start Doctors Area -->
 
+@if(isset($ourteam) && count($ourteam)>0)
 <section class="doctors-area pb-40 pt-70">
     <div class="container">
         <div class="section-title">
             <h2>MEET OUR TEAM</h2>
         </div>
 
+      
         <div class="row">
+            @foreach($ourteam as $ourteam_data) 
             <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="single-doctors-box">
                     <div class="image">
-                        <img src="{{asset('public/site/assets/img/doctors/Vasant-Patel-New.jpg')}}" alt="image">
-
+                        @if($ourteam_data->image !='')
+                        <img src="{{asset('public/upload/our_team/large/'.$ourteam_data->image)}}" alt="image">
+                        @else
+                        <img src="{{asset('public/upload/our_team/large/no-image.png') }}" alt="image">
+                        @endif
                     </div>
 
                     <div class="content">
-                        <h3>Vasant Patel</h3>
-                        <span>Director</span>
+                        @if($ourteam_data->name !='')
+                        <h3>{{$ourteam_data->name}}</h3>
+                        @endif
+                        @if($ourteam_data->role !='')
+                        <span>{{$ourteam_data->role}}</span>
+                        @endif
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6 col-md-6">
+            {{-- <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="single-doctors-box">
                     <div class="image">
                         <img src="{{asset('public/site/assets/img/doctors/Nitin-Patel-Director.png')}}" alt="image">
@@ -242,10 +258,13 @@
                         <span>Assistant General Manager</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            @endforeach
         </div>
+       
     </div>
 </section>
+@endif
 <!-- End Doctors Area -->
 
 

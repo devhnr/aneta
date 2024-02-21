@@ -12,27 +12,30 @@
             </div>
         </section>
         <!-- Start FAQ Area -->
+        @if(isset($faq) && count($faq)>0)
         <section class="faq-area ptb-70">
             <div class="container">
-                <div class="tab faq-accordion-tab">
-                 
-
+                 <div class="tab faq-accordion-tab">
+                    @php
+                        $i=1;
+                    @endphp
+                    @foreach($faq as $data)
                     <div class="tab-content">
                         <div class="tabs-item">
                             <div class="faq-accordion">
                                 <ul class="accordion">
                                     <li class="accordion-item">
-                                        <a class="accordion-title active" href="javascript:void(0)">
+                                        <a class="accordion-title @if($i == '1') {{'active'}}@endif " href="javascript:void(0)">
                                             <i class='bx bx-chevron-down'></i>
-                                            Q1. What is Data Science? List the differences between supervised and unsupervised learning.
+                                            Q{{$i}}.{{$data->que}}
                                         </a>
         
-                                        <div class="accordion-content show">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        <div class="accordion-content @if($i == '1') {{'show'}}@endif">
+                                            <p>{!! html_entity_decode ($data->ans) !!}.</p>
                                         </div>
                                     </li>
 
-                                    <li class="accordion-item">
+                                    {{-- <li class="accordion-item">
                                         <a class="accordion-title" href="javascript:void(0)">
                                             <i class='bx bx-chevron-down'></i>
                                             Q2. What is Selection Tracer.com?
@@ -74,15 +77,20 @@
                                         <div class="accordion-content">
                                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
 
                     </div>
+                    @php
+                        $i++;
+                    @endphp
+                    @endforeach
                 </div>
             </div>
         </section>
+        @endif
         <!-- End FAQ Area -->
 
 @include('front.includes.footer')

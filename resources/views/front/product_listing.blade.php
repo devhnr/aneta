@@ -201,10 +201,20 @@
                                                 
                                                 <li>
                                                     <div class="wishlist-btn">
-                                                        <a href="#">
-                                                            <i class='bx bx-heart'></i>
-                                                            <span class="tooltip-label">Add to Wishlist</span>
-                                                        </a>
+                            @php if(Session::get('userdata') != ''){ 
+
+                                $is_wishlist = Helper::check_wishlist($all_product->id);
+
+                                if($is_wishlist == "1"){
+                                    $icon_class = 'fa-heart';
+                                }else{
+                                    $icon_class = 'fa-heart-o';
+                                }
+                            @endphp
+                            <a href="javascript:void(0);" onclick="wishlist_data('{{ $all_product->id }}')" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa {{ $icon_class }}"></i></a>
+                            @php }else{ @endphp
+                            <a href="{{ route('signin')}}" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                            @php } @endphp
                                                     </div>
                                                 </li>
                                                

@@ -672,11 +672,14 @@ public function register(Request $request){
 
     public function update_password(Request $request)
     {
+        // echo"<pre>";print_r($request->all());echo"</pre>";exit;
+
         $user_id = $request->uid;
         $new_password = $request->new_pass;
         $password = Hash::make($new_password);
         
         DB::table('front_users')->where('id','=',$user_id)->update(['password' => $password]);
+
         return redirect()->to('changepassword')->with('L_strsucessMessage','Password has been Changed Successfully');  
     }
 
@@ -779,6 +782,27 @@ public function register(Request $request){
         if(Session::get('userdata') == ''){
             return redirect()->to('signin');
         }
+
+        $userid = Session::get('userdata')['userid'];
+
+        // $data['wishlist'] = DB::table('wishlist')->where('userid',$userid)->orderBy('id','DESC')->get();
+
+        $data['allwishlist'] = DB::table('products as p')
+                                        ->select('p.*', 'wishlist.id as wish_id')
+                                        ->leftJoin('product_image as im', function ($join) {
+                                            $join->on('im.pid', '=', 'p.id')
+                                                ->where('im.baseimage', '=', 1);
+                                        })
+                                        ->join('wishlist', 'wishlist.product_id', '=', 'p.id')
+                                        ->where('wishlist.userid', $userid)
+                                        ->orderBy('wishlist.id', 'desc')
+                                        ->addSelect([
+                                            DB::raw('(SELECT MIN(price) FROM product_attribute WHERE pid = p.id) AS minprice'),
+                                            DB::raw('IFNULL(im.image, "noimage.jpg") AS base_image'),
+                                        ])
+                                        ->get();
+
+                //    echo "<pre>";print_r($data);echo "</pre>";exit;                        
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
@@ -938,4 +962,5 @@ public function register(Request $request){
         return "1";
 
     }
+      
 }

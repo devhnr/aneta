@@ -155,8 +155,25 @@
                                 <button type="button" onclick="add_to_cart('{{ $product_data->id }}'); return false;" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
                             </div>
 
+                            
+
                             <div class="wishlist-btn">
-                                <a href="#"><i class='bx bx-heart'></i> Add to Wishlist</a>
+                                @php if(Session::get('userdata') != ''){ 
+                                    $is_wishlist = Helper::check_wishlist($product_data->id);
+
+                                        if($is_wishlist == "1"){
+                                            $icon_class = 'fa-heart';
+                                        }else{
+                                            $icon_class = 'fa-heart-o';
+                                        }
+                                        @endphp
+                                        <a href="javascript:void(0);" onclick="wishlist_data('{{ $product_data->id }}')" class="text-uppercase text-extra-small alt-font margin-20px-right font-weight-500 "><i class="fa {{ $icon_class }} align-middle margin-5px-right"></i>Add to wishlist</a>
+
+                                @php }else{ @endphp
+                                    <a href="{{ route('signin')}}" class="text-uppercase text-extra-small alt-font margin-20px-right font-weight-500 "><i class="fa fa-heart-o align-middle margin-5px-right"></i>Add to wishlist</a>
+                                @php } @endphp
+
+
 								<a href="#"><i class='bx bxs-truck' ></i>Free Shipping</a>
                             </div>
 

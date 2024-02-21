@@ -14,13 +14,14 @@
         </section>
         <!-- End Page Title Area -->
         @php
-        //echo "<pre>";print_r(Cart::content());echo "</pre>";
+        //echo "<pre>";print_r($allwishlist);echo "</pre>";
     @endphp
   <!-- Start Cart Area -->
   <section class="cart-area ptb-70">
     <div class="container">
         <form>
             <div class="cart-table table-responsive">
+                @if($allwishlist != '')
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -32,22 +33,44 @@
                     </thead>
 
                     <tbody>
+                        @foreach($allwishlist as $allwishlist_details)
                         <tr>
-                            <td class="product-thumbnail">
-                                <a href="#">
-                                    <img src="http://localhost/laravel_project/aneta_git/aneta/public/upload/product/large/1707737921-V2.jpg" alt="item">
-                                </a>
+                               @if($allwishlist_details->base_image != '')
+                                <td class="product-thumbnail"><a href="{{url('product-detail/' . $allwishlist_details->page_url)}}"><img class="cart-product-image" src="{{asset('public/upload/product/small/'.$allwishlist_details->base_image)}}" alt=""></a></td>
+                                @else
+                                <td class="product-thumbnail"><a href="#"><img class="cart-product-image" src="{{asset('public/upload/product/small/no-image.png')}}" alt=""></a></td>
+                                @endif
                             </td>
 
                             <td class="product-name">
-                                <a href="#">Vicks Vaporub 50ml</a>
+                                <a href="{{url('product-detail/' . $allwishlist_details->page_url)}}">{{ $allwishlist_details->name }}</a>
+
                             </td>
 
+                            @php
+
+$minprice = $allwishlist_details->minprice;
+                            if($allwishlist_details->discount_type != ''){
+                                if($allwishlist_details->discount_type == 0){ //percentage
+                                    $disc_price_new = $minprice * $allwishlist_details->discount /100 ;
+                                    $disc_price = $minprice - $disc_price_new;
+                                }elseif($allwishlist_details->discount_type == 1){
+                                    $disc_price = $minprice - $allwishlist_details->discount;
+                                }else{
+                                    $disc_price = '0';
+                                }
+                            }else{
+                                $disc_price = '0';
+                            }
+                        @endphp
                             <td class="product-price products-details-desc">
                                 <div class="price">
-                                    
-                                    <span class="old-price">Rs 100</span>
-                                    <span class="new-price">Rs 90</span>
+                                    @if($disc_price != '0')
+                                    <span class="old-price">Rs {{ $minprice }}</span>
+                                    <span class="new-price">Rs {{ $disc_price }}</span>
+                                    @else
+                                    <span class="new-price">Rs {{ $minprice }}</span>
+                                            @endif
                                     
                                     </div>
                             </td>
@@ -60,8 +83,9 @@
                             ">View Detail</a>
                             </td>
                         </tr>
+                        @endforeach
 
-                        <tr>
+                        {{-- <tr>
                             <td class="product-thumbnail">
                                 <a href="#">
                                     <img src="http://localhost/laravel_project/aneta_git/aneta/public/upload/product/large/1707732339-1.jpg" alt="item">
@@ -86,13 +110,14 @@
                                 padding-left: 25px;
                             ">View Detail</a>
                             </td>
-                        </tr>
+                        </tr> --}}
 
                         
 
                         
                     </tbody>
                 </table>
+                @endif
             </div>
 
         </form>

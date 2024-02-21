@@ -1,5 +1,10 @@
 @include('front.includes.header')
-
+<style>
+    .pagination .active .page-link{background-color: #3D9630 !important;
+    border-color: #3D9630 !important;}
+    .pagination  .page-link{color: #3D9630 !important;}
+    .page-item.active .page-link{color: #FFF !important;}
+    </style>
 <!-- Start Page Title Area -->
         <section class="page-title-area">
             <div class="container">
@@ -84,9 +89,9 @@
                         </div>
                     </div> --}}
 
-                    
+                    {!! $blog->appends($_GET)->render("pagination::bootstrap-4") !!}
 
-                    <div class="col-lg-12 col-md-12">
+                    {{-- <div class="col-lg-12 col-md-12">
                         <div class="pagination-area text-center">
                             <a href="#" class="prev page-numbers"><i class='bx bx-chevrons-left'></i></a>
                             <span class="page-numbers current" aria-current="page">1</span>
@@ -95,7 +100,7 @@
                             <a href="#" class="page-numbers">4</a>
                             <a href="#" class="next page-numbers"><i class='bx bx-chevrons-right'></i></a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
