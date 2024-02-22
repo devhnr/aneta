@@ -100,14 +100,6 @@ class Front_productcontroller extends Controller
             $sort_by = $request->get('sort');
            
         }
-        $filter_by_price ="";
-        if($request->get('filter_by_price') !== null)
-        {
-            
-            $filter_by_price = $request->get('filter_by_price');
-
-        
-        }
 
         $query = $query
                     ->select(
@@ -119,9 +111,6 @@ class Front_productcontroller extends Controller
                     ->join('product_attribute as pa', 'pa.pid', '=', 'p.id')
                     ->where('p.id', '<>', 0)
                     ->groupBy('p.id');
-
-        // echo "<pre>";print_r($query);echo "</pre>";exit;
-
 
                   
 
@@ -137,23 +126,6 @@ class Front_productcontroller extends Controller
                         $query = $query->orderBy('min_price','ASC');                     
                        
                     }
-                    if($filter_by_price !=''){                        
-                         
-                        $priceRange = explode('-', $filter_by_price);
-
-                            
-                            if (count($priceRange) == 2) {
-                                $minPrice = (int) $priceRange[0];
-                                $maxPrice = (int) $priceRange[1];
-        // echo "<pre>";print_r($query);echo "</pre>";exit;
-                              
-                                $query = $query->whereBetween('pa.price', [$minPrice, $maxPrice]);
-                            }else{
-                               
-                                $query = $query->whereBetween('pa.price', [$filter_by_price, '100000']);
-                            }                  
-                       
-                    }
 
         $pagination = $query->orderBy('p.id', 'DESC')->paginate(9)->withQueryString();
 
@@ -162,7 +134,6 @@ class Front_productcontroller extends Controller
         $data['sizesProducts'] = $sizesProducts->get();
         $data['max_price'] = DB::table('product_attribute')->max('price');
         $data['sort_by'] = $sort_by;
-        $data['filter_by_price'] = $filter_by_price;
         // echo "<pre>";print_r($data['sort_by']);echo "</pre>";exit;
         return view('front.product_listing',$data);
         

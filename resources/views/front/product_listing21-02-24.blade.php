@@ -36,6 +36,56 @@
     .woocommerce-widget-area .price-list-widget .collection-filter-by-price .irs--flat .irs-single {
         padding: 1px 5px 1px 22.5px;
     }
+
+    .price-slider-container {
+        width: 300px;
+        text-align: center;
+    }
+
+    #price-range {
+        width: 100%;
+    }
+
+    #price-value {
+        margin-top: 10px;
+    }
+
+    .price-slider-container {
+        width: 300px;
+        text-align: center;
+    }
+
+    #price-range {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 15px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    #price-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    #price-range::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    #price-value {
+        margin-top: 10px;
+    }
 </style>
 <!-- Start Page Title Area -->
 <section class="page-title-area">
@@ -55,39 +105,16 @@
 <section class="products-area ptb-70">
     <div class="container">
         <form id="search_mini_form" name="search_mini_form" method="get">
-            {{-- <input type="hidden" name="search" value=""> --}}
+            <input type="hidden" name="search" value="{{-- $search --}}">
             <div class="row">
                 <div class="col-lg-3 col-md-12">
                     <div class="woocommerce-widget-area">
-                        <div class="woocommerce-widget price-list-widget">
-                            <h3 class="woocommerce-widget-title">Filter By Price</h3>
 
-                            <div class="collection-filter-by-price" onclick="sort_price_filter()">
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
-                                    value="10-100" @if ($filter_by_price == '10-100') checked @endif>&nbsp;Rs. 10 to
-                                Rs.
-                                100<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
-                                    value="100-500" @if ($filter_by_price == '100-500') checked @endif>&nbsp;Rs. 100 to
-                                Rs.
-                                500<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_2"
-                                    value="500-1000" @if ($filter_by_price == '500-1000') checked @endif>&nbsp;Rs. 500 to
-                                Rs.
-                                1000<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_3"
-                                    value="1000-1500" @if ($filter_by_price == '1000-1500') checked @endif>&nbsp;Rs. 1000 to
-                                Rs.
-                                1500<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price"
-                                    id="price_4"value="1500-2000"
-                                    @if ($filter_by_price == '1500-2000') checked @endif>&nbsp;Rs.
-                                1500 to Rs. 2000<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price"
-                                    id="price_4"value="2000"
-                                    @if ($filter_by_price == '2000') checked @endif>&nbsp;Rs.
-                                Above Rs. 2000
-                            </div>
+                        <div class="price-slider-container">
+                            <label for="price-range">Price Range</label>
+                            <input type="range" id="price-range" min="10" max="200" step="1"
+                                value="50">
+                            <div id="price-value">$50</div>
                         </div>
 
                         @php
@@ -111,44 +138,30 @@
 
 
                         <div class="woocommerce-widget best-seller-widget">
-                            <h3 class="woocommerce-widget-title">Best Selling</h3>
-                            @isset($best_seller_product)
-                                @foreach ($best_seller_product as $best_seller)
-                                    <article class="item">
-                                        <a href="{{ url('product-detail/' . $best_seller->page_url) }}" class="thumb">
-                                            <span class="fullimage cover" role="img">
-                                                {{-- <img src="{{ asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg') }}"
-                                            alt="image"> --}}
-                                                @if ($best_seller->base_image != '')
-                                                    <img src="{{ asset('public/upload/product/small/' . $best_seller->base_image) }}"
-                                                        alt="image">
-                                                @else
-                                                    <img src="{{ asset('public/upload/product/small/no-image.png') }}"
-                                                        alt="image">
-                                                @endif
+                            <h3 class="woocommerce-widget-title">Best Seller</h3>
 
-                                            </span>
-                                        </a>
-                                        <div class="info">
-                                            <h4 class="title usmall">
-                                                <a href="{{ url('product-detail/' . $best_seller->page_url) }}">{{ $best_seller->name }}
-                                                </a>
-                                            </h4>
-                                            <span>Rs {{ $best_seller->min_price }}.00</span>
-                                            {{-- <div class="rating">
-                                                <i class='bx bxs-star'></i>
-                                                <i class='bx bxs-star'></i>
-                                                <i class='bx bxs-star'></i>
-                                                <i class='bx bxs-star'></i>
-                                                <i class='bx bxs-star'></i>
-                                            </div> --}}
-                                        </div>
-                                        <div class="clear"></div>
-                                    </article>
-                                @endforeach
-                            @endisset
+                            <article class="item">
+                                <a href="{{ url('/product-detail') }}" class="thumb">
+                                    <span class="fullimage cover" role="img"><img
+                                            src="{{ asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg') }}"
+                                            alt="image"></span>
+                                </a>
+                                <div class="info">
+                                    <h4 class="title usmall"><a href="{{ url('/product-detail') }}">NETAZOL 200</a>
+                                    </h4>
+                                    <span>Rs 130.00</span>
+                                    <div class="rating">
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </article>
 
-                            {{-- <article class="item">
+                            <article class="item">
                                 <a href="#" class="thumb">
                                     <span class="fullimage cover" role="img"><img
                                             src="{{ asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg') }}"
@@ -166,7 +179,7 @@
                                     </div>
                                 </div>
                                 <div class="clear"></div>
-                            </article> --}}
+                            </article>
 
                         </div>
                     </div>
@@ -197,8 +210,7 @@
                                             @if ($sort_by == 'low_to_high') {{ 'selected' }} @endif>Price: low to
                                             high</option>
                                         <option value="high_to_low"
-                                            @if ($sort_by == 'high_to_low') {{ 'selected' }} @endif>Price: high
-                                            to
+                                            @if ($sort_by == 'high_to_low') {{ 'selected' }} @endif>Price: high to
                                             low</option>
                                     </select>
 
@@ -350,9 +362,13 @@
 </script>
 
 <script>
-    function sort_price_filter() {
-        var lowAmount = $("input[name='filter_by_price']:checked").val();
-        // alert(lowAmount);
-        document.search_mini_form.submit();
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
+
+    priceRange.addEventListener('input', updatePrice);
+
+    function updatePrice() {
+        const value = priceRange.value;
+        priceValue.textContent = `$${value}`;
     }
 </script>

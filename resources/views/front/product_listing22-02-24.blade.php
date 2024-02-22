@@ -55,38 +55,16 @@
 <section class="products-area ptb-70">
     <div class="container">
         <form id="search_mini_form" name="search_mini_form" method="get">
-            {{-- <input type="hidden" name="search" value=""> --}}
+            <input type="hidden" name="search" value="{{-- $search --}}">
             <div class="row">
                 <div class="col-lg-3 col-md-12">
                     <div class="woocommerce-widget-area">
                         <div class="woocommerce-widget price-list-widget">
                             <h3 class="woocommerce-widget-title">Filter By Price</h3>
 
-                            <div class="collection-filter-by-price" onclick="sort_price_filter()">
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
-                                    value="10-100" @if ($filter_by_price == '10-100') checked @endif>&nbsp;Rs. 10 to
-                                Rs.
-                                100<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
-                                    value="100-500" @if ($filter_by_price == '100-500') checked @endif>&nbsp;Rs. 100 to
-                                Rs.
-                                500<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_2"
-                                    value="500-1000" @if ($filter_by_price == '500-1000') checked @endif>&nbsp;Rs. 500 to
-                                Rs.
-                                1000<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price" id="price_3"
-                                    value="1000-1500" @if ($filter_by_price == '1000-1500') checked @endif>&nbsp;Rs. 1000 to
-                                Rs.
-                                1500<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price"
-                                    id="price_4"value="1500-2000"
-                                    @if ($filter_by_price == '1500-2000') checked @endif>&nbsp;Rs.
-                                1500 to Rs. 2000<br>
-                                <input type="radio" name="filter_by_price" class="filter_by_price"
-                                    id="price_4"value="2000"
-                                    @if ($filter_by_price == '2000') checked @endif>&nbsp;Rs.
-                                Above Rs. 2000
+                            <div class="collection-filter-by-price">
+                                <input class="js-range-of-price" type="text" data-min="0"
+                                    data-max="{{ $max_price }}" name="filter_by_price" data-step="10">
                             </div>
                         </div>
 
@@ -197,8 +175,7 @@
                                             @if ($sort_by == 'low_to_high') {{ 'selected' }} @endif>Price: low to
                                             high</option>
                                         <option value="high_to_low"
-                                            @if ($sort_by == 'high_to_low') {{ 'selected' }} @endif>Price: high
-                                            to
+                                            @if ($sort_by == 'high_to_low') {{ 'selected' }} @endif>Price: high to
                                             low</option>
                                     </select>
 
@@ -346,13 +323,5 @@
         $(".sort_by").val(sort_by);
         document.search_mini_form.submit();
 
-    }
-</script>
-
-<script>
-    function sort_price_filter() {
-        var lowAmount = $("input[name='filter_by_price']:checked").val();
-        // alert(lowAmount);
-        document.search_mini_form.submit();
     }
 </script>
