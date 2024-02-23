@@ -118,8 +118,7 @@
                                         <a href="{{ url('product-detail/' . $best_seller->page_url) }}" class="thumb">
                                             <span class="fullimage cover" role="img">
                                                 {{-- <img src="{{ asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg') }}"
-                                            alt="image"> --}}
-                                                @if ($best_seller->base_image != '')
+                                            alt="image"> --}} @if ($best_seller->base_image != '')
                                                     <img src="{{ asset('public/upload/product/small/' . $best_seller->base_image) }}"
                                                         alt="image">
                                                 @else
