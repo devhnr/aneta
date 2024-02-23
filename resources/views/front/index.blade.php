@@ -147,6 +147,8 @@
 
                 </a>
 
+     
+
             @php 
             $ProductminPrice = $best_seller_pro_data->min_price;
 
@@ -222,7 +224,7 @@
 
                             
 
-
+                            @if(Session::get('userdata') !='')
                             @if($ProductminPrice != '')
                                 <div class="price">
                                     @if($new_price != '0')
@@ -233,6 +235,8 @@
                                     @endif
                                 </div>
                             @endif
+                            @endif
+
                         </div>
                         </div>
                     </div>
@@ -408,7 +412,7 @@
 
                             
 
-
+                            @if(Session::get('userdata') !='')
                             @if($ProductminPrice != '')
                                 <div class="price">
                                     @if($new_price != '0')
@@ -418,6 +422,7 @@
                                         <span class="new-price">Rs {{ $ProductminPrice }}</span>
                                     @endif
                                 </div>
+                            @endif
                             @endif
                         </div>
                         </div>

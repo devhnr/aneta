@@ -49,7 +49,7 @@
 
                             @php
 
-$minprice = $allwishlist_details->minprice;
+                        $minprice = $allwishlist_details->minprice;
                             if($allwishlist_details->discount_type != ''){
                                 if($allwishlist_details->discount_type == 0){ //percentage
                                     $disc_price_new = $minprice * $allwishlist_details->discount /100 ;
@@ -78,7 +78,7 @@ $minprice = $allwishlist_details->minprice;
                             
 
                             <td class="product-subtotal">
-                                <a href="#" class="default-btn" style="
+                                <a href="{{url('product-detail/' . $allwishlist_details->page_url)}}" class="default-btn" style="
                                 padding-left: 25px;
                             ">View Detail</a>
                             </td>
