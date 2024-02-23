@@ -98,6 +98,7 @@ Route::get('/checkout', '\App\Http\Controllers\front\checkoutcontroller@checkout
 
 Route::post('add_to_cart','\App\Http\Controllers\front\Cartcontroller@add_to_cart');
 Route::post('cart_remove', '\App\Http\Controllers\front\Cartcontroller@cart_remove');
+
 Route::post('update_cart', '\App\Http\Controllers\front\Cartcontroller@update_cart');
 Route::post('/order_place', '\App\Http\Controllers\front\checkoutcontroller@order_place')->name('order_place');
 Route::get('thankyou', [checkoutcontroller::class, 'thankyou'])->name("thankyou");
@@ -144,6 +145,7 @@ Route::controller(UserRegistration::class)->group(function() {
 
     Route::get('wishlist', 'wishlist');
     Route::post('/add-to-wishlist', 'add_to_wishlist')->name('add_to_wishlist');
+    Route::post('/delete_wishlist' ,'delete_wishlist')->name('delete_wishlist');
     
     Route::get('/changepassword', 'changepassword');
 	Route::post('/update-profile', 'update_profile')->name('update_profile');

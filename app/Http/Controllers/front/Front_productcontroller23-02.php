@@ -12,7 +12,12 @@ class Front_productcontroller extends Controller
         
         $pid = $data['product_data']->id;
         $data['product_image'] = DB::table('product_image')->where('pid',$pid)->get();
-        
+        // $data['getcolordetail'] = DB::table('product_attribute as sp')
+        //                             ->select('sp.*', 'c.id', 'c.name as colorname', 'c.code')
+        //                             ->leftJoin('colours as c', 'c.id', '=', 'sp.colour_id')
+        //                             ->where('sp.pid', $pid)
+        //                             ->groupBy('c.id')
+        //                             ->get();
         $data['getsizedetail'] = DB::table('product_attribute as sp')
                                     ->select('sp.*', 's.id', 's.name as sizename')
                                     ->leftJoin('sizes as s', 's.id', '=', 'sp.size_id')
@@ -20,7 +25,8 @@ class Front_productcontroller extends Controller
                                     ->groupBy('s.id')
                                     ->get();
 
-        $data['package_detail'] = DB::table('product_attribute as sp')                                   
+        $data['package_detail'] = DB::table('product_attribute as sp')
+                                   
                                     ->where('sp.pid', $pid)
                                     ->get();
         $data['relatedproduct'] = DB::table('products')->where('cat_id',$data['product_data']->cat_id)->where('id','!=',$pid)->get();
@@ -56,7 +62,7 @@ class Front_productcontroller extends Controller
     }
 
     public function product_listing(Request $request, $cat_url=''){
-        
+
         $query = DB::table('products as p');
 
         if ($cat_url != '') {
@@ -80,34 +86,6 @@ class Front_productcontroller extends Controller
 
             $data['categories_data'] = $cat_data;
         }
-        $data['best_seller_product'] =  DB::table('products')
-                                    ->leftJoin('product_attribute', 'products.id', '=', 'product_attribute.pid')
-                                    ->leftJoin('product_image', function($join) {
-                                        $join->on('products.id', '=', 'product_image.pid')
-                                            ->where('product_image.baseimage', '=', 1);
-                                    })
-                                    ->where('products.best_seller', 1)
-                                    ->orderBy('products.id', 'DESC')
-                                    ->select('products.*', 
-                                            DB::raw('MIN(product_attribute.price) as min_price'), 
-                                            DB::raw("COALESCE(product_image.image, 'no-image.png') as base_image"))
-                                    ->groupBy('products.id')
-                                    ->take(3)
-                                    ->get();
-        $sort_by ="";
-        if($request->get('sort') !== null)
-        {
-            $sort_by = $request->get('sort');
-           
-        }
-        $filter_by_price ="";
-        if($request->get('filter_by_price') !== null)
-        {
-            
-            $filter_by_price = $request->get('filter_by_price');
-
-        
-        }
 
         $query = $query
                     ->select(
@@ -120,50 +98,12 @@ class Front_productcontroller extends Controller
                     ->where('p.id', '<>', 0)
                     ->groupBy('p.id');
 
-        // echo "<pre>";print_r($query);echo "</pre>";exit;
-
-
-                  
-
-
-                    if($sort_by == 'latest'){
-                        $query = $query->orderBy('p.id','DESC');
-                    }                    
-                    if($sort_by == 'high_to_low'){
-                        $query = $query->orderBy('min_price','DESC');
-                        
-                    }
-                    if($sort_by == 'low_to_high'){
-                        $query = $query->orderBy('min_price','ASC');                     
-                       
-                    }
-                    if($filter_by_price !=''){                        
-                         
-                        $priceRange = explode('-', $filter_by_price);
-
-                            
-                            if (count($priceRange) == 2) {
-                                $minPrice = (int) $priceRange[0];
-                                $maxPrice = (int) $priceRange[1];
-        // echo "<pre>";print_r($query);echo "</pre>";exit;
-                              
-                                $query = $query->whereBetween('pa.price', [$minPrice, $maxPrice]);
-                            }else{
-                               
-                                $query = $query->whereBetween('pa.price', [$filter_by_price, '100000']);
-                            }                  
-                       
-                    }
-
         $pagination = $query->orderBy('p.id', 'DESC')->paginate(9)->withQueryString();
 
         $data['productCount'] = $pagination->total(); // Use total() to get the total count.
         $data['all_product_details'] = $pagination;
         $data['sizesProducts'] = $sizesProducts->get();
-        $data['max_price'] = DB::table('product_attribute')->max('price');
-        $data['sort_by'] = $sort_by;
-        $data['filter_by_price'] = $filter_by_price;
-        // echo "<pre>";print_r($data['sort_by']);echo "</pre>";exit;
+        //echo "<pre>";print_r($data);echo "</pre>";exit;
         return view('front.product_listing',$data);
         
 

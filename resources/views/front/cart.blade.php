@@ -75,8 +75,9 @@
                                             }
 
                                          @endphp
-
+                                    
                                     <td class="product-price products-details-desc">
+                                        @if(Session::get('userdata') !='')  
                                         <div class="price">
                                         @if($disc_price != '0')
                                         <span class="old-price">Rs {{ $items->price }}</span>
@@ -85,7 +86,9 @@
                                            <span class="new-price">Rs {{ $items->price }}</span>
                                        @endif
                                         </div>
+                                        @endif
                                     </td>
+                               
 
                                     <td class="product-quantity">
                                         <div class="input-counter">
@@ -104,12 +107,12 @@
 
                                                     <input class="input-text qty-text qty_input_{{$items->rowId}}" type="number" name="quantity" value="{{$items->qty}}" style="width: 46%;
                                                     display: inline-block; height: 45px;
-    color: var(--blackColor);
-    outline: 0;
-    border: none;
-    background-color: #f8f8f8;
-    font-size: 17px;
-    font-weight: 600;" readonly>
+                                                    color: var(--blackColor);
+                                                    outline: 0;
+                                                    border: none;
+                                                    background-color: #f8f8f8;
+                                                    font-size: 17px;
+                                                    font-weight: 600;" readonly>
                                                     <!-- <input type="button" value="+" class="qty-plus-new qty-btn plus_button_{{$items->rowId}}" onclick="plus_qty('{{$items->rowId}}', '{{$items->options->qty_left}}');"> -->
                                                     <button type="button" class="qty-plus-new qty-btn plus_button_{{$items->rowId}}" value="+" onclick="plus_qty('{{$items->rowId}}', '{{$items->options->qty_left}}');" style="width: 22%;display: inline-block;color: var(--blackColor);
                                                         outline: 0;
@@ -161,7 +164,7 @@
                             </div>
                             <div class="col-lg-4 col-sm-4 col-md-4">
 
-
+                @if(Session::get('userdata') !='')         
                     <div class="cart-totals" style="margin-top:0 ;">
                         <div id="sidebar_cart">
                         <h3>Cart Totals</h3>
@@ -227,6 +230,7 @@
                         <a href="{{url('checkout')}}" class="default-btn"><i class="flaticon-trolley"></i> Proceed to Checkout</a>
                         </div>
                     </div>
+                    @endif
 
                             </div>
                             

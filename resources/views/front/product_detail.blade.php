@@ -61,6 +61,7 @@
                         <div class="products-details-desc">
                             <h3>{{ $product_data->name }}</h3>
 
+                            @if(Session::get('userdata') !='')
                             @php
                                 $minPrice = DB::table('product_attribute')
                                 ->where('pid', $product_data->id)
@@ -92,6 +93,7 @@
                                     <span class="new-price">Rs <span id="new_price">{{ $minPrice }}</span></span>
                                 @endif
                             </div>
+                            @endif
                             @endif
 
                             <div class="products-review">
@@ -151,8 +153,9 @@
                                 <input type="hidden" name="package_detail_id" value="" id="package_detail_id">
 
                                 <input type="hidden" name="size_id" value="" id="size_id">
-
+                                @if(Session::get('userdata') !='')
                                 <button type="button" onclick="add_to_cart('{{ $product_data->id }}'); return false;" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
+                                @endif
                             </div>
 
                             

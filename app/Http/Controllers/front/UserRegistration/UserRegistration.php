@@ -785,7 +785,7 @@ public function register(Request $request){
 
         $userid = Session::get('userdata')['userid'];
 
-        // $data['wishlist'] = DB::table('wishlist')->where('userid',$userid)->orderBy('id','DESC')->get();
+        
 
         $data['allwishlist'] = DB::table('products as p')
                                         ->select('p.*', 'wishlist.id as wish_id')
@@ -802,7 +802,7 @@ public function register(Request $request){
                                         ])
                                         ->get();
 
-                //    echo "<pre>";print_r($data);echo "</pre>";exit;                        
+                                     
 
         $data['meta_title'] = "";
         $data['meta_keyword'] = "";
@@ -812,6 +812,8 @@ public function register(Request $request){
     }
 
     public function add_to_wishlist(Request $request){
+
+       
 
         $userid = Session::get('userdata')['userid'];         
 
@@ -831,12 +833,14 @@ public function register(Request $request){
         return "0";
     }
 
-    public function delete_wishlist($id){
+    public function delete_wishlist(Request $request){
 
+        //echo "<pre>";print_r($request->all());echo "</pre>";exit;
+        $id = $request->id;
         $userid = Session::get('userdata')['userid'];
 
         DB::table('wishlist')->where('userid',$userid)->where('product_id',$id)->delete();
-        return redirect()->to('/wishlist')->with('L_strsucessMessage','Product Deleted Successfully from your Wishlist');
+        return 1;
     }
 
 

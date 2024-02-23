@@ -229,20 +229,16 @@
 
                     <div class="modal-body">
                         <div id="header_cart">
-
-                         @if(Session::get('userdata') !='')
                         @if(Cart::count() > 0)
 
                         <h3>My Cart <span id="header_cart_count_footer">({{Cart::count()}})</span></h3>
-
-
                        
                         <div class="products-cart-content">
 
                             @php
                                 $subtotal =0;
                             @endphp
-        
+
                             @foreach(Cart::content() as $items)
                             <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
@@ -274,22 +270,28 @@
                                     }
 
                                     @endphp
-                                    @if(Session::get('userdata') !='')
+
                                     <div class="products-price">
-                                       
+                                        <span>{{ $items->qty }}</span>
+                                        <span>x</span>
                                         @if($disc_price != '0')
                                             <span class="new-price"><del>Rs. {{ $items->price }}</del> Rs. {{$disc_price}}</span>
                                         @else
                                             <span class="new-price">Rs.  {{$items->price}}</span>
                                         @endif
                                     </div>
-                                    @endif
                                 </div>
                                 <a href="javascript:void(0);"  onclick="remove_to_cart('{{ $items->rowId }}'); return false;" class="remove-btn"><i class='bx bx-trash'></i></a>
                             </div>
-                           
-                           
-                            
+
+                            @php
+                                if($items->qty >= 1){
+                                    $subtotal += $items->qty * round($p_price);
+                                }else{
+                                    $subtotal += round($p_price);
+                                }
+                            @endphp
+
                             @endforeach
                             {{-- <div class="products-cart d-flex align-items-center">
                                 <div class="products-image">
@@ -309,14 +311,12 @@
 
                             
                         </div>
-                        @if(Session::get('userdata') !='')
+
                         <div class="products-cart-subtotal">
                             <span>Subtotal</span>
 
                             <span class="subtotal">Rs {{$subtotal}}</span>
                         </div>
-                        @endif
-
 
                         
 
@@ -324,16 +324,9 @@
                             <a href="{{url('cart')}}" class="default-btn">Proceed</a>
                         </div>
 
-                     @else
+                    @else
                         <p class="notification_style">No Product In Cart</p>
                     @endif
-
-                    @else
-                        <p class="notification_style">Please Login To Procceed Order</p>
-                    @endif
-
-
-
 
                 </div>
 
@@ -343,142 +336,65 @@
         </div>
         <!-- End Shopping Cart Modal -->
 
-        <!-- Start Wishlist Modal -->
-           
+        <!-- Start Shopping Cart Modal -->
+        <div class="modal right fade shoppingWishlistModal" id="shoppingWishlistModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                    </button>
 
-                    <div class="modal right fade shoppingWishlistModal" id="shoppingWishlistModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
-                                </button>
+                    <div class="modal-body">
+                        <h3>My Wishlist (3)</h3>
 
-                             
-                                <div class="modal-body">
-                                    <div id="header_wish">
-                                 @if(Session::get('userdata')!='')
+                        <div class="products-cart-content">
+                            <div class="products-cart d-flex align-items-center">
+                                <div class="products-image">
+                                    <a href="#"><img src="{{asset('public/site/assets/images/TELMANETA-CD-Camera-2.jpg')}}" alt="image"></a>
+                                </div>
 
-                                       
-                                      
-                                    @php
-                                     $wishlist_id=Session::get('userdata');
-                                   
+                                 <div class="products-content">
+                                    <h3><a href="#">TELMANETA CD</a></h3>
+                                    <div class="products-price">
+                                        <span>1</span>
+                                        <span>x</span>
+                                        <span class="new-price">Rs 99.00</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
+                            </div>
 
-                                    $query= DB::table('wishlist')->where('userid',$wishlist_id)->get();
+                            <div class="products-cart d-flex align-items-center">
+                                <div class="products-image">
+                                    <a href="#"><img src="{{asset('public/site/assets/images/NETAZOL-200-Camera-2.jpg')}}" alt="image"></a>
+                                </div>
 
-                                    //  echo"<pre>";
-                                    //     print_r($query);
-                                    //  echo"</pre>";
-                                        
-                                    @endphp
-                                  @if(count($query)>0)
-                                       
-                                    <h3>My Wishlist<span id="header_wish_footer">({{count($query)}})</span></h3>
+                                <div class="products-content">
+                                    <h3><a href="#">NETAZOL 200</a></h3>
+                                    <div class="products-price">
+                                        <span>1</span>
+                                        <span>x</span>
+                                        <span class="price">Rs 130.00</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
+                            </div>
 
-                                    @php  
-
-                                    $userid = Session::get('userdata')['userid'];
-                                    $allwishlist = DB::table('products as p')
-                                        ->select('p.*', 'wishlist.id as wish_id')
-                                        ->leftJoin('product_image as im', function ($join) {
-                                            $join->on('im.pid', '=', 'p.id')
-                                                ->where('im.baseimage', '=', 1);
-                                        })
-                                        ->join('wishlist', 'wishlist.product_id', '=', 'p.id')
-                                        ->where('wishlist.userid', $userid)
-                                        ->orderBy('wishlist.id', 'desc')
-                                        ->addSelect([
-                                            DB::raw('(SELECT MIN(price) FROM product_attribute WHERE pid = p.id) AS minprice'),
-                                            DB::raw('IFNULL(im.image, "noimage.jpg") AS base_image'),
-                                        ])
-                                        ->get();
-    
-                                                // echo "<pre>";print_r($allwishlist);echo "</pre>";
-    
-    
-                                      @endphp
-
-                     
-                                        <div class="products-cart-content">
-                                            @if($allwishlist != '')
-                                            @foreach($allwishlist as $allwishlist_details)
-                                            <div class="products-cart d-flex align-items-center">
-                                                <div class="products-image">
-                                                    <a href="{{url('product-detail/' . $allwishlist_details->page_url)}}">
-                                            @if($allwishlist_details->base_image != '')
-                                            <img src="{{asset('public/upload/product/small/'.$allwishlist_details->base_image)}}" alt="image">
-                                            @else
-                                            <img src="{{asset('public/upload/product/small/no-image.png')}}" alt="image">
-                                            @endif
-                                                    </a>
-                                                </div>
-
-                                                <div class="products-content">
-                                                    <h3><a href="{{url('product-detail/' . $allwishlist_details->page_url)}}">{{$allwishlist_details->name}}</a></h3>
-                                                    
-
-
-                                 @php
-
-                                $minprice = $allwishlist_details->minprice;
-                                    if($allwishlist_details->discount_type != ''){
-                                        if($allwishlist_details->discount_type == 0){ //percentage
-                                            $disc_price_new = $minprice * $allwishlist_details->discount /100 ;
-                                            $disc_price = $minprice - $disc_price_new;
-                                        }elseif($allwishlist_details->discount_type == 1){
-                                            $disc_price = $minprice - $allwishlist_details->discount;
-                                        }else{
-                                            $disc_price = '0';
-                                        }
-                                    }else{
-                                        $disc_price = '0';
-                                    }
-                                @endphp
-                                                       <div class="products-price products-details-desc">
-                                              <div class="price">        
-                                        @if($disc_price != '0')
-                                        <span class="old-price">Rs {{ $minprice }}</span>
-                                        <span class="new-price">Rs {{ $disc_price }}</span>
-                                        @else
-                                        <span class="new-price">Rs {{ $minprice }}</span>
-                                    
-                                                @endif
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <a href="javascript:void(0);"  onclick="delete_wishlist('{{ $allwishlist_details->id }}'); return false;" class="remove-btn"><i class='bx bx-trash'></i></a>
-                                            </div>
-                                            @endforeach
-                                            @else
-                                                {{'No Prodct'}}
-                                            @endif
-                                            
-
-                                        </div>
-                       
-
-                    <div class="products-cart-btn">
-                   
-                            <a href="{{url('/wishlist')}}" class="default-btn">Wishing List</a>
-                          
                         </div>
-                        @else
-                        <p class="notification_style">No Product in Wishlist </p>
-                        @endif
 
-                        @else
-                        <p class="notification_style">Please Login To See Wishlist </p>
-                    @endif
-                   
-             
-                     </div>
-                  
-                </div>
-               
+                        <div class="products-cart-subtotal">
+                            <span>Subtotal</span>
+
+                            <span class="subtotal">$228.00</span>
+                        </div>
+
+                        <div class="products-cart-btn">
+                            <a href="{{url('/cart')}}" class="default-btn">View Shopping Cart</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-       
         <!-- End Shopping Cart Modal -->
 
         <!-- Start Products Filter Modal Area -->
@@ -651,41 +567,13 @@ var answer = window.confirm("Do you want to remove this product from cart?");
           success: function(msg) {
 
             if (msg != '') {
+            //   $("#message_error").html("Product Removed From Cart");
+            //   $('#message_error').show().delay(0).fadeIn('show');
+            //   $('#message_error').show().delay(2000).fadeOut('show');
               $("#mydiv_pc").load(location.href + " #mydiv_pc");
               $("#header_cart").load(location.href + " #header_cart");
              $("#header_cart_count").load(location.href + " #header_cart_count");
              $("#header_cart_count_footer").load(location.href + " #header_cart_count_footer");
-              return false;
-            }
-
-          }
-
-        });
-    }
-}
-</script>
-<script>
-    function delete_wishlist(id) {
-        
-var answer = window.confirm("Do you want to remove this product from Wishlist?");
-
- if (answer) {
-
-        var url = '{{ url('delete_wishlist') }}';
-        $.ajax({
-          url: url,
-          type: 'post',
-          data: {
-            "_token": "{{ csrf_token() }}",
-            "id": id
-          },
-          success: function(msg) {
-
-            if (msg == 1) {
-              // $("#mydiv_pc").load(location.href + " #mydiv_pc");
-              $("#header_wish").load(location.href + " #header_wish");
-             //$("#header_cart_count").load(location.href + " #header_cart_count");
-             //$("#header_wish_footer").load(location.href + " #header_wish_footer");
               return false;
             }
 
