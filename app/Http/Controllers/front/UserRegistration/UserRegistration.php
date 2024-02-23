@@ -280,7 +280,7 @@ public function register(Request $request){
         return redirect()->to('/')->with('L_strsucessMessage','Registration Successfully.');
     }
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Register - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -376,7 +376,7 @@ public function register(Request $request){
             }
         }
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Login - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -395,7 +395,7 @@ public function register(Request $request){
     
     public function lost_password(){
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Lost-Password - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -527,7 +527,7 @@ public function register(Request $request){
         $user_id = Crypt::decryptString($user_id);
         $data['uid'] = $user_id;
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Reset-Password - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -569,7 +569,7 @@ public function register(Request $request){
         // echo"<pre>";
         // print_r( $data['my_address']);
         // echo"</pre>";exit;   
-        $data['meta_title'] = "";
+        $data['meta_title'] = "My-Profile -Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -633,7 +633,7 @@ public function register(Request $request){
         // echo "<pre>";print_r($data['orders_details']);echo "</pre>";
 
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "My-order - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.my_orders',$data);
@@ -647,7 +647,7 @@ public function register(Request $request){
         $userdata = Session::get('userdata')['userid'];
         $data['my_profile_data'] = DB::table('front_users')->where('id',$userdata)->first(); 
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Edit Profile - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -662,7 +662,7 @@ public function register(Request $request){
             return redirect()->to('signin');
         }
         
-        $data['meta_title'] = "Change Password - SagarStore";
+        $data['meta_title'] = "Change Password - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -804,7 +804,7 @@ public function register(Request $request){
 
                                      
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Wishlist - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 

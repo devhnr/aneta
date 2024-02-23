@@ -16,7 +16,7 @@ class checkoutcontroller extends Controller
 		
 		
 		
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Checkout - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.checkout',$data);
@@ -441,7 +441,7 @@ $subject = "Thank you for shopping with Aneta";
          session()->forget('order_total');
          
         //echo "here";exit;
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Thankyou - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 

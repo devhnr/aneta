@@ -21,8 +21,8 @@
                             </div>
                             <h3>Address</h3>
                             <p><a href="#" target="_blank">808, Shilp Zaveri,
-Nr. Shyamal Cross Road, Satellite,
-Ahmedabad-380015. Gujarat (INDIA)</a></p>
+                            Nr. Shyamal Cross Road, Satellite,
+                            Ahmedabad-380015. Gujarat (INDIA)</a></p>
                         </div>
                     </div>
 

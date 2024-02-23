@@ -16,7 +16,7 @@ class OurteamController extends Controller
      */
     public function index()
     {
-       $data['our_team']=DB::table('our_team')->get();
+       $data['our_team']=DB::table('our_team')->orderBy('id','DESC')->get();
 
        return view('admin.list_ourteam',$data);
     }

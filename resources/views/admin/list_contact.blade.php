@@ -62,11 +62,11 @@
 
                     </a> --}}
 
-                        {{-- <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_category();">
+                        <a class="btn btn-danger me-1" href="javascript:void('0');" onclick="delete_contact();">
 
                             <i class="fas fa-trash"></i> Delete
 
-                        </a> --}}
+                        </a>
 
 
                     </div>
@@ -142,13 +142,13 @@
                                             @foreach ($contact as $data)
                                                 <tr>
 
-                                                    {{-- <td>
+                                                    <td>
 
                                                         <input name="selected[]" id="selected[]" value="{{ $data->id }}"
                                                             type="checkbox" class="minimal-red"
                                                             style="height: 20px;width: 20px;border-radius: 0px;cms: red;">
 
-                                                    </td> --}}
+                                                    </td>
 
 
                                                     <td>
@@ -293,5 +293,39 @@
             });
         })
     </script>
+
+    <script>
+
+function delete_contact() {
+
+// alert('test');
+
+var checked = $("#form input:checked").length > 0;
+
+if (!checked) {
+
+    $('#select_one_record').modal('show');
+
+} else {
+
+    $('#delete_model').modal('show');
+
+}
+
+}
+function form_sub() {
+
+$('#form').submit();
+
+}
+    </script>
+
+    {{-- <script>
+
+function form_sub()
+{
+    $(#form).submit();
+}
+        </script> --}}
 
 @stop

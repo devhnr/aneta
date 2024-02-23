@@ -56,13 +56,14 @@
     <div class="container">
         <form id="search_mini_form" name="search_mini_form" method="get">
             {{-- <input type="hidden" name="search" value=""> --}}
+
             <div class="row">
                 <div class="col-lg-3 col-md-12">
                     <div class="woocommerce-widget-area">
+                        @if(Session::get('userdata') !='')
                         <div class="woocommerce-widget price-list-widget">
                             <h3 class="woocommerce-widget-title">Filter By Price</h3>
-
-                            <div class="collection-filter-by-price" onclick="sort_price_filter()">
+                           <div class="collection-filter-by-price" onclick="sort_price_filter()">
                                 <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
                                     value="10-100" @if ($filter_by_price == '10-100') checked @endif>&nbsp;Rs. 10 to
                                 Rs.
@@ -89,6 +90,8 @@
                                 Above Rs. 2000
                             </div>
                         </div>
+                        @endif
+              
 
                         @php
                             $categories = DB::table('categories')->orderBy('set_order')->get();
@@ -133,7 +136,9 @@
                                                 <a href="{{ url('product-detail/' . $best_seller->page_url) }}">{{ $best_seller->name }}
                                                 </a>
                                             </h4>
+                                            @if(Session::get('userdata') !='')
                                             <span>Rs {{ $best_seller->min_price }}.00</span>
+                                            @endif
                                             {{-- <div class="rating">
                                                 <i class='bx bxs-star'></i>
                                                 <i class='bx bxs-star'></i>
@@ -182,7 +187,7 @@
                                         data-bs-target="#productsFilterModal"><i class='bx bx-filter-alt'></i>
                                         Filter</a></span>
                             </div>
-
+                            @if(Session::get('userdata') !='')
                             <div class="col-lg-6 col-md-6 ordering">
                                 <div class="select-box">
                                     <label>Sort By:</label>
@@ -205,6 +210,7 @@
 
                                 </div>
                             </div>
+                            @endif
                         </div>
 
                         <div class="row">
@@ -272,12 +278,24 @@
                                                 <ul>
 
                                                     <li>
-                                                        <div class="wishlist-btn">
-                                                            <a href="#">
-                                                                <i class='bx bx-heart'></i>
-                                                                <span class="tooltip-label">Add to Wishlist</span>
-                                                            </a>
-                                                        </div>
+                            <div class="wishlist-btn">
+                                @php if(Session::get('userdata') != ''){ 
+
+                                $is_wishlist = Helper::check_wishlist($all_product->id);
+
+                                if($is_wishlist == "1"){
+                                    $icon_class = 'fa-heart';
+                                }else{
+                                    $icon_class = 'fa-heart-o';
+                                }
+                                @endphp
+                            <a href="javascript:void(0);" onclick="wishlist_data('{{ $all_product->id }}')" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
+                            <i class="fa {{ $icon_class }}"></i>
+                            <span class="tooltip-label">Add to Wishlist</span></a>
+                            @php }else{ @endphp
+                            <a href="{{ route('signin')}}" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                            @php } @endphp
+                                            </div>
                                                     </li>
 
                                                 </ul>
@@ -289,12 +307,15 @@
                                                     href="{{ url('product-detail/' . $all_product->page_url) }}">{{ $all_product->name }}</a>
                                             </h3>
                                             <div class="price">
+                                                @if(Session::get('userdata') !='')
                                                 @if ($new_price != '0')
                                                     <span class="old-price">Rs {{ $ProductminPrice }}</span>
                                                     <span class="new-price">Rs {{ $new_price }}</span>
                                                 @else
                                                     <span class="new-price">Rs {{ $ProductminPrice }}</span>
                                                 @endif
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>

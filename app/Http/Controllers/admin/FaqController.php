@@ -15,7 +15,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $data['faq']=DB::table('faq')->get();
+        $data['faq']=DB::table('faq')->orderBy('id','DESC')->get();
 
         return view('admin.list_faq',$data);
     }
@@ -42,7 +42,7 @@ class FaqController extends Controller
 
         $data['ans'] = $request->input('ans');
     
-        DB::taBle('faq')->insert($data);
+        DB::table('faq')->insert($data);
 
         return redirect()->route('faq.index')->with('success','FAQ Added Successfully.');
     }

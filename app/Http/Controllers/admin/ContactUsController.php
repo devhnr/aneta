@@ -82,8 +82,12 @@ class ContactUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $delete_id=$request->selected;
+        
+        DB::table('contact_us')->whereIn('id',$delete_id)->delete();
+
+        return redirect()->route('contact.index')->with('success','Contact has been deleted successfully');
     }
 }

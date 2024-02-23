@@ -159,7 +159,7 @@
 
         @if (in_array('15', $permission1))
             <li class="{{ request()->segment(2) == 'subscribe' ? 'active' : '' }}">
-                <a href="{{route('subscribe.index')}}"><i class="fa fa-users" aria-hidden="true"></i>
+                <a href="{{route('subscribe.index')}}"><i class="fa fa-bell" aria-hidden="true"></i>
                     <span>Subscribe</span></a>
             </li>
         @endif
