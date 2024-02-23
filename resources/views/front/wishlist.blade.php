@@ -21,7 +21,7 @@
     <div class="container">
         <form>
             <div class="cart-table table-responsive">
-                @if($allwishlist != '')
+                @if(isset($allwishlist) && count($allwishlist) > 0)
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -33,7 +33,9 @@
                     </thead>
 
                     <tbody>
+                       
                         @foreach($allwishlist as $allwishlist_details)
+
                         <tr>
                                @if($allwishlist_details->base_image != '')
                                 <td class="product-thumbnail"><a href="{{url('product-detail/' . $allwishlist_details->page_url)}}"><img class="cart-product-image" src="{{asset('public/upload/product/small/'.$allwishlist_details->base_image)}}" alt=""></a></td>
@@ -84,6 +86,7 @@
                             </td>
                         </tr>
                         @endforeach
+                       
 
                         {{-- <tr>
                             <td class="product-thumbnail">
@@ -117,7 +120,10 @@
                         
                     </tbody>
                 </table>
+                @else
+                <p class="notification_style" style="text-align: center;"> No Product in Wishlist </p>
                 @endif
+
             </div>
 
         </form>

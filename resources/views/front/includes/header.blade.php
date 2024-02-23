@@ -3,6 +3,22 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
+        @if($meta_title != '')
+        <title>{{$meta_title}}</title>
+
+        @else
+        <title>Aneta</title>
+
+        @endif
+        
+        <meta charset="utf-8">
+        @if($meta_keyword != '')
+        <meta name="keywords" content="{{$meta_keyword}}" />
+        @endif
+
+        @if($meta_description)
+        <meta name="description" content="{{$meta_description}}" />
+        @endif
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Links of CSS files -->

@@ -142,14 +142,16 @@
 					@include('front.sidebar_profile')
                         
                     </div>
-					
-					<div class="col-lg-8 col-md-12">
-						
-										@php 
-                @endphp
-                @if($orders_details != '')
+          @php
+           // echo"<pre>";print_r($orders_details);echo"</pre>";
+          @endphp
+       
+          
 
-                @foreach($orders_details as $order_data)
+					<div class="col-lg-8 col-md-12">
+            @if(isset($orders_details) && count($orders_details) > 0)
+          
+		    @foreach($orders_details as $order_data)
 				
 				<aside class="widget-area widget-left-sidebar">
                             <section class="widget widget_categories">
@@ -284,12 +286,12 @@
                         </aside>
 
               @endforeach
-             
+              @else
+              <p class="notification_style">No Product in Order </p>
               @endif
-									
-						
-						
-					</div>
+              </div>
+             
+             
 			</div>
 		</div>
 	</section>

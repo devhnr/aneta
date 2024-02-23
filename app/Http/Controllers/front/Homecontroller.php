@@ -15,7 +15,7 @@ class Homecontroller extends Controller
 
        
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
 
@@ -75,7 +75,7 @@ class Homecontroller extends Controller
 
         $data['ourteam'] = DB::table('our_team')->orderBy('id','ASC')->get();
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "About-Us - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
     	return view('front.about_us',$data);
@@ -83,7 +83,7 @@ class Homecontroller extends Controller
 	
 	public function product_list(){
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Product-list - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
     	return view('front.product_listing',$data);
@@ -91,7 +91,7 @@ class Homecontroller extends Controller
 	
 	public function product_detail(){
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Product-detail - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
     	return view('front.product_detail',$data);
@@ -252,7 +252,7 @@ class Homecontroller extends Controller
             return redirect()->to('/contact')->with('L_strsucessMessage','Contact Us Detail Submitted Successfully.');
         }
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Contact - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.contact',$data);
@@ -261,7 +261,7 @@ class Homecontroller extends Controller
 
     public function cart(){
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Cart - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.cart',$data);
@@ -276,7 +276,7 @@ class Homecontroller extends Controller
         $pagination = $query->paginate(9)->withQueryString();
 
         $data['blog'] = $pagination;
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Blogs - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.blogs',$data);
@@ -285,12 +285,11 @@ class Homecontroller extends Controller
 	public function blog_details($blog_page_url){
 
         // echo $blog_page_url;exit;
-        $data['blog_detail'] = DB::table('blogs')->where('set_as_home',1)
-                                                ->where('page_url',$blog_page_url)->orderBy('set_order')->first();
+        $data['blog_detail'] = DB::table('blogs')->where('page_url',$blog_page_url)->orderBy('set_order')->first();
 
        
       
-        $data['meta_title'] = "";
+        $data['meta_title'] = "Blog-details - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
         return view('front.blog_details',$data);
@@ -512,7 +511,7 @@ class Homecontroller extends Controller
 
         $data['faq'] = DB::table('faq')->orderBy('id','DESC')->get();
 
-        $data['meta_title'] = "";
+        $data['meta_title'] = "FAQ - Aneta";
         $data['meta_keyword'] = "";
         $data['meta_description'] = "";
     	return view('front.faqs',$data);

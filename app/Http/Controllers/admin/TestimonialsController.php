@@ -16,7 +16,7 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        $data['testimonials']=DB::table('testimonials')->get();
+        $data['testimonials']=DB::table('testimonials')->orderBy('id','DESC')->get();
 
         return view('admin.list_testimonials',$data);
     }
