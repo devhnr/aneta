@@ -108,8 +108,9 @@
                             </div>
 
                             <ul class="products-info">
-                                <li><span>Brand :</span> <a href="#">{{$brand_data->name}}</a></li>
-                                <li><span>Availability :</span> <a href="#">In stock</a></li>
+                                {{-- <li><span>Brand :</span> <a href="#">{{$brand_data->name}}</a></li> --}}
+                                <li><span>Availability :</span>
+                                     <a href="#"><span id="stock_status">Stock</span></a></li>
                                 <li><span>Category :</span> <a href="#">{{$cat_data->name}}</a></li>
                             </ul>
 
@@ -159,7 +160,7 @@
                             </div>
 
                             
-
+                            <input type="hidden" name="check_stock" id="check_stock" value="">
                             <div class="wishlist-btn">
                                 @php if(Session::get('userdata') != ''){ 
                                     $is_wishlist = Helper::check_wishlist($product_data->id);
@@ -356,11 +357,23 @@
                                     <ul>
                                         <li>
                                             <div class="wishlist-btn">
-                                                <a href="#">
-                                                    <i class='bx bx-heart'></i>
-                                                    <span class="tooltip-label">Add to Wishlist</span>
-                                                </a>
-                                            </div>
+                                                @php if(Session::get('userdata') != ''){ 
+                
+                                                $is_wishlist = Helper::check_wishlist($all_product->id);
+                
+                                                if($is_wishlist == "1"){
+                                                    $icon_class = 'fa-heart';
+                                                }else{
+                                                    $icon_class = 'fa-heart-o';
+                                                }
+                                                @endphp
+                                            <a href="javascript:void(0);" onclick="wishlist_data('{{ $all_product->id }}')" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
+                                            <i class="fa {{ $icon_class }}"></i>
+                                            <span class="tooltip-label">Add to Wishlist</span></a>
+                                            @php }else{ @endphp
+                                            <a href="{{ route('signin')}}" class="product-link-icon move-top-bottom" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                                            @php } @endphp
+                                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -517,6 +530,15 @@
             return false;
         }
 
+        var check_stock = $('#check_stock').val();
+
+        if (check_stock == 0) {
+            $("#cartvalidate").html("This Pack is Out Of Stock");
+            $('#cartvalidate').show().delay(0).fadeIn('show');
+            $('#cartvalidate').show().delay(2000).fadeOut('show');
+            return false;
+        }
+
         var qty = $('#quantity_max').val();
         $.ajax({
 
@@ -547,82 +569,74 @@
                 });
     }
 
-    function pack_change(product_id,pack_id) {
+    function pack_change(product_id, pack_id) {
+    $('#package_detail_id').val(pack_id);
 
-        $('#package_detail_id').val(pack_id);
+    var lis = document.querySelectorAll('ul li');
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].classList.remove('active');
+    }
 
-        var lis = document.querySelectorAll('ul li');
-        for (var i = 0; i < lis.length; i++) {
-            lis[i].classList.remove('active');
-        }
+    // Add 'active' class to the clicked <li> element
+    var clickedLi = document.getElementById('add_class_' + pack_id).parentNode;
+    clickedLi.classList.add('active');
 
-        // Add 'active' class to the clicked <li> element
-        var clickedLi = document.getElementById('add_class_' + pack_id).parentNode;
-        clickedLi.classList.add('active');
+    var discount = '{{ $product_data->discount }}';
+    var discount_type = '{{ $product_data->discount_type }}';
+    var package_detail_id = $('#package_detail_id').val();
+    var url = '{{ url('price_show') }}';
 
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: {
+            "_token": "{{ csrf_token() }}",
+            "package_detail_id": package_detail_id,
+            "p_id": product_id
+        },
+        success: function (msg) {
+            var response_ajax = JSON.parse(msg);
 
-       
-        var discount = '{{ $product_data->discount }}';
+            if (response_ajax.response == "success") {
 
-        var discount_type = '{{ $product_data->discount_type }}';
+                if (response_ajax.qty > 0) {
+                    // Product is in stock
+                    $('#check_stock').val(1);
+                    document.getElementById('stock_status').innerHTML = 'Stock';
+                    document.getElementById('stock_status').style.color = ''; // Set red color
+                } else {
+                    // Product is out of stock
+                    $('#check_stock').val(0);
+                    document.getElementById('stock_status').innerHTML = 'Out Of Stock';
+                    document.getElementById('stock_status').style.color = 'red'; // Set red color
+                }
 
-        var package_detail_id = $('#package_detail_id').val();
+                if (discount_type == 2) {
+                    document.getElementById('new_price').innerHTML = (response_ajax.price);
+                } else {
+                    if (discount > 0) {
+                        if (discount_type == 0) {
+                            var discountedPrice = response_ajax.price - (response_ajax.price * (discount / 100));
+                            document.getElementById('disc_new_price').innerHTML = Math.round(discountedPrice);
+                            document.getElementById('disc_old_price').innerHTML = Math.round(response_ajax.price);
+                        }
 
-        // alert(color);
-        var url = '{{ url('price_show') }}';
-        // alert(url);
-         $.ajax({
-            url: url,
-            type: 'post',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "package_detail_id": package_detail_id,
-                "p_id": product_id
-            },
-            success: function(msg) {
-
-               var response_ajax = JSON.parse(msg);
-
-                if (response_ajax.response == "success") {
-                    
-                    if(discount_type == 2){
-                       
-                       // document.getElementById('disc_old_price').innerHTML =(response_ajax.price);
-                       
-                       
-                        document.getElementById('new_price').innerHTML =(response_ajax.price);
-                       
-                    }else{
-                        
-                        if (discount > 0) {
-                            
-                            if(discount_type == 0){
-                                
-                                var msg = response_ajax.price - (response_ajax.price * (discount / 100));
-                                document.getElementById('disc_new_price').innerHTML =Math.round(msg);
-                                
-                                 document.getElementById('disc_old_price').innerHTML =Math.round(response_ajax.price);
-                            } 
-                            
-                            if(discount_type == 1){
-                                
-                                var msg = response_ajax.price - discount;
-                                document.getElementById('disc_new_price').innerHTML =Math.round(msg);
-                                
-                                 document.getElementById('disc_old_price').innerHTML =Math.round(response_ajax.price);
-                            }
+                        if (discount_type == 1) {
+                            var discountedPrice = response_ajax.price - discount;
+                            document.getElementById('disc_new_price').innerHTML = Math.round(discountedPrice);
+                            document.getElementById('disc_old_price').innerHTML = Math.round(response_ajax.price);
                         }
                     }
-                   $("#quantity_max").val(1);
-                    $("#quantity_max").attr("max", response_ajax.qty);
-                    $("#size_id").val(response_ajax.size_id);
                 }
+
+                $("#quantity_max").val(1);
+                $("#quantity_max").attr("max", response_ajax.qty);
+                $("#size_id").val(response_ajax.size_id);
             }
-        });
+        }
+    });
+}
 
-
-
-    }
 
     document.addEventListener("DOMContentLoaded", function() {
     // Get the input element and plus/minus buttons

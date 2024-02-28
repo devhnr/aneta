@@ -93,12 +93,12 @@
                                     class="{{ request()->segment(2) == 'subbanner' ? 'active' : '' }}">Sub Banner
                                 </a>
                         @endif
-                        @if (in_array('13', $permission1))
+                        {{-- @if (in_array('13', $permission1))
                             <li>
                                 <a href="{{ route('brand.index') }}"
                                     class="{{ request()->segment(2) == 'brand' ? 'active' : '' }}">Brand
                                 </a>
-                        @endif
+                        @endif --}}
                        
 
 

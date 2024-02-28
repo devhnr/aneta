@@ -177,19 +177,16 @@
                 </div>
 
                 <div class="col-lg-9 col-md-12">
-                    <div class="drodo-grid-sorting row align-items-center">
-                        <div class="col-lg-6 col-md-6 result-count">
-                            <p>We found <span class="count">{{ $productCount }}</span> products available for you
-                            </p>
-
-                            <span class="sub-title d-lg-none"><a href="#" data-bs-toggle="modal"
-                                    data-bs-target="#productsFilterModal"><i class='bx bx-filter-alt'></i>
-                                    Filter</a></span>
-                        </div>
-                    </div>
                     @if (isset($all_product_details) && count($all_product_details) > 0)
                         <div class="drodo-grid-sorting row align-items-center">
-                           
+                            <div class="col-lg-6 col-md-6 result-count">
+                                <p>We found <span class="count">{{ $productCount }}</span> products available for you
+                                </p>
+
+                                <span class="sub-title d-lg-none"><a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#productsFilterModal"><i class='bx bx-filter-alt'></i>
+                                        Filter</a></span>
+                            </div>
                             @if(Session::get('userdata') !='')
                             <div class="col-lg-6 col-md-6 ordering">
                                 <div class="select-box">
@@ -359,7 +356,6 @@
         </form>
     </div>
 </section>
-<!-- End Products Area -->
 
  <!-- Start Products Filter Modal Area -->
  <div class="modal left fade productsFilterModal" id="productsFilterModal" tabindex="-1" role="dialog">
@@ -374,7 +370,7 @@
                     @if(Session::get('userdata') !='')
                     <div class="woocommerce-widget price-list-widget">
                         <h3 class="woocommerce-widget-title">Filter By Price</h3>
-                        <div class="collection-filter-by-price" onclick="sort_price_filter_mob()">
+                        <div class="collection-filter-by-price" onclick="sort_price_filter()">
                               <input type="radio" name="filter_by_price" class="filter_by_price" id="price_1"
                                     value="10-100" @if ($filter_by_price == '10-100') checked @endif>&nbsp;Rs. 10 to
                                 Rs.
@@ -488,8 +484,7 @@
     </div>
 </div>
 <!-- End Products Filter Modal Area -->
-
-
+<!-- End Products Area -->
 @include('front.includes.footer')
 
 <script>
@@ -498,7 +493,6 @@
         var sort_by = $("#sort").val();
         $(".sort_by").val(sort_by);
         document.search_mini_form.submit();
-        // document.search_mini__mobile_form.submit();
 
     }
 </script>
@@ -506,12 +500,8 @@
 <script>
     function sort_price_filter() {
         var lowAmount = $("input[name='filter_by_price']:checked").val();
-        // alert(lowAmount);
+        //  alert(lowAmount);
         document.search_mini_form.submit();
-   }
-    function sort_price_filter_mob() {
-        var lowAmount = $("input[name='filter_by_price']:checked").val();
-        // alert(lowAmount);
         document.search_mini__mobile_form.submit();
     }
 </script>
