@@ -330,14 +330,7 @@
                                         </p>
                                     </div>
                                      <p class="form-error-text" id="payment_error" style="color: red;"></p>
-
-                                    <button class="default-btn" type="button" disabled id="spinner_button"
-                                            style="display: none;">
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                            Loading...
-                                    </button>
-
-                                    <a href="javascript:void(0)" onclick="place_order();" class="default-btn" id="submit_button"><i class="flaticon-tick"></i>Place Order<span></span></a>
+                                    <a href="javascript:void(0)" onclick="place_order();" class="default-btn"><i class="flaticon-tick"></i>Place Order<span></span></a>
                                 </div>
                             </div>
                         </div>
@@ -486,8 +479,7 @@
             $('#payment_error').show().delay(2000).fadeOut('show');
             return false;
         }
-        $('#spinner_button').show();
-                $('#submit_button').hide();
+
         $('#addressForm').submit();
 
         

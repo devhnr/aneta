@@ -62,16 +62,16 @@
     z-index: 9999;
     }
     .successmain {
-        background-color: #3D9630;
-        border-color: #3D9630;
+        background-color: #09c6ab;
+        border-color: #09c6ab;
     }
     .size_active {
         background: #ABABAB;
         color: #000;
-        border: 1px solid #3D9630 !important;
+        border: 1px solid #09c6ab !important;
     }
     .color_active {
-        border: 1px solid #3D9630 !important;
+        border: 1px solid #09c6ab !important;
     }
     .alert-message_cart {
         background-size: 40px 40px;
@@ -93,8 +93,8 @@
         top: 0px;
     }
     .successcart {
-        background-color: #3D9630;
-        border-color: #3D9630;
+        background-color: #09c6ab;
+        border-color: #09c6ab;
     }    
     @media (min-width: 992px){
         .navbar-expand-lg .navbar-collapse {
@@ -104,14 +104,14 @@
         }    
     }
     .contact_successmain {
-        background-color: #3D9630;
-        border-color: #3D9630;
+        background-color: #09c6ab;
+        border-color: #09c6ab;
         z-index: 9999999;
         position: absolute;
     }
     .contact_successmain1 {
-        background-color: #3D9630;
-        border-color: #3D9630;
+        background-color: #09c6ab;
+        border-color: #09c6ab;
         z-index: 9999999;
         /*position: absolute;*/
     }

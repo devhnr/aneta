@@ -652,7 +652,7 @@
         @endif
         <!-- End Products Area -->
 		
-		 <!-- Start Brands Area -->
+		 {{-- <!-- Start Brands Area -->
          @if(isset($brand) && count($brand)>0 )
         <section class="brands-area pt-70 pb-40">
             <div class="container">
@@ -704,13 +704,12 @@
                         <div class="single-brands-item">
                             <a href="#" class="d-block"><img src="{{asset('public/site/assets/img/brands/brands-img61.png')}}" alt="image"></a>
                         </div>
-                    </div> --}}
-                  
+                    </div>
                 </div>
  
             </div>
         </section>
-        @endif
+        @endif --}}
         <!-- End Brands Area --> 
 		
 		

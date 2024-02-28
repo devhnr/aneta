@@ -218,7 +218,7 @@
 
                                                {{-- <th>Sub Category</th> --}}
 
-                                               <th>Brand Name</th>
+                                               {{-- <th>Brand Name</th> --}}
 
                                                <th>Name</th>
 
@@ -313,10 +313,10 @@
 
                                                @endphp
 
-                                               <td>
+                                               {{-- <td>
                                                        {{ $BrandName }}
                                                </td>
-                                               
+                                                --}}
                                                    <td>
                                                        {{ $data->name }}
                                                    </td>
